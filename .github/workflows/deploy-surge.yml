@@ -1,0 +1,44 @@
+# 每次 push 到 main 自动把 cf-store 同步为 surge.sh 备用源。
+# 与 cf-reg 的 surge.yml 同款部署方式（surge publish --token）。
+#
+# 需要的仓库 Secrets：
+#   SURGE_TOKEN  —— surge 登录后 `surge token` 获取（cf-reg 同款值即可）
+#
+# 部署命令：npx surge publish <目录> --domain <域名> --token <token>
+name: Deploy surge.sh backup source
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build surge source (rewrite URLs + copy assets)
+        run: node scripts/build-surge.mjs
+
+      - name: Publish to Surge
+        env:
+          SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
+          SURGE_DOMAIN: cf-store.surge.sh
+        run: npx surge publish surge-dist --domain $SURGE_DOMAIN --token $SURGE_TOKEN
+
+      - name: Verify deployment
+        run: |
+          sleep 3
+          CODE=$(curl -s -o /dev/null -w "%{http_code}" "https://cf-store.surge.sh/catalog.json")
+          echo "catalog.json → HTTP $CODE"
+          [ "$CODE" = "200" ] || { echo "::error::catalog.json 发布失败"; exit 1; }

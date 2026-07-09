@@ -8,39 +8,57 @@
       "id": "hello-world",
       "name": "Hello World",
       "description": "一个最简单的 Cloudflare Worker，返回 JSON 格式的 Hello 消息，适合新手入门。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["入门", "worker", "示例"],
+      "tags": [
+        "入门",
+        "worker",
+        "示例"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/hello-worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/hello-world/worker.js"
       }
     },
     {
       "id": "echo-server",
       "name": "Echo 服务器",
       "description": "回显请求信息的 Worker，返回请求方法、Header、路径等，可用于调试 Webhook 和 API 调用。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["调试", "webhook", "worker"],
+      "tags": [
+        "调试",
+        "webhook",
+        "worker"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/echo-worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/echo-server/worker.js"
       }
     },
     {
       "id": "kv-demo",
       "name": "KV 存储演示",
       "description": "演示 Worker 如何读写 Cloudflare KV 存储。需要 KV 命名空间绑定。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["kv", "存储", "worker"],
+      "tags": [
+        "kv",
+        "存储",
+        "worker"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/kv-demo-worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/kv-demo/worker.js"
       },
       "bindings": [
         {
@@ -55,13 +73,20 @@
       "id": "d1-demo",
       "name": "D1 数据库演示",
       "description": "演示 Worker + D1 数据库的完整 CRUD 操作。自动创建 items 表，支持增删查。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["d1", "数据库", "worker", "CRUD"],
+      "tags": [
+        "d1",
+        "数据库",
+        "worker",
+        "CRUD"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/d1-demo-worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/d1-demo/worker.js"
       },
       "bindings": [
         {
@@ -77,13 +102,20 @@
       "id": "ai-demo",
       "name": "AI 推理演示",
       "description": "演示 Worker + Workers AI 绑定，调用 LLM 模型进行文本生成。支持 Llama、Mistral、DeepSeek 等模型。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["ai", "LLM", "推理", "worker"],
+      "tags": [
+        "ai",
+        "LLM",
+        "推理",
+        "worker"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/ai-demo-worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/ai-demo/worker.js"
       },
       "bindings": [
         {
@@ -97,18 +129,25 @@
       "id": "hybrid-demo",
       "name": "Hybrid 双模部署",
       "description": "同一份代码同时支持 Worker 和 Pages 两种部署方式。部署时可选择仅 Worker、仅 Pages 或同时部署。包含简单 Web API + 静态页面。",
-      "author": { "name": "CF Manager" },
+      "author": {
+        "name": "CF Manager"
+      },
       "version": "1.0.0",
-      "tags": ["hybrid", "双模", "worker", "pages"],
+      "tags": [
+        "hybrid",
+        "双模",
+        "worker",
+        "pages"
+      ],
       "type": "hybrid",
       "sources": {
         "worker": {
           "kind": "raw",
-          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/hybrid-demo-worker.js"
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/hybrid-demo/worker.js"
         },
         "pages": {
           "kind": "release",
-          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/hybrid-demo-pages.zip"
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/hybrid-demo/pages.zip"
         }
       }
     }
