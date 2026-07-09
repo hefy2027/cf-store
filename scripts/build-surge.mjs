@@ -57,29 +57,88 @@ for (const rel of filesToCopy) {
   cpSync(src, dest, { recursive: true });
 }
 
-// 3. 生成一个简单落地页（surge 默认入口，也方便手动浏览）
-const items = catalog.templates
-  .map((t) => `      <li><strong>${t.name}</strong> — <code>${t.id}</code></li>`)
-  .join('\n');
+// 3. 生成一个落地页（surge 默认入口）。运行时 fetch ./catalog.json 动态渲染，永远与源一致。
 const indexHtml = `<!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CF Store 备用源（surge.sh）</title>
+  <title>CF Store 备用源 · surge.sh</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      background: radial-gradient(1200px 600px at 20% -10%, #1e3a8a33, transparent), #0b1020; color: #e6e9f0; min-height: 100vh;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 48px 20px 64px; }
+    header h1 { margin: 0 0 8px; font-size: 28px; letter-spacing: .5px; }
+    header p { margin: 4px 0; color: #9aa4bf; font-size: 14px; line-height: 1.6; }
+    code { background: #1b2236; padding: 2px 6px; border-radius: 6px; color: #7dd3fc; font-size: 13px; }
+    .hint { background: #111936; border: 1px solid #25304f; border-radius: 12px; padding: 14px 16px; margin: 20px 0 28px; font-size: 14px; color: #c3cbe6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .card { background: linear-gradient(180deg, #161d33, #121829); border: 1px solid #283255; border-radius: 16px; padding: 18px; transition: transform .15s ease, border-color .15s ease; }
+    .card:hover { transform: translateY(-3px); border-color: #3b82f6; }
+    .card .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
+    .card h3 { margin: 0; font-size: 17px; }
+    .badge { flex: none; font-size: 11px; padding: 3px 8px; border-radius: 999px; background: #1e293b; color: #93c5fd; border: 1px solid #334155; text-transform: uppercase; letter-spacing: .5px; }
+    .card .desc { color: #aab3cf; font-size: 13px; line-height: 1.6; margin: 10px 0 12px; min-height: 38px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 12px; }
+    .tag { font-size: 11px; padding: 2px 8px; border-radius: 999px; background: #0f172a; color: #94a3b8; border: 1px solid #1e293b; }
+    .meta { font-size: 12px; color: #7c87a8; display: flex; justify-content: space-between; gap: 8px; }
+    .links a { color: #60a5fa; text-decoration: none; font-size: 12px; }
+    .links a:hover { text-decoration: underline; }
+    .err { color: #f87171; }
+    footer { margin-top: 40px; color: #6b7494; font-size: 12px; text-align: center; }
+  </style>
 </head>
 <body>
-  <h1>CF Store 备用源</h1>
-  <p>这是 <a href="${GH_BASE}catalog.json">官方 GitHub 源</a> 的 surge.sh 镜像。</p>
-  <p>CF Manager 的 Store 页面把源地址改为
-     <code>${SURGE_BASE}/catalog.json</code> 即可在 GitHub 不可用时使用。</p>
-  <h2>模板列表（${catalog.templates.length}）</h2>
-  <ul>
-${items}
-  </ul>
+  <div class="wrap">
+    <header>
+      <h1>CF Store · surge.sh 备用源</h1>
+      <p>这是 <a href="${GH_BASE}catalog.json" style="color:#60a5fa">官方 GitHub 源</a> 的镜像。GitHub 不可用时，把 CF Manager 的源地址改成
+        <code>${SURGE_BASE}/catalog.json</code> 即可。</p>
+    </header>
+    <div class="hint" id="hint">正在加载模板列表…</div>
+    <div class="grid" id="grid"></div>
+    <footer>本页运行时实时读取 <code>./catalog.json</code>，与源保持同步。</footer>
+  </div>
+  <script>
+    const GH_BASE = ${JSON.stringify(GH_BASE)};
+    const SURGE_BASE = ${JSON.stringify(SURGE_BASE)};
+    const fmt = (s) => s || "—";
+    async function load() {
+      const grid = document.getElementById("grid");
+      const hint = document.getElementById("hint");
+      try {
+        const res = await fetch("./catalog.json", { cache: "no-store" });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        hint.textContent = "共 " + data.templates.length + " 个模板（来自 " + fmt(data.name) + "）";
+        grid.innerHTML = data.templates.map((t) => {
+          const type = t.type || "worker";
+          const srcUrl = t.source ? t.source.url
+            : (t.sources ? (t.sources.worker ? t.sources.worker.url : (t.sources.pages ? t.sources.pages.url : "")) : "");
+          const tags = (t.tags || []).map((x) => '<span class="tag">' + x + "</span>").join("");
+          const author = t.author ? fmt(t.author.name) : "—";
+          const srcLink = srcUrl ? '<a href="' + srcUrl + '" target="_blank" rel="noopener">源码 ↗</a>' : "";
+          return '<div class="card">'
+            + '<div class="top"><h3>' + fmt(t.name) + '</h3><span class="badge">' + type + '</span></div>'
+            + '<div class="desc">' + fmt(t.description) + '</div>'
+            + (tags ? '<div class="tags">' + tags + '</div>' : '')
+            + '<div class="meta"><span>作者：' + author + '</span><span class="links">' + srcLink + '</span></div>'
+            + '</div>';
+        }).join("");
+      } catch (e) {
+        hint.innerHTML = '<span class="err">加载失败：' + e.message + '</span>';
+      }
+    }
+    load();
+  </script>
 </body>
 </html>
 `;
+
 writeFileSync(join(outDir, 'index.html'), indexHtml);
 
 console.log(`[ok] surge-dist 已生成于 ${outDir}`);
