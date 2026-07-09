@@ -191,7 +191,8 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "管理后台密码（可选，留空则随机生成）"
+          "title": "管理后台密码（可选，留空则随机生成）",
+          "secret": true
         }
       ],
       "env": {}
