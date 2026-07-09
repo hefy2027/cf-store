@@ -1,0 +1,203 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/hefy2027/cf-store/main/catalog.schema.json",
+  "title": "CF Store Catalog",
+  "description": "CF Manager Store 目录文件的统一校验 Schema。唯一真实来源，backend 与 worker 共用。",
+  "type": "object",
+  "required": ["version", "templates"],
+  "additionalProperties": false,
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Catalog 版本，语义化版本号"
+    },
+    "updated": { "type": "string", "description": "ISO 时间字符串" },
+    "name": { "type": "string" },
+    "defaultLanguage": { "type": "string" },
+    "templates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/template" }
+    }
+  },
+  "$defs": {
+    "source": {
+      "type": "object",
+      "required": ["kind", "url"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["raw", "release", "repo-archive"] },
+        "url": { "type": "string", "format": "uri", "pattern": "^https://" },
+        "assetName": { "type": "string" },
+        "subPath": { "type": "string" },
+        "size": { "type": "number" }
+      }
+    },
+    "binding": {
+      "type": "object",
+      "required": ["type", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "type": { "enum": ["kv", "d1", "r2", "ai", "var"] },
+        "name": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+        "title": { "type": "string" },
+        "action": { "enum": ["create-or-reuse", "prompt"] },
+        "required": { "type": "boolean" },
+        "initSqlUrl": { "type": "string", "format": "uri" },
+        "initSql": { "type": "string" }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "d1" } },
+            "required": ["type"]
+          },
+          "then": {},
+          "else": {
+            "not": { "required": ["initSql", "initSqlUrl"] },
+            "errorMessage": "initSql / initSqlUrl 仅适用于 d1 绑定"
+          }
+        }
+      ]
+    },
+    "template": {
+      "type": "object",
+      "required": ["id", "name", "version", "type"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "author": {
+          "type": "object",
+          "required": ["name"],
+          "additionalProperties": false,
+          "properties": {
+            "name": { "type": "string" },
+            "url": { "type": "string", "format": "uri" }
+          }
+        },
+        "version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+        "tags": { "type": "array", "items": { "type": "string" } },
+        "icon": { "type": "string" },
+        "homepage": { "type": "string", "format": "uri" },
+        "readmeUrl": { "type": "string", "format": "uri" },
+        "type": { "enum": ["worker", "pages", "hybrid"] },
+        "source": { "$ref": "#/$defs/source" },
+        "sources": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "worker": { "$ref": "#/$defs/source" },
+            "pages": { "$ref": "#/$defs/source" }
+          }
+        },
+        "bindings": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/binding" }
+        },
+        "env": { "type": "object" },
+        "routes": { "type": "array", "items": { "type": "string" } }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": { "type": { "const": "hybrid" } },
+            "required": ["type"]
+          },
+          "then": {
+            "required": ["sources"],
+            "not": { "required": ["source"] },
+            "errorMessage": {
+              "required": { "sources": "hybrid 类型需要 sources 字段（worker/pages 二选一或都有）" },
+              "not": "hybrid 类型不能使用 source 字段，请用 sources"
+            }
+          }
+        },
+        {
+          "if": {
+            "not": {
+              "properties": { "type": { "const": "hybrid" } },
+              "required": ["type"]
+            }
+          },
+          "then": {
+            "required": ["source"],
+            "not": { "required": ["sources"] },
+            "errorMessage": {
+              "required": { "source": "worker/pages 类型需要 source 字段" },
+              "not": "非 hybrid 类型不能使用 sources 字段"
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "pages" } },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "properties": {
+                  "kind": {
+                    "not": { "enum": ["raw"] },
+                    "errorMessage": "pages 类型不能使用 raw 源（Pages 需要 zip）"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "worker" } },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "source": {
+                "properties": {
+                  "kind": {
+                    "not": { "enum": ["repo-archive"] },
+                    "errorMessage": "worker 类型不能使用 repo-archive 源（单脚本）"
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "hybrid" } },
+            "required": ["type"]
+          },
+          "then": {
+            "properties": {
+              "sources": {
+                "properties": {
+                  "pages": {
+                    "properties": {
+                      "kind": {
+                        "not": { "enum": ["raw"] },
+                        "errorMessage": "sources.pages 不能使用 raw 源（Pages 需要 zip）"
+                      }
+                    }
+                  },
+                  "worker": {
+                    "properties": {
+                      "kind": {
+                        "not": { "enum": ["repo-archive"] },
+                        "errorMessage": "sources.worker 不能使用 repo-archive 源（单脚本）"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
