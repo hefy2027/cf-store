@@ -80,9 +80,15 @@ cf-store/
 
 ### URL 规则
 
-- 所有 `url` 必须指向**本仓库** `main` 分支的 raw 地址，且为 `https://` 开头。
-- 当前统一放在 `templates/` 下：
+- 所有 `url` 必须为 `https://` 开头（Schema 强制 `^https://`）。
+- **不要求必须指向本仓库。** 你可以引用任意可公开访问的 HTTPS 地址——包括本仓库 `templates/` 下的文件，也包括第三方开源项目（如 `github.com/cmliu/edgetunnel` 的 raw 文件或 release/archive 包）。
+- 本仓库自带的模板统一放在 `templates/` 下：
   `https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/<id>/<文件>`
+- 第三方项目示例（hybrid，worker+pages 双模）：
+  - worker：`https://raw.githubusercontent.com/cmliu/edgetunnel/main/_worker.js`
+  - pages：`https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip`
+
+> 注意：引用外部源时，surge.sh 备用镜像**不会**自动镜像这些外部文件（备用源只改写本仓库 `main/` 前缀的 URL）。如需备用源也包含它们，请把对应文件下载进本仓库 `templates/` 后再引用。
 
 ## 如何新增模板
 

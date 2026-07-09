@@ -150,6 +150,46 @@
           "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/hybrid-demo/pages.zip"
         }
       }
+    },
+    {
+      "id": "edgetunnel",
+      "name": "EdgeTunnel (VLESS/Trojan/SS)",
+      "description": "基于 Cloudflare Workers/Pages 的边缘隧道面板，支持 VLESS、Trojan、Shadowsocks 协议，内置管理后台与订阅系统。第三方开源项目（cmliu/edgetunnel）。",
+      "author": {
+        "name": "cmliu",
+        "url": "https://github.com/cmliu/edgetunnel"
+      },
+      "version": "2.1.0",
+      "tags": [
+        "隧道",
+        "代理",
+        "worker",
+        "pages",
+        "hybrid",
+        "第三方"
+      ],
+      "type": "hybrid",
+      "sources": {
+        "worker": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/cmliu/edgetunnel/main/_worker.js"
+        },
+        "pages": {
+          "kind": "repo-archive",
+          "url": "https://github.com/cmliu/edgetunnel/archive/refs/heads/main.zip"
+        }
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV",
+          "title": "edgetunnel-kv",
+          "action": "create-or-reuse"
+        }
+      ],
+      "env": {
+        "ADMIN": ""
+      }
     }
   ]
 }
