@@ -185,11 +185,16 @@
           "name": "KV",
           "title": "edgetunnel-kv",
           "action": "create-or-reuse"
+        },
+        {
+          "name": "ADMIN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "管理后台密码（可选，留空则随机生成）"
         }
       ],
-      "env": {
-        "ADMIN": ""
-      }
+      "env": {}
     }
   ]
 }

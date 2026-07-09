@@ -15,6 +15,8 @@
     "updated": { "type": "string", "description": "ISO 时间字符串" },
     "name": { "type": "string" },
     "defaultLanguage": { "type": "string" },
+    "description": { "type": "string", "description": "目录描述（可选元数据）" },
+    "mirrorOf": { "type": "string", "format": "uri", "description": "若为镜像源，指向其上游官方源地址（可选元数据，如 surge.sh 备用源）" },
     "templates": {
       "type": "array",
       "items": { "$ref": "#/$defs/template" }
