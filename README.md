@@ -1,66 +1,96 @@
 # CF Store
 
-CF Manager 的官方模板源（catalog）。CF Manager 的 Store 页面会从本仓库的 `catalog.json` 拉取可一键部署的 Worker / Pages 模板。
+CF Manager 的官方模板源（catalog）。CF Manager 的 Store 页面会从本仓库的 `catalog.json` 拉取可一键部署的 Worker / Pages / Hybrid 模板。
 
 ## 目录结构
 
 ```
 cf-store/
-├── catalog.json            # 模板清单（Store 入口，唯一必须文件）
-├── hello-worker.js         # 各模板的源码 / 资源文件
-├── echo-worker.js
-├── kv-demo-worker.js
-├── d1-demo-worker.js
-├── ai-demo-worker.js
-├── hybrid-demo-worker.js
-├── hybrid-demo-pages.zip   # hybrid 模板的 Pages 部分（zip 包）
-└── index.html              # hybrid 模板 Pages 部分的静态入口
+├── catalog.json              # 模板清单（Store 入口，唯一必须文件）
+├── catalog.schema.json       # catalog.json 的校验 Schema（统一真实来源）
+├── scripts/
+│   └── build-surge.mjs       # 生成 surge.sh 备用源（改写 URL + 复制 templates/）
+├── .github/workflows/
+│   └── deploy-surge.yml      # push 到 main 自动部署到 cf-store.surge.sh
+├── templates/                # 各模板源码 / 资源，按 id 分目录
+│   ├── hello-world/worker.js
+│   ├── echo-server/worker.js
+│   ├── kv-demo/worker.js
+│   ├── d1-demo/worker.js
+│   ├── ai-demo/worker.js
+│   └── hybrid-demo/          # worker.js + pages.zip（hybrid 双模）
+└── .gitignore                # 忽略 surge-dist/（生成产物）
 ```
 
-## catalog.json 说明
+## catalog.json 与 Schema
+
+`catalog.json` 的结构由 [`catalog.schema.json`](./catalog.schema.json) 严格校验，后端（backend）与 Worker 共用同一份 Schema。新增 / 修改模板前建议先对照 Schema。
+
+顶层字段：
+
+| 字段 | 必填 | 说明 |
+|------|------|------|
+| `version` | ✅ | 语义化版本号，如 `1.0.0` |
+| `templates` | ✅ | 模板数组 |
+| `updated` | — | ISO 时间字符串（改了模板后更新，便于缓存失效） |
+| `name` / `defaultLanguage` | — | 源名称 / 默认语言 |
+
+每个模板（`templates[]`）的必填字段：`id`、`name`、`version`、`type`。
 
 ```jsonc
 {
-  "version": "1.0.0",
-  "updated": "2026-07-08T16:00:00.000Z",
-  "name": "CF Store 官方源",
-  "defaultLanguage": "zh-CN",
-  "templates": [
-    {
-      "id": "hello-world",            // 全局唯一，去重用
-      "name": "Hello World",
-      "description": "模板描述",
-      "author": { "name": "CF Manager" },
-      "version": "1.0.0",
-      "tags": ["入门", "worker"],
-      "type": "worker",               // worker | hybrid
-      "source": {                     // type=worker 用 source
-        "kind": "raw",                // 直接取原始文件
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/hello-worker.js"
-      },
-      // type=hybrid 用 sources：
-      // "sources": {
-      //   "worker": { "kind": "raw", "url": ".../hybrid-demo-worker.js" },
-      //   "pages":  { "kind": "release", "url": ".../hybrid-demo-pages.zip" }
-      // },
-      "bindings": [                   // 可选：部署时需要的绑定
-        { "type": "kv", "name": "MY_KV", "title": "demo-kv", "action": "create-or-reuse" }
-      ]
-    }
+  "id": "hello-world",          // 全局唯一去重，正则 ^[a-z0-9-]+$
+  "name": "Hello World",
+  "description": "模板描述",
+  "author": { "name": "CF Manager" },   // name 必填，可加 url
+  "version": "1.0.0",           // 语义化版本
+  "tags": ["入门", "worker"],
+  "type": "worker",             // worker | pages | hybrid
+  "source": {                   // type=worker/pages 用 source
+    "kind": "raw",              // raw | release | repo-archive
+    "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/hello-world/worker.js"
+  },
+  // type=hybrid 用 sources（worker/pages 至少其一，不能用 source）：
+  // "sources": {
+  //   "worker": { "kind": "raw",     "url": ".../hybrid-demo/worker.js" },
+  //   "pages":  { "kind": "release", "url": ".../hybrid-demo/pages.zip" }
+  // },
+  "bindings": [                 // 可选：部署时需要的绑定
+    { "type": "kv", "name": "MY_KV", "title": "demo-kv", "action": "create-or-reuse" }
   ]
 }
 ```
 
-- 所有 `url` 必须指向**本仓库** `main` 分支的 raw 地址：
-  `https://raw.githubusercontent.com/hefy2027/cf-store/main/<文件名>`
-- 普通 Worker 模板用 `source`；同时支持 Worker + Pages 双模部署的用 `sources.worker` / `sources.pages`。
+### type 与 source 的约束（来自 Schema）
+
+| `type` | 字段 | `kind` 允许值 |
+|--------|------|--------------|
+| `worker` | `source` | `raw` / `release`（**不能用** `repo-archive`） |
+| `pages` | `source` | `release` / `repo-archive`（**不能用** `raw`，Pages 需 zip） |
+| `hybrid` | `sources.worker` | `raw` / `release`（不能用 `repo-archive`） |
+| `hybrid` | `sources.pages` | `release` / `repo-archive`（不能用 `raw`） |
+
+### bindings 说明
+
+- `type`：`kv` / `d1` / `r2` / `ai` / `var`
+- `name`：**必须全大写**，正则 `^[A-Z][A-Z0-9_]*$`（如 `MY_KV`）
+- `action`：`create-or-reuse`（默认）或 `prompt`（部署时询问用户）
+- `d1` 专属：`initSql`（内联 SQL）或 `initSqlUrl`（SQL 文件地址），仅 `d1` 可用
+- 其余字段：`title`、`required`
+
+### URL 规则
+
+- 所有 `url` 必须指向**本仓库** `main` 分支的 raw 地址，且为 `https://` 开头。
+- 当前统一放在 `templates/` 下：
+  `https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/<id>/<文件>`
 
 ## 如何新增模板
 
-1. 把源码文件（如 `my-worker.js`）放进本仓库根目录。
-2. 在 `catalog.json` 的 `templates` 数组里加一条，填好 `id` / `name` / `type` / `source.url`。
-3. 提交并推送到 `main`，更新 `catalog.json` 的 `updated` 字段（便于缓存失效）。
-4. 在 CF Manager 的 Store 页面点「刷新」即可看到新模板。
+1. 在 `templates/` 下新建目录 `templates/<id>/`，把源码放进去（如 `templates/my-tpl/worker.js`）。
+2. 在 `catalog.json` 的 `templates` 数组里加一条，填好 `id` / `name` / `version` / `type` 以及对应 `source` / `sources`（`url` 指向第 1 步的文件）。
+3. 更新 `catalog.json` 的 `updated` 字段（便于缓存失效）。
+4. 可选：用任意 JSON Schema 工具对照 `catalog.schema.json` 自检。
+5. 提交并推送到 `main`；在 CF Manager 的 Store 页面点「刷新」即可看到新模板。
 
 ## CF Manager 如何消费
 
@@ -87,9 +117,8 @@ https://cf-store.surge.sh/catalog.json
 
 ### 触发与维护
 
-- 每次 push 到 `main`，GitHub Actions（`.github/workflows/deploy-surge.yml`）自动运行 `scripts/build-surge.mjs` 重新生成 `surge-dist/` 并部署到 `cf-store.surge.sh`。
+- 每次 push 到 `main`，GitHub Actions（`.github/workflows/deploy-surge.yml`）自动运行 `scripts/build-surge.mjs` 重新生成 `surge-dist/`，再 `npx surge publish surge-dist --domain cf-store.surge.sh --token $SURGE_TOKEN` 部署。
 - `surge-dist/` 是生成产物，已被 `.gitignore` 忽略，无需手动提交。
-- 需要以下仓库 Secrets 才能部署：
-  - `SURGE_TOKEN`：`surge token` 获取
-  - `SURGE_LOGIN`：surge 账号邮箱
-- 本地预览：`node scripts/build-surge.mjs && npx surge ./surge-dist --domain cf-store.surge.sh`
+- 需要的仓库 Secrets：
+  - `SURGE_TOKEN`：surge 登录后 `surge token` 获取（与 cf-reg 同账号即可复用）
+- 本地预览：`node scripts/build-surge.mjs && npx surge publish surge-dist --domain cf-store.surge.sh --token <你的token>`
