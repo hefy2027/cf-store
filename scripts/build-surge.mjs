@@ -76,6 +76,16 @@ const indexHtml = `<!doctype html>
     header p { margin: 4px 0; color: #9aa4bf; font-size: 14px; line-height: 1.6; }
     code { background: #1b2236; padding: 2px 6px; border-radius: 6px; color: #7dd3fc; font-size: 13px; }
     .hint { background: #111936; border: 1px solid #25304f; border-radius: 12px; padding: 14px 16px; margin: 20px 0 28px; font-size: 14px; color: #c3cbe6; }
+    .searchbar { display: flex; gap: 10px; align-items: center; margin: 0 0 24px; flex-wrap: wrap; }
+    .searchbar input {
+      flex: 1 1 240px; min-width: 0; padding: 12px 16px; border-radius: 12px;
+      border: 1px solid #283255; background: #0f172a; color: #e6e9f0; font-size: 15px; outline: none;
+      transition: border-color .15s ease, box-shadow .15s ease;
+    }
+    .searchbar input::placeholder { color: #6b7494; }
+    .searchbar input:focus { border-color: #3b82f6; box-shadow: 0 0 0 3px #3b82f633; }
+    .searchbar .count { font-size: 13px; color: #7c87a8; white-space: nowrap; }
+    .empty { color: #9aa4bf; text-align: center; padding: 40px 0; font-size: 14px; }
     .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
     .card { background: linear-gradient(180deg, #161d33, #121829); border: 1px solid #283255; border-radius: 16px; padding: 18px; transition: transform .15s ease, border-color .15s ease; }
     .card:hover { transform: translateY(-3px); border-color: #3b82f6; }
@@ -96,10 +106,14 @@ const indexHtml = `<!doctype html>
   <div class="wrap">
     <header>
       <h1>CF Store · surge.sh 备用源</h1>
-      <p>这是 <a href="${GH_BASE}catalog.json" style="color:#60a5fa">官方 GitHub 源</a> 的镜像。GitHub 不可用时，把 CF Manager 的源地址改成
-        <code>${SURGE_BASE}/catalog.json</code> 即可。</p>
+      <p>这是 CF Store 官方源的镜像。GitHub 不可用时，把 CF Manager 的源地址改成
+        <code>${SURGE_BASE}/catalog.json</code> 即可。各模板的源仓库见卡片中的「仓库 ↗」。</p>
     </header>
     <div class="hint" id="hint">正在加载模板列表…</div>
+    <div class="searchbar">
+      <input id="q" type="search" placeholder="搜索名称、描述、标签、作者或类型…" autocomplete="off" />
+      <span class="count" id="count"></span>
+    </div>
     <div class="grid" id="grid"></div>
     <footer>本页运行时实时读取 <code>./catalog.json</code>，与源保持同步。</footer>
   </div>
@@ -107,28 +121,62 @@ const indexHtml = `<!doctype html>
     const GH_BASE = ${JSON.stringify(GH_BASE)};
     const SURGE_BASE = ${JSON.stringify(SURGE_BASE)};
     const fmt = (s) => s || "—";
-    async function load() {
+    let ALL = [];
+
+    function cardHtml(t) {
+      const type = t.type || "worker";
+      const srcUrl = t.source ? t.source.url
+        : (t.sources ? (t.sources.worker ? t.sources.worker.url : (t.sources.pages ? t.sources.pages.url : "")) : "");
+      const tags = (t.tags || []).map((x) => '<span class="tag">' + x + "</span>").join("");
+      const author = t.author ? fmt(t.author.name) : "—";
+      const authorUrl = t.author ? t.author.url : "";
+      const srcLink = srcUrl ? '<a href="' + srcUrl + '" target="_blank" rel="noopener">源码 ↗</a>' : "";
+      const repoLink = authorUrl ? '<a href="' + authorUrl + '" target="_blank" rel="noopener">仓库 ↗</a>' : "";
+      const readmeLink = t.readmeUrl ? '<a href="' + t.readmeUrl + '" target="_blank" rel="noopener">README ↗</a>' : "";
+      const links = [repoLink, readmeLink, srcLink].filter(Boolean).join(" ");
+      return '<div class="card">'
+        + '<div class="top"><h3>' + fmt(t.name) + '</h3><span class="badge">' + type + '</span></div>'
+        + '<div class="desc">' + fmt(t.description) + '</div>'
+        + (tags ? '<div class="tags">' + tags + '</div>' : '')
+        + '<div class="meta"><span>作者：' + author + '</span><span class="links">' + links + '</span></div>'
+        + '</div>';
+    }
+
+    function render(list) {
       const grid = document.getElementById("grid");
+      const count = document.getElementById("count");
+      count.textContent = "显示 " + list.length + " / " + ALL.length + " 个";
+      if (list.length === 0) {
+        grid.innerHTML = '<div class="empty">没有匹配的模板</div>';
+        return;
+      }
+      grid.innerHTML = list.map(cardHtml).join("");
+    }
+
+    function applyFilter() {
+      const q = document.getElementById("q").value.trim().toLowerCase();
+      if (!q) { render(ALL); return; }
+      const hits = ALL.filter((t) => {
+        const hay = [
+          t.name, t.description, t.type,
+          t.author ? t.author.name : "",
+          (t.tags || []).join(" ")
+        ].join(" ").toLowerCase();
+        return hay.includes(q);
+      });
+      render(hits);
+    }
+
+    async function load() {
       const hint = document.getElementById("hint");
       try {
         const res = await fetch("./catalog.json", { cache: "no-store" });
         if (!res.ok) throw new Error("HTTP " + res.status);
         const data = await res.json();
-        hint.textContent = "共 " + data.templates.length + " 个模板（来自 " + fmt(data.name) + "）";
-        grid.innerHTML = data.templates.map((t) => {
-          const type = t.type || "worker";
-          const srcUrl = t.source ? t.source.url
-            : (t.sources ? (t.sources.worker ? t.sources.worker.url : (t.sources.pages ? t.sources.pages.url : "")) : "");
-          const tags = (t.tags || []).map((x) => '<span class="tag">' + x + "</span>").join("");
-          const author = t.author ? fmt(t.author.name) : "—";
-          const srcLink = srcUrl ? '<a href="' + srcUrl + '" target="_blank" rel="noopener">源码 ↗</a>' : "";
-          return '<div class="card">'
-            + '<div class="top"><h3>' + fmt(t.name) + '</h3><span class="badge">' + type + '</span></div>'
-            + '<div class="desc">' + fmt(t.description) + '</div>'
-            + (tags ? '<div class="tags">' + tags + '</div>' : '')
-            + '<div class="meta"><span>作者：' + author + '</span><span class="links">' + srcLink + '</span></div>'
-            + '</div>';
-        }).join("");
+        ALL = data.templates || [];
+        hint.textContent = "共 " + ALL.length + " 个模板（来自 " + fmt(data.name) + "）";
+        document.getElementById("q").addEventListener("input", applyFilter);
+        render(ALL);
       } catch (e) {
         hint.innerHTML = '<span class="err">加载失败：' + e.message + '</span>';
       }
