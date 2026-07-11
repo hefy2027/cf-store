@@ -1,2 +1,29 @@
-surge-dist/
+# Dependencies
 node_modules/
+
+# Build / dist output
+surge-dist/
+dist/
+build/
+out/
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+npm-debug.log*
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+
+# Temp / cache
+*.tmp
+.cache/

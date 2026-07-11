@@ -191,8 +191,16 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "管理后台密码（可选，留空则随机生成）",
+          "title": "管理后台密码（可选）",
           "secret": true
+        },
+        {
+          "name": "UUID",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "VLESS 用户 UUID（标准 UUID 格式，留空使用默认）",
+          "secret": false
         }
       ],
       "env": {}
