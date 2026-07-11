@@ -128,3 +128,7 @@ https://cf-store.surge.sh/catalog.json
 - 需要的仓库 Secrets：
   - `SURGE_TOKEN`：surge 登录后 `surge token` 获取（与 cf-reg 同账号即可复用）
 - 本地预览：`node scripts/build-surge.mjs && npx surge publish surge-dist --domain cf-store.surge.sh --token <你的token>`
+
+## 致谢
+
+本项目的灵感与模板整理参考了 [zhuima/awesome-cloudflare](https://github.com/zhuima/awesome-cloudflare)，在此表示感谢。
