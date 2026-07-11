@@ -204,6 +204,1485 @@
         }
       ],
       "env": {}
+    },
+    {
+      "id": "1234567yang-cf-proxy-ex",
+      "name": "Cloudflare Proxy EX",
+      "description": "基于 Cloudflare Workers 的超级代理，支持 OpenAI/ChatGPT 代理、GitHub 加速与 DuckDuckGo 在线代理，支持密码保护与多平台部署。",
+      "author": {
+        "name": "1234567Yang",
+        "url": "https://github.com/1234567Yang/cf-proxy-ex"
+      },
+      "version": "1.0.0",
+      "tags": ["代理", "worker", "加速", "openai"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/1234567yang/cf-proxy-ex/main/_worker.js"
+      }
+    },
+    {
+      "id": "7sageer-sublink-worker",
+      "name": "Sublink Worker",
+      "description": "部署在 Cloudflare Workers 上的轻量级代理订阅转换与管理工具，支持将多种代理协议分享链接转换为不同客户端可用的订阅，内置 KV 存储。",
+      "author": {
+        "name": "7Sageer",
+        "url": "https://github.com/7Sageer/sublink-worker"
+      },
+      "version": "2.4.2",
+      "tags": ["订阅", "worker", "kv", "代理"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/7sageer/sublink-worker/main/src/worker.jsx"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "SUBLINK_KV",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "actrue-cf-page-publish-mcp",
+      "name": "CF Page Publish MCP",
+      "description": "Cloudflare 页面发布 MCP 工具，可将 HTML 页面发布到 Cloudflare Worker/KV，并提供 MCP 接口与可视化编辑界面，可选 Browser 绑定渲染截图。",
+      "author": {
+        "name": "Actrue",
+        "url": "https://github.com/Actrue/cf-page-publish-mcp"
+      },
+      "version": "1.0.0",
+      "tags": ["mcp", "worker", "kv", "工具"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/actrue/cf-page-publish-mcp/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "HOST",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "自定义域名/主机（可选）",
+          "secret": false
+        }
+      ]
+    },
+    {
+      "id": "ai-yolo-cloudflareworker-kv-urlshort",
+      "name": "KV UrlShort",
+      "description": "基于 Cloudflare Workers + KV 的简约短链接生成器，支持密码保护、有效期、访问次数限制与 Cloudflare Turnstile 人机验证。",
+      "author": {
+        "name": "Ai-Yolo",
+        "url": "https://github.com/Ai-Yolo/CloudflareWorker-KV-UrlShort"
+      },
+      "version": "1.0.0",
+      "tags": ["短链", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ai-yolo/cloudflareworker-kv-urlshort/main/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "URL_SHORT_KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "TURNSTILE_SITE_KEY",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Turnstile 站点密钥（可选）",
+          "secret": false
+        },
+        {
+          "name": "TURNSTILE_SECRET",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Turnstile 密钥（可选）",
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "akazwz-smail",
+      "name": "smail",
+      "description": "基于 React Router Framework Mode + Cloudflare Workers 的临时邮箱服务，使用 D1 存储邮件元数据、R2 存储邮件原始内容，支持多语言与附件。",
+      "author": {
+        "name": "akazwz",
+        "url": "https://github.com/akazwz/smail"
+      },
+      "version": "1.0.0",
+      "tags": ["邮箱", "worker", "d1", "r2"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/akazwz/smail/main/workers/app.ts"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "D1",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "r2",
+          "name": "R2",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "alexpota-deploy-mcp",
+      "name": "deploy-mcp",
+      "description": "通用部署跟踪器 MCP 服务，支持实时状态徽章与部署监控（含 Cloudflare Pages 支持），基于 Cloudflare Workers + KV 构建。",
+      "author": {
+        "name": "alexpota",
+        "url": "https://github.com/alexpota/deploy-mcp"
+      },
+      "version": "0.6.5",
+      "tags": ["mcp", "worker", "kv", "监控"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/alexpota/deploy-mcp/main/src/worker.ts"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "BADGE_KV",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "beanqi-cohere2openai",
+      "name": "cohere2openai",
+      "description": "将 Cohere API 转换为 OpenAI API 格式的 Cloudflare Worker，部署简单，仅需配置 API 密钥即可作为 OpenAI 兼容端点使用。",
+      "author": {
+        "name": "beanqi",
+        "url": "https://github.com/beanqi/cohere2openai"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "openai", "代理", "api"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/beanqi/cohere2openai/main/worker.js"
+      },
+      "bindings": [
+        {
+          "name": "API_AUTH_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "Cohere API 密钥",
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "beilunyang-img-mom",
+      "name": "img-mom",
+      "description": "基于 Cloudflare Workers 运行时的 Telegram 图床机器人，支持 Telegram、Cloudflare R2、Backblaze B2 等多渠道图床上传，轻量免费。",
+      "author": {
+        "name": "beilunyang",
+        "url": "https://github.com/beilunyang/img-mom"
+      },
+      "version": "0.1.0",
+      "tags": ["图床", "worker", "telegram", "r2"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/beilunyang/img-mom/master/src/index.ts"
+      }
+    },
+    {
+      "id": "beilunyang-moemail",
+      "name": "MoeMail",
+      "description": "基于 Next.js + Cloudflare Pages 技术栈构建的可爱临时邮箱服务，支持多语言、多邮件渠道与附件，使用 D1 与 KV 存储。",
+      "author": {
+        "name": "beilunyang",
+        "url": "https://github.com/beilunyang/moemail"
+      },
+      "version": "0.1.0",
+      "tags": ["邮箱", "pages", "nextjs", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/beilunyang/moemail/archive/refs/heads/master.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "SITE_CONFIG",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "beilunyang-moepush",
+      "name": "MoePush",
+      "description": "基于 Next.js + Cloudflare Pages 技术栈构建的可爱消息推送服务，支持钉钉、企业微信、Telegram 等多种推送渠道，使用 D1 存储。",
+      "author": {
+        "name": "beilunyang",
+        "url": "https://github.com/beilunyang/moepush"
+      },
+      "version": "0.2.0",
+      "tags": ["推送", "pages", "nextjs", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/beilunyang/moepush/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "bestruirui-alle",
+      "name": "Alle",
+      "description": "邮件聚合与管理平台，整合各邮箱服务商的邮件转发实现跨账户集中管理，基于 Cloudflare Workers + D1 + R2 构建。",
+      "author": {
+        "name": "bestruirui",
+        "url": "https://github.com/bestruirui/Alle"
+      },
+      "version": "1.0.0",
+      "tags": ["邮箱", "worker", "d1", "r2"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/bestruirui/alle/v2/worker/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "r2",
+          "name": "ATTACHMENTS",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "brancogao-redirect-checker",
+      "name": "Redirect Checker",
+      "description": "基于 Cloudflare Workers 的 HTTP 重定向链分析器，支持检测重定向循环、性能测量与多种 User-Agent 预设，提供 RESTful API 与响应式 Web UI。",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao/redirect-checker"
+      },
+      "version": "0.0.1",
+      "tags": ["worker", "工具", "分析", "重定向"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/brancogao/redirect-checker/main/src/index.ts"
+      }
+    },
+    {
+      "id": "brancogao-ssl-certificate-monitor",
+      "name": "SSL Certificate Monitor",
+      "description": "基于 Cloudflare Workers 的 SSL 证书到期监控工具，检查证书有效期与详情并通过 RESTful API 提供服务，使用 KV 与 D1 存储。",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao/ssl-certificate-monitor"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "监控", "ssl", "d1", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/brancogao/ssl-certificate-monitor/main/src/worker.ts"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "SSL_KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "d1",
+          "name": "SSL_DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "brancogao-webhook-debugger",
+      "name": "Webhook Debugger",
+      "description": "自托管 Webhook 调试工具，支持签名验证（Stripe/GitHub/Slack/Shopify）、90 天历史、全文搜索与一键重放，基于 Cloudflare Workers + D1 构建。",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao/webhook-debugger"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "webhook", "d1", "调试"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/brancogao/webhook-debugger/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "ccbikai-cloudflare-worker-image",
+      "name": "Cloudflare Worker Image",
+      "description": "使用 Cloudflare Worker（依赖 Photon / Cloudflare Container）处理图片，支持缩放、剪裁、水印、滤镜等功能，需启用 Container 绑定。",
+      "author": {
+        "name": "ccbikai",
+        "url": "https://github.com/ccbikai/cloudflare-worker-image"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "图片", "处理"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ccbikai/cloudflare-worker-image/master/src/index.js"
+      }
+    },
+    {
+      "id": "ccbikai-ip-api",
+      "name": "IP-API",
+      "description": "利用 Cloudflare Workers 快速搭建获取客户端 IP 地址与地理位置信息的接口，支持 IPv4/IPv6 与 /geo 路径。",
+      "author": {
+        "name": "ccbikai",
+        "url": "https://github.com/ccbikai/ip-api"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "ip", "工具"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ccbikai/ip-api/master/src/index.js"
+      }
+    },
+    {
+      "id": "ccbikai-nextflare",
+      "name": "Nextflare",
+      "description": "基于 Next.js + Cloudflare Pages 的 SaaS 起步模板，集成 Lemon Squeezy 订阅计费、Auth.js（GitHub OAuth）鉴权与 D1 数据库。",
+      "author": {
+        "name": "ccbikai",
+        "url": "https://github.com/ccbikai/nextflare"
+      },
+      "version": "0.1.0",
+      "tags": ["pages", "nextjs", "saas", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/ccbikai/nextflare/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "ccbikai-sink",
+      "name": "Sink",
+      "description": "100% 运行在 Cloudflare 上的极简、快速、安全的短链服务，内置分析面板与控制台，基于 Nuxt + Workers AI + KV + R2 构建。",
+      "author": {
+        "name": "ccbikai",
+        "url": "https://github.com/ccbikai/sink"
+      },
+      "version": "0.2.10",
+      "tags": ["短链", "pages", "ai", "kv", "r2"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/ccbikai/sink/archive/refs/heads/master.zip"
+      },
+      "bindings": [
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "r2",
+          "name": "R2",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "cf-pages-telegraph-image",
+      "name": "Telegraph-Image",
+      "description": "免费图片托管方案（Flickr/imgur 替代品），使用 Cloudflare Pages 与 Telegram 频道存储，需配置 TG_Bot_Token 与 TG_Chat_ID 环境变量。",
+      "author": {
+        "name": "cf-pages",
+        "url": "https://github.com/cf-pages/Telegraph-Image"
+      },
+      "version": "1.0.0",
+      "tags": ["图床", "pages", "telegram", "kv"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/cf-pages/Telegraph-Image/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "IMG_URL",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "ciiiii-cloudflare-docker-proxy",
+      "name": "Cloudflare Docker Proxy",
+      "description": "运行在 Cloudflare Workers 上的 Docker 镜像代理，中转对 Docker 官方镜像仓库的请求（注意官方已对 Worker IP 限流，不推荐生产使用）。",
+      "author": {
+        "name": "ciiiii",
+        "url": "https://github.com/ciiiii/cloudflare-docker-proxy"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "docker", "代理"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ciiiii/cloudflare-docker-proxy/master/src/index.js"
+      },
+      "bindings": [
+        {
+          "name": "CUSTOM_DOMAIN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "自定义域名（可选）",
+          "secret": false
+        }
+      ]
+    },
+    {
+      "id": "ckt1031-cohere2openai-cf-worker",
+      "name": "Cohere2OpenAI CF Worker",
+      "description": "将 Cohere API 转换为 OpenAI API 的 Cloudflare Worker（已弃用，Cohere 已发布官方兼容 API，建议迁移）。",
+      "author": {
+        "name": "ckt1031",
+        "url": "https://github.com/ckt1031/cohere2openai-cf-worker"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "openai", "代理", "弃用"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ckt1031/cohere2openai-cf-worker/main/src/index.ts"
+      }
+    },
+    {
+      "id": "cmliu-cf-workers-docker-io",
+      "name": "CF-Workers-docker.io",
+      "description": "基于 Cloudflare Workers 的 Docker 镜像代理工具，中转对 Docker 官方镜像仓库的请求，解决访问限制与加速访问问题，支持 Workers 与 Pages 部署。",
+      "author": {
+        "name": "cmliu",
+        "url": "https://github.com/cmliu/CF-Workers-docker.io"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "docker", "代理"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/cmliu/CF-Workers-docker.io/main/_worker.js"
+      }
+    },
+    {
+      "id": "crazypeace-gh-proxy",
+      "name": "gh-proxy",
+      "description": "基于 Cloudflare Workers 的 GitHub 资源与脚本加速代理，解决 github 访问不通的问题，支持对 github 脚本的无限嵌套调用。",
+      "author": {
+        "name": "crazypeace",
+        "url": "https://github.com/crazypeace/gh-proxy"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "代理", "加速", "github"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/crazypeace/gh-proxy/master/worker.js"
+      }
+    },
+    {
+      "id": "crazypeace-url-shorten-worker",
+      "name": "Url-Shorten-Worker",
+      "description": "基于 Cloudflare Worker + KV 的 URL 缩短器，支持秘密路径访问、自定义短链、变身 Pastebin 与图床，需要 KV 命名空间。",
+      "author": {
+        "name": "crazypeace",
+        "url": "https://github.com/crazypeace/Url-Shorten-Worker"
+      },
+      "version": "1.0.0",
+      "tags": ["短链", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/crazypeace/Url-Shorten-Worker/main/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINKS",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "dferber90-githubbox",
+      "name": "githubbox",
+      "description": "将 GitHub 仓库快速在 CodeSandbox 打开的 Cloudflare Worker：把地址中的 github.com 改为 githubbox.com 即可。",
+      "author": {
+        "name": "dferber90",
+        "url": "https://github.com/dferber90/githubbox"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "工具", "github"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/dferber90/githubbox/master/src/index.js"
+      }
+    },
+    {
+      "id": "dreamhunter2333-cloudflare-temp-email",
+      "name": "Cloudflare Temp Email",
+      "description": "使用 Cloudflare 免费服务搭建的临时邮箱，D1 作为数据库，带前端与后端，支持多国语言、自动回复与附件（IMAP/SMTP），含邮件路由 Worker。",
+      "author": {
+        "name": "dreamhunter2333",
+        "url": "https://github.com/dreamhunter2333/cloudflare_temp_email"
+      },
+      "version": "1.0.0",
+      "tags": ["邮箱", "pages", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/dreamhunter2333/cloudflare_temp_email/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "eidam-cf-workers-status-page",
+      "name": "CF Workers Status Page",
+      "description": "基于 Cloudflare Workers + KV + CRON 触发器 的网站状态页，展示每日历史记录，网站状态变化时发送 Slack/Discord 通知。",
+      "author": {
+        "name": "eidam",
+        "url": "https://github.com/eidam/cf-workers-status-page"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "监控", "kv", "状态页"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/eidam/cf-workers-status-page/main/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV_STATUS_PAGE",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "emaction-emaction-backend",
+      "name": "emaction Backend",
+      "description": "emaction 的 GitHub 风格 Reactions 点赞功能后端，基于 Cloudflare Workers + D1 实现，可自托管保存数据。",
+      "author": {
+        "name": "emaction",
+        "url": "https://github.com/emaction/emaction.backend"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "d1", "点赞", "后端"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/emaction/emaction.backend/main/src/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "D1",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "fatwang2-gitpush",
+      "name": "GitPush",
+      "description": "基于 Cloudflare Workers + Workflows + Workers AI + Email Routing 的 GitHub Release 追踪器，AI 总结更新内容并通过邮件推送通知。",
+      "author": {
+        "name": "fatwang2",
+        "url": "https://github.com/fatwang2/gitpush"
+      },
+      "version": "0.0.1",
+      "tags": ["worker", "ai", "监控", "邮件"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/fatwang2/gitpush/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "GITPUSH",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "GITHUB_REPOS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "要监控的 GitHub 仓库（逗号分隔）",
+          "secret": false
+        },
+        {
+          "name": "GITHUB_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "GitHub Token（可选，提升速率）",
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "fatwang2-siri-ultra",
+      "name": "Siri Ultra",
+      "description": "运行在 Cloudflare Workers 上的 Siri Ultra 语音助手，配合 Apple 快捷指令，支持实时对话、语音、联网搜索，可对接任意 LLM。",
+      "author": {
+        "name": "fatwang2",
+        "url": "https://github.com/fatwang2/siri-ultra"
+      },
+      "version": "0.0.1",
+      "tags": ["worker", "ai", "助手"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/fatwang2/siri-ultra/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "SIRI_AI_CHATS",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "gdtool-cloudflare-workers-blog",
+      "name": "Cloudflare Workers Blog",
+      "description": "运行在 Cloudflare Workers 上的博客程序，使用 KV 作为数据库并缓存 HTML，兼顾静态博客速度与动态博客灵活性。",
+      "author": {
+        "name": "gdtool",
+        "url": "https://github.com/gdtool/cloudflare-workers-blog"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "博客", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "BLOG_KV",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "harrisonwang-linklet",
+      "name": "Linklet",
+      "description": "基于 Cloudflare Pages 创建的 URL 缩短器，使用 D1 存储，支持 API 模式，适合更多使用场景。",
+      "author": {
+        "name": "harrisonwang",
+        "url": "https://github.com/harrisonwang/linklet"
+      },
+      "version": "1.0.0",
+      "tags": ["pages", "短链", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/harrisonwang/linklet/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "horsemail-url-shorten-worker",
+      "name": "Url-Shorten-Worker (horsemail)",
+      "description": "Url-Shorten-Worker 的 fork，基于 Cloudflare Worker + KV 的 URL 缩短器，支持秘密路径访问、自定义短链、变身 Pastebin 与图床。",
+      "author": {
+        "name": "horsemail",
+        "url": "https://github.com/horsemail/Url-Shorten-Worker"
+      },
+      "version": "1.0.0",
+      "tags": ["短链", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/horsemail/Url-Shorten-Worker/main/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINKS",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "huarzone-text2img-cloudflare-workers",
+      "name": "Text2img Cloudflare Workers",
+      "description": "基于 Cloudflare AI & Workers 的在线文生图服务，免费部署，调用 Workers AI 文本生成图像模型。",
+      "author": {
+        "name": "huarzone",
+        "url": "https://github.com/huarzone/text2img-cloudflare-workers"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "ai", "文生图"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/huarzone/text2img-cloudflare-workers/main/src/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "hunshcn-gh-proxy",
+      "name": "gh-proxy (hunshcn)",
+      "description": "GitHub release、archive 与项目文件加速项目，提供 Cloudflare Workers 无服务器版本，支持 clone 与文件访问加速。",
+      "author": {
+        "name": "hunshcn",
+        "url": "https://github.com/hunshcn/gh-proxy"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "代理", "加速", "github"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hunshcn/gh-proxy/master/index.js"
+      }
+    },
+    {
+      "id": "iamshaynez-telegram-counter",
+      "name": "Telegram Counter",
+      "description": "使用 Cloudflare Worker + D1 + Workers AI 编写的 Telegram 后端，可随时随地进行打卡等记录。",
+      "author": {
+        "name": "iamshaynez",
+        "url": "https://github.com/iamshaynez/telegram-counter"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "d1", "ai", "telegram"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/iamshaynez/telegram-counter/main/index.js"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "ichimarugin728-gins-blog",
+      "name": "Gins Blog",
+      "description": "高性能、边缘优先的博客平台，基于 Astro + Cloudflare 技术栈，使用 D1、R2、KV、Workers AI（及 Vectorize）构建，内置 MCP 与 OpenClaw 自动部署。",
+      "author": {
+        "name": "ichimarugin728",
+        "url": "https://github.com/ichimarugin728/Gins-Blog"
+      },
+      "version": "1.0.0",
+      "tags": ["博客", "pages", "d1", "r2", "ai"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/ichimarugin728/Gins-Blog/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "r2",
+          "name": "BUCKET",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "GIN_KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "GINS_CACHE",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "ifyour-cf-image-hosting",
+      "name": "CF Image Hosting",
+      "description": "基于 Cloudflare Pages 的免费无限图床，使用 Telegraph 存储，支持拖拽与粘贴上传，单文件上限 5MB。",
+      "author": {
+        "name": "ifyour",
+        "url": "https://github.com/ifyour/cf-image-hosting"
+      },
+      "version": "1.0.0",
+      "tags": ["pages", "图床", "telegram"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/ifyour/cf-image-hosting/archive/refs/heads/main.zip"
+      }
+    },
+    {
+      "id": "ifyour-deeplx-for-cloudflare",
+      "name": "DeepLX for Cloudflare",
+      "description": "在 Cloudflare Workers 上部署 DeepLX 翻译 API，兼容 DeepL 接口，提供免费无限量翻译能力。",
+      "author": {
+        "name": "ifyour",
+        "url": "https://github.com/ifyour/deeplx-for-cloudflare"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "翻译", "api"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/ifyour/deeplx-for-cloudflare/main/src/index.ts"
+      }
+    },
+    {
+      "id": "igengdu-short",
+      "name": "Short (igengdu)",
+      "description": "基于 Cloudflare Pages 创建的 URL 缩短器，使用 D1 存储，Fork 自 x-dr/short，支持自定义短链。",
+      "author": {
+        "name": "igengdu",
+        "url": "https://github.com/igengdu/short"
+      },
+      "version": "1.0.0",
+      "tags": ["pages", "短链", "d1"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/igengdu/short/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "iiop123-dingding",
+      "name": "丁丁快传 (DingDing)",
+      "description": "基于 Cloudflare Workers 的文件传输工具「丁丁快传」，文件存储在 KV，支持拖拽/多文件上传、定时删除、二维码接收与文件口令传输。",
+      "author": {
+        "name": "iiop123",
+        "url": "https://github.com/iiop123/dingding"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "文件传输", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/iiop123/dingding/main/src/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINK",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "iiop123-workers-image-hosting",
+      "name": "Workers Image Hosting",
+      "description": "基于 Cloudflare Workers 数据存储于 KV 的图床，Material 风格，支持拖拽上传、图片预览与 /list.html 查询已上传照片。",
+      "author": {
+        "name": "iiop123",
+        "url": "https://github.com/iiop123/workers-image-hosting"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "图床", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/iiop123/workers-image-hosting/main/src/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINK",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "illusionlie-subpool-worker",
+      "name": "Sub Pool Worker",
+      "description": "基于 Cloudflare Workers 的轻量订阅池服务，统一管理多组订阅来源、按客户端格式分发，含 Web 管理后台（Worker + KV + Assets）。",
+      "author": {
+        "name": "illusionlie",
+        "url": "https://github.com/illusionlie/subpool-worker"
+      },
+      "version": "0.1.0",
+      "tags": ["worker", "订阅", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/illusionlie/subpool-worker/main/src/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "jiacai2050-edgebin",
+      "name": "Edgebin",
+      "description": "类似 httpbin 的 HTTP 测试服务，基于 Cloudflare Workers + Assets 边缘部署，支持请求/响应检视、重定向、Cookie、缓存等。",
+      "author": {
+        "name": "jiacai2050",
+        "url": "https://github.com/jiacai2050/edgebin"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "工具", "http"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/jiacai2050/edgebin/main/src/index.js"
+      }
+    },
+    {
+      "id": "jiaocz-cloudflare-pages-urlshorten",
+      "name": "CloudFlare Pages UrlShorten",
+      "description": "基于 Cloudflare Pages Functions 的多功能 URL 短链工具，使用 KV 存储，通过 Pages Functions 实现路由与跳转。",
+      "author": {
+        "name": "jiaocz",
+        "url": "https://github.com/jiaocz/CloudFlare-Pages-UrlShorten"
+      },
+      "version": "1.0.0",
+      "tags": ["pages", "短链", "kv"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/jiaocz/CloudFlare-Pages-UrlShorten/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "URLSHORTEN",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "joyance-professional-cf-comment",
+      "name": "CF Comment",
+      "description": "基于 Cloudflare Workers 运行的简单评论系统，支持回复、点赞、举报与管理员后台，提供中英双语切换，使用 D1 存储。",
+      "author": {
+        "name": "joyance-professional",
+        "url": "https://github.com/joyance-professional/cf-comment"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "评论", "d1"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/joyance-professional/cf-comment/main/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "joyance-professional-cf-files-sharing",
+      "name": "CF Files Sharing",
+      "description": "运行在 Cloudflare Workers 上的简单文件分享工具，支持密码保护，R2 + D1 双存储（大文件自动使用 R2），Cloudflare 全球高速访问。",
+      "author": {
+        "name": "joyance-professional",
+        "url": "https://github.com/joyance-professional/cf-files-sharing"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "文件分享", "r2", "d1"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/joyance-professional/cf-files-sharing/main/src/index.js"
+      },
+      "bindings": [
+        {
+          "type": "r2",
+          "name": "FILE_BUCKET",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "kasuganosoras-cloudflare-worker-blog",
+      "name": "Cloudflare Worker Blog",
+      "description": "基于 Cloudflare Workers + GitHub 实现的动态博客系统，使用边缘计算，无需服务器，文章存放于 GitHub 仓库。",
+      "author": {
+        "name": "kasuganosoras",
+        "url": "https://github.com/kasuganosoras/cloudflare-worker-blog"
+      },
+      "version": "1.0.0",
+      "tags": ["worker", "博客"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/kasuganosoras/cloudflare-worker-blog/master/workers.js"
+      }
+    },
+    {
+      "id": "lyc8503-uptimeflare",
+      "name": "UptimeFlare",
+      "description": "基于 Cloudflare Workers + D1 的无服务器宕机监控与状态页，支持多地区探测、100+ 通知渠道、暗色状态页与自定义域名。",
+      "author": {
+        "name": "lyc8503",
+        "url": "https://github.com/lyc8503/UptimeFlare"
+      },
+      "version": "0.1.0",
+      "tags": ["监控", "状态页", "pages", "d1", "uptime"],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/lyc8503/UptimeFlare/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "UPTIMEFLARE_D1",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "monopink-url-shorten-worker",
+      "name": "Url Shorten Worker",
+      "description": "部署在 Cloudflare Workers 上的短链接服务，支持 KV 存储、管理员/访客分级密码、正则重定向与 PWA，无需服务器。",
+      "author": {
+        "name": "Monopink",
+        "url": "https://github.com/Monopink/url-shorten-worker"
+      },
+      "version": "1.0.0",
+      "tags": ["短链", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/Monopink/url-shorten-worker/main/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINKS",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "PASSWORD_ADMIN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "管理员密码（用于访问管理后台）",
+          "secret": true
+        },
+        {
+          "name": "PASSWORD",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "普通用户创建短链密码",
+          "secret": true
+        },
+        {
+          "name": "REGEX_REDIRECT",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "正则重定向规则（JSON，可选）",
+          "secret": false
+        }
+      ]
+    },
+    {
+      "id": "nicepkg-shotog",
+      "name": "ShotOG",
+      "description": "基于 Cloudflare Workers + D1 的 Open Graph 图片生成服务，单次 URL 调用即可生成精美 OG 图，无需无头浏览器与服务器。",
+      "author": {
+        "name": "nicepkg",
+        "url": "https://github.com/nicepkg/shotog"
+      },
+      "version": "0.6.0",
+      "tags": ["og图片", "worker", "d1"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/nicepkg/shotog/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/nicepkg/shotog/main/migrations/001_init.sql"
+        }
+      ]
+    },
+    {
+      "id": "s0urcelab-serverless-cloud-notepad",
+      "name": "Serverless Cloud Notepad",
+      "description": "基于 Cloudflare Workers + KV 的无服务器云端记事本，无需后端与数据库，支持自动保存与国际化，可一键私有部署。",
+      "author": {
+        "name": "s0urcelab",
+        "url": "https://github.com/s0urcelab/serverless-cloud-notepad"
+      },
+      "version": "1.0.0",
+      "tags": ["记事本", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/s0urcelab/serverless-cloud-notepad/master/src/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "NOTES",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "SHARE",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "thun888-micro-notepad",
+      "name": "Micro Notepad",
+      "description": "基于 Cloudflare Workers + KV 的迷你笔记本，是 minimalist-web-notepad 的 Worker 实现，无需服务器，绑定一个 KV 即可使用。",
+      "author": {
+        "name": "thun888",
+        "url": "https://github.com/thun888/micro-notepad"
+      },
+      "version": "1.0.0",
+      "tags": ["记事本", "worker", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/thun888/micro-notepad/main/src/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "NOTES",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "thun888-whisper-cloudflare",
+      "name": "Whisper on Cloudflare",
+      "description": "基于 Cloudflare AI (Whisper) 的在线音频转写工具，部署在 Workers 上，可将音频转为文字并生成 SRT 字幕。",
+      "author": {
+        "name": "thun888",
+        "url": "https://github.com/thun888/whisper-cloudflare"
+      },
+      "version": "1.0.0",
+      "tags": ["转录", "whisper", "worker", "ai"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/thun888/whisper-cloudflare/main/index.js"
+      },
+      "bindings": [
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "tbxark-chatgpt-telegram-workers",
+      "name": "ChatGPT Telegram Workers",
+      "description": "部署在 Cloudflare Workers 上的 Telegram ChatGPT 机器人，单文件无依赖，支持多 AI 服务商与多平台，可自定义模型与预设。",
+      "author": {
+        "name": "tbxark",
+        "url": "https://github.com/tbxark/chatgpt-telegram-workers"
+      },
+      "version": "1.10.7",
+      "tags": ["telegram", "机器人", "worker", "ai", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/tbxark/chatgpt-telegram-workers/master/dist/index.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "DATABASE",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "TELEGRAM_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "Telegram Bot Token（@BotFather 获取）",
+          "secret": true
+        },
+        {
+          "name": "OPENAI_API_KEY",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "OpenAI API Key（或其他兼容服务商的 Key）",
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "wangquexl-pixr2",
+      "name": "PixR2",
+      "description": "基于 Cloudflare Workers + R2 的多入口图床与图片管理平台，支持网页端与 Telegram Bot 上传、在线预览与分享链接管理。",
+      "author": {
+        "name": "WangQueXL",
+        "url": "https://github.com/WangQueXL/PixR2"
+      },
+      "version": "1.0.0",
+      "tags": ["图床", "worker", "r2", "kv"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/WangQueXL/PixR2/main/_worker.js"
+      },
+      "bindings": [
+        {
+          "type": "r2",
+          "name": "BUCKET_R2",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "SHARES_KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "kv",
+          "name": "INDEXES_KV",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "SECRET_KEY",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "管理后台密钥（用于登录鉴权）",
+          "secret": true
+        },
+        {
+          "name": "ENABLE_TELEGRAM_BOT",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "是否启用 Telegram Bot 上传（true/false）",
+          "secret": false
+        },
+        {
+          "name": "USER_ID",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "允许上传的 Telegram 用户 ID（启用 Bot 时填写）",
+          "secret": false
+        },
+        {
+          "name": "CHAT_ID",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Telegram Chat ID（启用 Bot 时填写）",
+          "secret": false
+        }
+      ]
+    },
+    {
+      "id": "xinjianzhanghao-page-api-forwarder",
+      "name": "Page API Forwarder",
+      "description": "部署在 Cloudflare Pages/Workers 上的 API 请求转发脚本，可绕过部分 API 的 IP 限制，支持协议覆盖与简单鉴权头/参数。",
+      "author": {
+        "name": "xinjianzhanghao",
+        "url": "https://github.com/xinjianzhanghao/page-api-forwarder"
+      },
+      "version": "1.0.0",
+      "tags": ["转发", "代理", "worker"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/xinjianzhanghao/page-api-forwarder/main/_worker.js"
+      },
+      "bindings": [
+        {
+          "name": "APIHOST",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "目标 API 主机地址（含路径，如 example.com/api）",
+          "secret": false
+        },
+        {
+          "name": "PASSWORD",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "访问密码（设置后需携带，留空则不校验）",
+          "secret": true
+        },
+        {
+          "name": "REQUIREHEADERNAME",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "必需的请求头名称（可选，区分大小写）",
+          "secret": false
+        },
+        {
+          "name": "REQUIREHEADERVALUE",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "必需的请求头值（可选）",
+          "secret": false
+        },
+        {
+          "name": "REQUIREPARAMNAME",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "必需的请求参数名（可选）",
+          "secret": false
+        },
+        {
+          "name": "REQUIREPARAMVALUE",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "必需的请求参数值（可选）",
+          "secret": false
+        }
+      ]
+    },
+    {
+      "id": "yestool-analytics-with-cloudflare",
+      "name": "Web Analytics (yestool)",
+      "description": "基于 Cloudflare Workers + Hono + D1 的网站访问统计分析服务，支持 D1 存储访问数据，可私有化部署。",
+      "author": {
+        "name": "yestool",
+        "url": "https://github.com/yestool/analytics-with-cloudflare"
+      },
+      "version": "1.0.0",
+      "tags": ["分析", "统计", "worker", "d1"],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/yestool/analytics-with-cloudflare/main/src/index.ts"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/yestool/analytics-with-cloudflare/main/schema.sql"
+        }
+      ]
     }
   ]
 }
