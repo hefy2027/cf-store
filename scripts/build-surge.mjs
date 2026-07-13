@@ -128,17 +128,18 @@ const indexHtml = `<!doctype html>
       const srcUrl = t.source ? t.source.url
         : (t.sources ? (t.sources.worker ? t.sources.worker.url : (t.sources.pages ? t.sources.pages.url : "")) : "");
       const tags = (t.tags || []).map((x) => '<span class="tag">' + x + "</span>").join("");
-      const author = t.author ? fmt(t.author.name) : "—";
+      const authorName = t.author ? fmt(t.author.name) : "—";
       const authorUrl = t.author ? t.author.url : "";
+      const authorHtml = authorUrl ? '<a href="' + authorUrl + '" target="_blank" rel="noopener">' + authorName + '</a>' : authorName;
       const srcLink = srcUrl ? '<a href="' + srcUrl + '" target="_blank" rel="noopener">源码 ↗</a>' : "";
-      const repoLink = authorUrl ? '<a href="' + authorUrl + '" target="_blank" rel="noopener">仓库 ↗</a>' : "";
+      const repoLink = t.homepage ? '<a href="' + t.homepage + '" target="_blank" rel="noopener">仓库 ↗</a>' : "";
       const readmeLink = t.readmeUrl ? '<a href="' + t.readmeUrl + '" target="_blank" rel="noopener">README ↗</a>' : "";
       const links = [repoLink, readmeLink, srcLink].filter(Boolean).join(" ");
       return '<div class="card">'
         + '<div class="top"><h3>' + fmt(t.name) + '</h3><span class="badge">' + type + '</span></div>'
         + '<div class="desc">' + fmt(t.description) + '</div>'
         + (tags ? '<div class="tags">' + tags + '</div>' : '')
-        + '<div class="meta"><span>作者：' + author + '</span><span class="links">' + links + '</span></div>'
+        + '<div class="meta"><span>作者：' + authorHtml + '</span><span class="links">' + links + '</span></div>'
         + '</div>';
     }
 
