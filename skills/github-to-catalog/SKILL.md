@@ -18,7 +18,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 
 完整契约见 `references/schema-constraints.md`。最常导致校验失败的要点：
 
-- `id`：正则 `^[a-z0-9-]+$`，全局唯一，仅小写字母/数字/连字符。建议用仓库名转小写连字符（如 `cf-proxy-ex`）。
+- `id`：正则 `^[a-z0-9-]+$`，全局唯一，仅小写字母/数字/连字符。**只用仓库名（repo name），不要加作者/owner 前缀**。例如仓库 `github.com/Actrue/cf-page-publish-mcp` 的 id 应为 `cf-page-publish-mcp`（而非 `actrue-cf-page-publish-mcp`）。
 - 所有 `url`（以及 `homepage`、`readmeUrl`）必须以 `https://` 开头。
 - `worker` / `pages` → 只用 `source`；`hybrid` → 只用 `sources`。
 - `worker` 源 kind 只能 `raw` / `release`（不能 `repo-archive`）；`pages` 源只能 `release` / `repo-archive`（不能 `raw`）。
@@ -93,7 +93,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 ### 6. 校验
 
 ```bash
-node scripts/validate_catalog.mjs               # 内置快速自检（无第三方依赖）
+node skills/github-to-catalog/scripts/validate_catalog.mjs   # 内置快速自检（无第三方依赖，脚本会自动向上查找仓库根）
 npx ajv-cli validate -s catalog.schema.json -d catalog.json
 ```
 

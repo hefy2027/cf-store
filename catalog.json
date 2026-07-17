@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-17T15:00:00.000Z",
+  "updated": "2026-07-17T17:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -235,21 +235,21 @@
       }
     },
     {
-      "id": "actrue-cf-page-publish-mcp",
+      "id": "cf-page-publish-mcp",
       "name": "CF Page Publish MCP",
       "description": "Cloudflare 页面发布 MCP 工具，可将 HTML 页面发布到 Cloudflare Worker/KV，并提供 MCP 接口与可视化编辑界面，可选 Browser 绑定渲染截图。",
       "author": {
-        "name": "Actrue",
-        "url": "https://github.com/Actrue"
+        "name": "FactrueSolin",
+        "url": "https://github.com/FactrueSolin"
       },
-      "homepage": "https://github.com/Actrue/cf-page-publish-mcp",
-      "readmeUrl": "https://raw.githubusercontent.com/actrue/cf-page-publish-mcp/main/README.md",
+      "homepage": "https://github.com/FactrueSolin/cf-page-publish-mcp",
+      "readmeUrl": "https://raw.githubusercontent.com/FactrueSolin/cf-page-publish-mcp/main/README.md",
       "version": "1.0.0",
       "tags": ["mcp", "worker", "kv", "工具"],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/actrue/cf-page-publish-mcp/main/src/index.ts"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-page-publish-mcp/worker.js"
       },
       "bindings": [
         {
