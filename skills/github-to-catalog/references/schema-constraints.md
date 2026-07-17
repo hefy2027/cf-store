@@ -78,9 +78,16 @@ Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip
 - `env`：普通对象，静态环境变量（可选）。
 - `routes`：字符串数组，自定义路由（可选）。
 
+## crons 规则（Cron Triggers）
+
+模板对象内的 `crons` 字段（数组）用于声明 Worker 定时任务，部署后由 cf-manager 自动注册到该 Worker 脚本。
+
+- 类型：`string[]`，每个元素为**标准 5 字段 cron 表达式**（如 `"*/30 * * * *"`、`"0 0 * * *"`）。正则校验 `^\S+\s+\S+\s+\S+\s+\S+\s+\S+$`（恰好 5 段）。
+- 适用范围：**仅 `worker` / `hybrid` 的 worker 部分**；schema 已禁止 `pages` 类型使用 `crons`（定时任务是 Worker 脚本特性，Pages 项目无脚本入口）。
+- 用途示例：smail 用 `"crons": ["*/30 * * * *"]` 每 30 分钟清理过期邮件。
+
 ## 已知表达限制
 
-catalog 当前无法表达以下 wrangler 能力，新增模板时若项目依赖，需向用户说明其在 cf-manager 部署后不会生效，或在 `description` 中提示：
+catalog 当前仍无法表达以下 wrangler 能力，新增模板时若项目依赖，需向用户说明其在 cf-manager 部署后不会生效，或在 `description` 中提示：
 
-- `crons` 定时触发器（如 `*/30 * * * *` 清理过期数据）。
-- `send_email` 邮件路由等高级绑定。
+- `send_email` 邮件路由等高级绑定（`crons` 定时触发器已通过 `crons` 字段支持，可直接在模板声明）。

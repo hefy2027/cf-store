@@ -105,6 +105,11 @@
         },
         "env": { "type": "object" },
         "routes": { "type": "array", "items": { "type": "string" } },
+        "crons": {
+          "type": "array",
+          "description": "Worker 定时任务（Cron Triggers）。每个元素是标准 cron 表达式（如 \"*/5 * * * *\"），部署后自动注册到该 Worker 脚本。仅对 worker/hybrid(worker 部分) 生效；pages 类型不适用（Cron 绑定在 Worker 脚本而非 Pages 项目）。",
+          "items": { "type": "string", "pattern": "^\\S+\\s+\\S+\\s+\\S+\\s+\\S+\\s+\\S+$" }
+        },
         "assets": {
           "type": "object",
           "additionalProperties": false,
@@ -186,6 +191,18 @@
                   }
                 }
               }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": { "type": { "const": "pages" } },
+            "required": ["type"]
+          },
+          "then": {
+            "not": { "required": ["crons"] },
+            "errorMessage": {
+              "not": "pages 类型不支持 crons（定时任务是 Worker 脚本特性）"
             }
           }
         },

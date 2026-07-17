@@ -85,7 +85,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 
 ### 4. 收集元数据并追加目录条目
 
-补齐 `id`、`name`、`description`、`author`（name + url）、`tags`、`homepage`、`readmeUrl`、`version`（语义化 `^\d+\.\d+\.\d+$`）、`type`、所需 `bindings`（缺失则向用户询问，或从 README / wrangler 配置推断）。
+补齐 `id`、`name`、`description`、`author`（name + url）、`tags`、`homepage`、`readmeUrl`、`version`（语义化 `^\d+\.\d+\.\d+$`）、`type`、所需 `bindings`（缺失则向用户询问，或从 README / wrangler 配置推断）。若 wrangler 配置里有 `triggers.crons`，在模板加 `"crons": [...]`（标准 5 字段 cron 表达式数组，`worker` / `hybrid` 适用，`pages` 不适用，schema 会拒绝）。
 
 **bindings 两个易错点：**
 
@@ -113,5 +113,6 @@ npx ajv-cli validate -s catalog.schema.json -d catalog.json
 - 本仓库只放数据 + Schema + 构建脚本，不含部署逻辑。提交并推送到 `main`，Store 页面通过「刷新」即可拉取。
 - 切勿手动改动生成的 `surge-dist/`（已被 gitignore）。
 - 自托管 worker 起点模板见 `assets/worker-boilerplate/worker.js`。
-- **已知表达限制**：catalog 当前无法表达 `crons` 定时触发器、`send_email` 邮件路由等 wrangler 高级能力。若项目依赖这些（如 smail 用 `*/30 * * * *` 清理过期邮件），需向用户说明这部分功能部署后不会生效，或在模板 `description` 中提示。
+- **crons 定时触发器已支持**：模板对象内可直接加 `"crons": ["*/30 * * * *"]`（标准 5 字段 cron 表达式数组），仅对 `worker` / `hybrid` 生效，`pages` 类型会被 schema 拒绝。若项目依赖定时任务（如 smail 每 30 分钟清理过期邮件），直接声明即可，后端自动注册 Cron Trigger——无需再在 `description` 里提示。
+- **已知表达限制**：`send_email` 邮件路由等部分 wrangler 高级能力仍无法在 catalog 表达。若项目依赖，需向用户说明部署后不会生效，或在 `description` 中提示。
 - binding 的 `initSqlUrl` 若指向本仓库 `main/` 前缀，surge 备用源也会自动改写并镜像该 SQL（见 `scripts/build-surge.mjs`）。

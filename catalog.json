@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-17T20:30:00.000Z",
+  "updated": "2026-07-17T20:45:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -351,7 +351,8 @@
           "title": "Cookie 会话签名密钥（多个用逗号分隔）",
           "secret": true
         }
-      ]
+      ],
+      "crons": ["*/30 * * * *"]
     },
     {
       "id": "alexpota-deploy-mcp",
