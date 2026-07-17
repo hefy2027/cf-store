@@ -186,7 +186,7 @@
       "env": {}
     },
     {
-      "id": "1234567yang-cf-proxy-ex",
+      "id": "cf-proxy-ex",
       "name": "Cloudflare Proxy EX",
       "description": "基于 Cloudflare Workers 的超级代理，支持 OpenAI/ChatGPT、GitHub 加速与 DuckDuckGo 在线代理，内置安全密码保护，支持 Cloudflare 与 Deno 多平台部署。",
       "author": {
@@ -204,7 +204,7 @@
       }
     },
     {
-      "id": "7sageer-sublink-worker",
+      "id": "sublink-worker",
       "name": "Sublink Worker",
       "description": "部署在 Cloudflare Workers 上的轻量级代理订阅转换与管理工具，支持将多种代理协议分享链接转换为不同客户端可用的订阅，内置 KV 存储。",
       "author": {

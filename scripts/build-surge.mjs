@@ -37,6 +37,7 @@ for (const t of catalog.templates) {
     if (t.sources.worker?.url) t.sources.worker.url = rewrite(t.sources.worker.url);
     if (t.sources.pages?.url) t.sources.pages.url = rewrite(t.sources.pages.url);
   }
+  if (t.assets?.source?.url) t.assets.source.url = rewrite(t.assets.source.url);
 }
 
 // 标记这是官方源的镜像，便于排查
