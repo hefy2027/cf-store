@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-17T20:45:00.000Z",
+  "updated": "2026-07-17T21:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -323,7 +323,8 @@
       "type": "worker",
       "source": {
         "kind": "release",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/server.zip"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/server.zip",
+        "mainModule": "index.js"
       },
       "assets": {
         "source": {

@@ -32,11 +32,13 @@
 | `hybrid` | `sources.worker` | `raw` / `release`（不能 `repo-archive`） |
 | `hybrid` | `sources.pages` | `release` / `repo-archive`（不能 `raw`） |
 
-`source` 对象字段：`kind`（必填）、`url`（必填，`^https://`）、`assetName`、`subPath`、`size`（可选）。
+`source` 对象字段：`kind`（必填）、`url`（必填，`^https://`）、`assetName`、`subPath`、`size`、`mainModule`（可选）。
+
+- `mainModule`（可选）：仅对**多模块 Worker** 有意义。显式声明 zip 解压后作为 Worker 入口的文件名（如 `index.js`）。**强烈建议多模块 zip 显式声明**，避免依赖后端默认推断规则：`worker.js → index.js/index.mjs → 根目录首个 JS 模块`；若 zip 内附 `wrangler.toml/jsonc`，以其 `main` 字段为准。单文件 worker 无需此字段。
 
 ## 多模块源（release + zip，构建型 SSR 项目）
 
-Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip**（如 React Router v7 / 其他 SSR 框架构建出的 `build/server/`）：将服务端模块目录整体压缩为 `server.zip`，`url` 指向它即可。后端按 zip 的 PK 魔数识别并自动解压，按 `index.js` 作为 `main_module`，将其余 chunk 作为多模块 multipart 上传——无需用 esbuild 合并成单文件。`⚠️` kind **必须填 `release`/`repo-archive`，不能填 `raw`**：`raw` 语义是「单文件直链」，塞 zip 虽能靠魔数识别跑起来，但元数据标签是假的，会误导读 catalog 的人。`⚠️` 打包时务必剔除 `wrangler.json` 等非运行时代码（其内含作者硬编码的 `bucket_name` / `database_name` / `crons`，既不会被当作模块上传，也不该用于用户部署）。
+Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip**（如 React Router v7 / 其他 SSR 框架构建出的 `build/server/`）：将服务端模块目录整体压缩为 `server.zip`，`url` 指向它，并加 `"mainModule": "index.js"` 显式声明入口即可。后端按 zip 的 PK 魔数识别并自动解压，以 `mainModule` 指定的文件（如 `index.js`）作为 `main_module`，将其余 chunk 作为多模块 multipart 上传——无需用 esbuild 合并成单文件。**`mainModule` 强烈建议显式声明**（不写则按默认推断：根目录有 `worker.js` 用它、否则 `index.js/index.mjs`、否则根目录首个 JS 模块）。`⚠️` kind **必须填 `release`/`repo-archive`，不能填 `raw`**：`raw` 语义是「单文件直链」，塞 zip 虽能靠魔数识别跑起来，但元数据标签是假的，会误导读 catalog 的人。`⚠️` 打包时务必剔除 `wrangler.json` 等非运行时代码（其内含作者硬编码的 `bucket_name` / `database_name` / `crons`，既不会被当作模块上传，也不该用于用户部署）。
 
 ## assets 规则（静态资源 / Worker with Assets）
 

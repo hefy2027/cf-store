@@ -33,7 +33,8 @@
         "url": { "type": "string", "format": "uri", "pattern": "^https://", "description": "部署源码拉取地址。部署时从此处拉取代码；当 homepage 未填时，兜底作为仓库入口" },
         "assetName": { "type": "string" },
         "subPath": { "type": "string" },
-        "size": { "type": "number" }
+        "size": { "type": "number" },
+        "mainModule": { "type": "string", "description": "多模块 Worker 入口文件名（如 index.js）。缺省时按约定推断：worker.js → index.js/index.mjs → 根目录首个 JS 模块；有 wrangler.toml/jsonc 时以其中的 main 字段为准。" }
       }
     },
     "binding": {

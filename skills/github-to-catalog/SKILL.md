@@ -23,6 +23,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 - `worker` / `pages` → 只用 `source`；`hybrid` → 只用 `sources`。
 - `worker` 源 kind 只能 `raw` / `release`（不能 `repo-archive`）；`pages` 源只能 `release` / `repo-archive`（不能 `raw`）。
 - `worker`（或 `pages`/`hybrid`）可附加 `assets` 字段（Worker with Assets / Pages 静态资源）：`"assets": { "source": { "kind": "release", "url": ".../assets.zip" }, "binding"?: "ASSETS", "config"?: { "html_handling"?, "not_found_handling"? } }`。`source` 为必填，zip 内文件应在根目录（对应 wrangler 的 `directory`）；`binding` 缺省为 `ASSETS`，`config` 仅在需要自定义 SPA 回退/404 时填。`⚠️` **assets.source 的 kind 绝不能填 `raw`**：后端 `workerService` 对 `assets.source.kind === 'raw'` 走「单文件」分支，会把整个 zip 当作一个名为 `xxx.zip` 的文件上传，前端拿到的不是网站资源而是打不开的 zip，资产直接失效。assets 是 zip 时必须用 `release` / `repo-archive`。
+- `source.mainModule`（可选，仅多模块 Worker 有意义）：显式声明 zip 解压后作为 Worker 入口的文件名（如 `index.js`）。**强烈建议多模块 zip 显式声明**，避免依赖后端默认推断规则（`worker.js → index.js/index.mjs → 根目录首个 JS 模块`；有 `wrangler.toml/jsonc` 时以其中 `main` 字段为准）。单文件 worker 无需此字段。
 - `bindings[].name` 必须全大写，正则 `^[A-Z][A-Z0-9_]*$`。
 
 ## 工作流
@@ -72,7 +73,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
    - **Worker（需构建或归一成单文件）**：
      - 带 `package.json` 的构建型项目：`cd .tmp/<id> && npm install && npm run build`，取构建产物（如 `dist/_worker.js` / `dist/index.js`），**按形态二选一**：
        - **单文件**：产物确为单一入口、无外部 import 时，复制为 `templates/<id>/worker.js`。
-       - **多模块 zip**（如 React Router v7 / 其他 SSR 框架构建出 `build/server/` + `build/client/`）：将服务端模块目录（`build/server/`，含 `index.js` 入口与其依赖 chunk）整体压缩为 `templates/<id>/server.zip`，catalog 用 `"source": { "kind": "release", "url": ".../server.zip" }` —— 后端按 zip 的 PK 魔数识别并自动解压成多模块上传，无需 esbuild 合并成单文件。**kind 必须填 `release`（或 `repo-archive`），不能用 `raw`**：`raw` 语义是「单文件直链」，塞 zip 虽能靠魔数识别跑起来，但元数据标签是假的，会误导读 catalog 的人。
+       - **多模块 zip**（如 React Router v7 / 其他 SSR 框架构建出 `build/server/` + `build/client/`）：将服务端模块目录（`build/server/`，含 `index.js` 入口与其依赖 chunk）整体压缩为 `templates/<id>/server.zip`，catalog 用 `"source": { "kind": "release", "url": ".../server.zip", "mainModule": "index.js" }` —— 后端按 zip 的 PK 魔数识别并自动解压成多模块上传，`mainModule` 指定入口（`index.js`）；**强烈建议显式声明 `mainModule`**，不写则靠后端默认推断规则。**kind 必须填 `release`（或 `repo-archive`），不能用 `raw`**：`raw` 语义是「单文件直链」，塞 zip 虽能靠魔数识别跑起来，但元数据标签是假的，会误导读 catalog 的人。
      - 多文件源码但可合并：整理出单一入口保存为 `templates/<id>/worker.js`，确保无外部 import 依赖。
      - ⚠️ **打包时排除非运行时代码**：构建产物目录里可能含框架自动生成的 `wrangler.json`，其中硬编码了作者自己的 `bucket_name` / `database_name` / `crons` 等。它既不会被当作模块上传、也不该用于用户部署，务必从 zip 中剔除。
    - **Pages（需构建）**：`cd .tmp/<id> && npm install && npm run build`，把输出目录（如 `dist/`）压缩为 `templates/<id>/pages.zip`：`cd dist && zip -r ../pages.zip .`。
