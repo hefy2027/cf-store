@@ -27,3 +27,4 @@ npm-debug.log*
 # Temp / cache
 *.tmp
 .cache/
+.tmp/

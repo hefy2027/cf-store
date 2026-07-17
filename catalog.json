@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-08T16:00:00.000Z",
+  "updated": "2026-07-17T15:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -188,19 +188,19 @@
     {
       "id": "1234567yang-cf-proxy-ex",
       "name": "Cloudflare Proxy EX",
-      "description": "基于 Cloudflare Workers 的超级代理，支持 OpenAI/ChatGPT 代理、GitHub 加速与 DuckDuckGo 在线代理，支持密码保护与多平台部署。",
+      "description": "基于 Cloudflare Workers 的超级代理，支持 OpenAI/ChatGPT、GitHub 加速与 DuckDuckGo 在线代理，内置安全密码保护，支持 Cloudflare 与 Deno 多平台部署。",
       "author": {
         "name": "1234567Yang",
         "url": "https://github.com/1234567Yang"
       },
       "homepage": "https://github.com/1234567Yang/cf-proxy-ex",
       "readmeUrl": "https://raw.githubusercontent.com/1234567yang/cf-proxy-ex/main/README.md",
-      "version": "1.0.0",
-      "tags": ["代理", "worker", "加速", "openai"],
+      "version": "1.5.1",
+      "tags": ["代理", "worker", "加速", "openai", "github"],
       "type": "worker",
       "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/1234567yang/cf-proxy-ex/main/_worker.js"
+        "kind": "release",
+        "url": "https://github.com/1234567Yang/cf-proxy-ex/releases/latest/download/_worker.js"
       }
     },
     {
@@ -218,7 +218,7 @@
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/7sageer/sublink-worker/main/src/worker.jsx"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sublink-worker/worker.js"
       },
       "bindings": [
         {
@@ -226,7 +226,13 @@
           "name": "SUBLINK_KV",
           "action": "create-or-reuse"
         }
-      ]
+      ],
+      "assets": {
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sublink-worker/assets.zip"
+        }
+      }
     },
     {
       "id": "actrue-cf-page-publish-mcp",
