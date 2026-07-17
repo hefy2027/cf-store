@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-17T17:00:00.000Z",
+  "updated": "2026-07-17T20:30:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -268,21 +268,21 @@
       ]
     },
     {
-      "id": "ai-yolo-cloudflareworker-kv-urlshort",
+      "id": "cloudflareworker-kv-urlshort",
       "name": "KV UrlShort",
-      "description": "基于 Cloudflare Workers + KV 的简约短链接生成器，支持密码保护、有效期、访问次数限制与 Cloudflare Turnstile 人机验证。",
+      "description": "基于 Cloudflare Workers + KV 的简约短链接生成器，支持密码保护、有效期与访问次数限制，内置 Web 管理界面与 Turnstile 人机验证。",
       "author": {
         "name": "Ai-Yolo",
         "url": "https://github.com/Ai-Yolo"
       },
       "homepage": "https://github.com/Ai-Yolo/CloudflareWorker-KV-UrlShort",
-      "readmeUrl": "https://raw.githubusercontent.com/ai-yolo/cloudflareworker-kv-urlshort/main/README.md",
+      "readmeUrl": "https://raw.githubusercontent.com/Ai-Yolo/CloudflareWorker-KV-UrlShort/main/README.md",
       "version": "1.0.0",
       "tags": ["短链", "worker", "kv"],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/ai-yolo/cloudflareworker-kv-urlshort/main/index.js"
+        "url": "https://raw.githubusercontent.com/Ai-Yolo/CloudflareWorker-KV-UrlShort/main/index.js"
       },
       "bindings": [
         {
@@ -309,32 +309,47 @@
       ]
     },
     {
-      "id": "akazwz-smail",
+      "id": "smail",
       "name": "smail",
-      "description": "基于 React Router Framework Mode + Cloudflare Workers 的临时邮箱服务，使用 D1 存储邮件元数据、R2 存储邮件原始内容，支持多语言与附件。",
+      "description": "基于 React Router v7 + Cloudflare Workers 的临时邮箱服务，使用 D1 存储邮件元数据、R2 存储邮件原始内容，支持 10 种语言与附件，内置 SEO 博客与多语言页面。",
       "author": {
         "name": "akazwz",
         "url": "https://github.com/akazwz"
       },
       "homepage": "https://github.com/akazwz/smail",
       "readmeUrl": "https://raw.githubusercontent.com/akazwz/smail/main/README.md",
-      "version": "1.0.0",
-      "tags": ["邮箱", "worker", "d1", "r2"],
+      "version": "2.0.0",
+      "tags": ["邮箱", "worker", "d1", "r2", "react-router"],
       "type": "worker",
       "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/akazwz/smail/main/workers/app.ts"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/server.zip"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/assets.zip"
+        }
       },
       "bindings": [
         {
           "type": "d1",
           "name": "D1",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/init.sql"
         },
         {
           "type": "r2",
           "name": "R2",
           "action": "create-or-reuse"
+        },
+        {
+          "name": "SESSION_SECRETS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "Cookie 会话签名密钥（多个用逗号分隔）",
+          "secret": true
         }
       ]
     },

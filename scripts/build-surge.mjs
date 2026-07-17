@@ -38,6 +38,9 @@ for (const t of catalog.templates) {
     if (t.sources.pages?.url) t.sources.pages.url = rewrite(t.sources.pages.url);
   }
   if (t.assets?.source?.url) t.assets.source.url = rewrite(t.assets.source.url);
+  for (const b of t.bindings || []) {
+    if (b.initSqlUrl) b.initSqlUrl = rewrite(b.initSqlUrl);
+  }
 }
 
 // 标记这是官方源的镜像，便于排查
