@@ -18,6 +18,17 @@
 
 `id`、`name`、`version`、`type`。`version` 同样须 `^\d+\.\d+\.\d+$`。
 
+## compatibility_date / compatibility_flags（兼容性日期与标志）
+
+模板对象可选字段，对应 wrangler 的 `compatibility_date` 与 `compatibility_flags`。
+
+- `compatibility_date`：`^\d{4}-\d{2}-\d{2}$` 日期字符串。缺省时部署端用安全默认值（约 `2024-11-01`）。使用 React Router v7 / 含 node 构建产物、或依赖较新运行时特性的 worker，通常需要更新的日期（如 `"2025-01-01"`）。
+- `compatibility_flags`：字符串数组，目前最常用 `["nodejs_compat"]`。
+- **何时必须加 `compatibility_flags: ["nodejs_compat"]`**：Worker 代码（含打包进 zip 的 chunk）使用了以下任一特性就必须开——不开则运行时抛 `Error 1101`（脚本异常）：
+  - CJS 互操作 / 调用 `require`（`__commonJS` 这类 esbuild 打包 shim 即属此列）；
+  - 访问 Node 内置：`process` / `Buffer` / `node:` 协议 / `AsyncLocalStorage` 等。
+- **判定方式**：在 `templates/<id>/` 的产物里搜索 `__commonJS|require\(|process\.|node:|Buffer\.` 等关键字，命中即加 `nodejs_compat`；SSR 框架（RR7 等）构建产物建议额外给较新的 `compatibility_date`。
+
 ## type 与 source 的关系
 
 - `worker` / `pages`：使用 `source`（单对象）。**不能使用** `sources`。

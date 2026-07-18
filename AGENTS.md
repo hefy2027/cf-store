@@ -42,6 +42,11 @@ cf-store/
 - `hybrid`：使用 `sources`（含 `worker` 和/或 `pages`，至少其一），**不能用** `source`。
 - 非 hybrid **不能用** `sources`。
 
+### compatibility_date / compatibility_flags（可选）
+- `compatibility_date`：`^\d{4}-\d{2}-\d{2}$`，缺省时部署端用较新安全默认值；React Router v7 / 含 node 构建产物的 worker 通常需要更新的日期。
+- `compatibility_flags`：字符串数组，最常用 `["nodejs_compat"]`。
+- **决定规则**：打包产物（worker.js 或 zip 解压后的 chunk）若含 CJS 互操作（`__commonJS` / `require(`）或 `process` / `Buffer` / `node:` 等 Node 内置引用，必须加 `compatibility_flags: ["nodejs_compat"]`，否则运行时抛 `Error 1101`。SSR 框架构建建议同时给较新的 `compatibility_date`。
+
 ### source.kind 的允许值
 | type | 字段 | kind 允许值 |
 |------|------|--------------|

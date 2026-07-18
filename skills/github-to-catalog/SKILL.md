@@ -25,6 +25,7 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 - `worker`（或 `pages`/`hybrid`）可附加 `assets` 字段（Worker with Assets / Pages 静态资源）：`"assets": { "source": { "kind": "release", "url": ".../assets.zip" }, "binding"?: "ASSETS", "config"?: { "html_handling"?, "not_found_handling"? } }`。`source` 为必填，zip 内文件应在根目录（对应 wrangler 的 `directory`）；`binding` 缺省为 `ASSETS`，`config` 仅在需要自定义 SPA 回退/404 时填。`⚠️` **assets.source 的 kind 绝不能填 `raw`**：后端 `workerService` 对 `assets.source.kind === 'raw'` 走「单文件」分支，会把整个 zip 当作一个名为 `xxx.zip` 的文件上传，前端拿到的不是网站资源而是打不开的 zip，资产直接失效。assets 是 zip 时必须用 `release` / `repo-archive`。
 - `source.mainModule`（可选，仅多模块 Worker 有意义）：显式声明 zip 解压后作为 Worker 入口的文件名（如 `index.js`）。**强烈建议多模块 zip 显式声明**，避免依赖后端默认推断规则（`worker.js → index.js/index.mjs → 根目录首个 JS 模块`；有 `wrangler.toml/jsonc` 时以其中 `main` 字段为准）。单文件 worker 无需此字段。
 - `bindings[].name` 必须全大写，正则 `^[A-Z][A-Z0-9_]*$`。
+- `compatibility_date` / `compatibility_flags`（可选）：对应 wrangler 同名字段。`compatibility_flags` 目前主要是 `["nodejs_compat"]`。**判定规则**：若打包产物（`worker.js` 或多模块 zip 解压后的 chunk）含 CJS 互操作（`__commonJS` / `require(`）、`process` / `Buffer` / `node:` 等 Node 内置引用，**必须加 `"compatibility_flags": ["nodejs_compat"]`**，否则部署后运行时抛 `Error 1101`；用 React Router v7 / 其他 SSR 框架构建的 worker，建议同时给较新的 `"compatibility_date": "2025-01-01"`。判断方式：在 `templates/<id>/` 内搜索上述关键字，命中即加。
 
 ## 工作流
 
@@ -87,6 +88,8 @@ description: 当用户给出一个 GitHub 仓库链接，希望把它作为 Clou
 ### 4. 收集元数据并追加目录条目
 
 补齐 `id`、`name`、`description`、`author`（name + url）、`tags`、`homepage`、`readmeUrl`、`version`（语义化 `^\d+\.\d+\.\d+$`）、`type`、所需 `bindings`（缺失则向用户询问，或从 README / wrangler 配置推断）。若 wrangler 配置里有 `triggers.crons`，在模板加 `"crons": [...]`（标准 5 字段 cron 表达式数组，`worker` / `hybrid` 适用，`pages` 不适用，schema 会拒绝）。
+
+**另外检查打包产物是否用到 Node 内置 / CJS**：在 `templates/<id>/` 的 `worker.js` 或解压后的 zip 模块里搜索 `__commonJS`、`require(`、`process.`、`node:`、`Buffer.` 等，命中则在模板加 `"compatibility_flags": ["nodejs_compat"]`；SSR 框架（React Router v7 等）构建产物建议同时给较新的 `"compatibility_date": "2025-01-01"`。不开 `nodejs_compat` 会导致部署后运行时抛 `Error 1101`。
 
 **bindings 两个易错点：**
 
