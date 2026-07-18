@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-17T21:00:00.000Z",
+  "updated": "2026-07-18T09:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -247,6 +247,7 @@
       "version": "1.0.0",
       "tags": ["mcp", "worker", "kv", "工具"],
       "type": "worker",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-page-publish-mcp/worker.js"
@@ -321,6 +322,8 @@
       "version": "2.0.0",
       "tags": ["邮箱", "worker", "d1", "r2", "react-router"],
       "type": "worker",
+      "compatibility_date": "2025-01-01",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
         "kind": "release",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/server.zip",
@@ -356,9 +359,9 @@
       "crons": ["*/30 * * * *"]
     },
     {
-      "id": "alexpota-deploy-mcp",
+      "id": "deploy-mcp",
       "name": "deploy-mcp",
-      "description": "通用部署跟踪器 MCP 服务，支持实时状态徽章与部署监控（含 Cloudflare Pages 支持），基于 Cloudflare Workers + KV 构建。",
+      "description": "通用部署跟踪器 MCP 服务，支持实时状态徽章与部署监控（含 Cloudflare Pages 支持），基于 Cloudflare Workers + KV 构建。读取云厂商令牌使用 process.env，部署后需开启 nodejs_compat 兼容标志，并在后台配置 CLOUDFLARE_TOKEN / CLOUDFLARE_ACCOUNT_ID 等环境变量。",
       "author": {
         "name": "alexpota",
         "url": "https://github.com/alexpota"
@@ -368,9 +371,10 @@
       "version": "0.6.5",
       "tags": ["mcp", "worker", "kv", "监控"],
       "type": "worker",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/alexpota/deploy-mcp/main/src/worker.ts"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/deploy-mcp/worker.js"
       },
       "bindings": [
         {
@@ -381,7 +385,7 @@
       ]
     },
     {
-      "id": "beanqi-cohere2openai",
+      "id": "cohere2openai",
       "name": "cohere2openai",
       "description": "将 Cohere API 转换为 OpenAI API 格式的 Cloudflare Worker，部署简单，仅需配置 API 密钥即可作为 OpenAI 兼容端点使用。",
       "author": {
@@ -409,9 +413,9 @@
       ]
     },
     {
-      "id": "beilunyang-img-mom",
+      "id": "img-mom",
       "name": "img-mom",
-      "description": "基于 Cloudflare Workers 运行时的 Telegram 图床机器人，支持 Telegram、Cloudflare R2、Backblaze B2 等多渠道图床上传，轻量免费。",
+      "description": "基于 Cloudflare Workers 运行时的 Telegram 图床机器人，支持 Telegram、Cloudflare R2、Backblaze B2 等多渠道图床上传，轻量免费。部署后访问 /setup 完成 Webhook 注册（需在 Telegram @BotFather 创建 Bot 并填写 TG_BOT_TOKEN）。",
       "author": {
         "name": "beilunyang",
         "url": "https://github.com/beilunyang"
@@ -423,8 +427,100 @@
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/beilunyang/img-mom/master/src/index.ts"
-      }
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/img-mom/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV_IMG_MOM",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "r2",
+          "name": "R2_IMG_MOM",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "TG_BOT_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "Telegram Bot Token（@BotFather 获取）",
+          "secret": true
+        },
+        {
+          "name": "TG_BOT_OWNER_USERNAME",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "机器人所有者 Telegram 用户名（不含 @）",
+          "secret": false
+        },
+        {
+          "name": "TG_WEBHOOK_SECRET_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Webhook 校验密钥（可选，建议设置，A-Za-z0-9_-）",
+          "secret": true
+        },
+        {
+          "name": "TG_BOT_ALLOW_ANYONE",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "是否允许任何人上传（true/false，默认仅所有者）",
+          "secret": false
+        },
+        {
+          "name": "R2_CUSTOM_DOMAIN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "R2 自定义域名（启用 R2 图床时填写）",
+          "secret": false
+        },
+        {
+          "name": "B2_KEY_ID",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Backblaze B2 Key ID（启用 B2 图床时填写）",
+          "secret": false
+        },
+        {
+          "name": "B2_SECRET_KEY",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Backblaze B2 私密密钥",
+          "secret": true
+        },
+        {
+          "name": "B2_ENDPOINT",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Backblaze B2 Endpoint（如 s3.us-west-004.backblazeb2.com）",
+          "secret": false
+        },
+        {
+          "name": "B2_BUCKET",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Backblaze B2 存储桶名称",
+          "secret": false
+        },
+        {
+          "name": "B2_CUSTOM_DOMAIN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Backblaze B2 自定义域名（可选）",
+          "secret": false
+        }
+      ]
     },
     {
       "id": "beilunyang-moemail",
