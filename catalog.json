@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-18T09:00:00.000Z",
+  "updated": "2026-07-20T18:40:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -1436,7 +1436,7 @@
       ]
     },
     {
-      "id": "joyance-professional-cf-comment",
+      "id": "cf-comment",
       "name": "CF Comment",
       "description": "基于 Cloudflare Workers 运行的简单评论系统，支持回复、点赞、举报与管理员后台，提供中英双语切换，使用 D1 存储。",
       "author": {
@@ -1448,6 +1448,7 @@
       "version": "1.0.0",
       "tags": ["worker", "评论", "d1"],
       "type": "worker",
+      "compatibility_date": "2024-09-23",
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/joyance-professional/cf-comment/main/worker.js"
@@ -1456,12 +1457,34 @@
         {
           "type": "d1",
           "name": "DB",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "initSql": "CREATE TABLE comment_areas (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  name TEXT NOT NULL,\n  area_key TEXT NOT NULL UNIQUE,\n  intro TEXT NULL,\n  hidden INTEGER DEFAULT 0\n);\n\nCREATE TABLE comments (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  area_key TEXT NOT NULL,\n  content TEXT NOT NULL,\n  parent_id INTEGER DEFAULT 0,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  hidden INTEGER DEFAULT 0,\n  likes INTEGER DEFAULT 0,\n  pinned INTEGER DEFAULT 0\n);\n\nCREATE TABLE reports (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  comment_id INTEGER NOT NULL,\n  reason TEXT NOT NULL,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  resolved INTEGER DEFAULT 0\n);"
+        },
+        {
+          "type": "var",
+          "name": "ADMIN_PASS",
+          "title": "管理员登录密码（必需，用于后台登录）",
+          "required": true,
+          "secret": true
+        },
+        {
+          "type": "var",
+          "name": "TURNSTILE_SITEKEY",
+          "title": "Cloudflare Turnstile 站点密钥（可选，前端验证码组件）",
+          "required": false,
+          "secret": false
+        },
+        {
+          "type": "var",
+          "name": "TURNSTILE_SECRET_KEY",
+          "title": "Cloudflare Turnstile 密钥（可选，启用服务端校验）",
+          "required": false,
+          "secret": true
         }
       ]
     },
     {
-      "id": "joyance-professional-cf-files-sharing",
+      "id": "cf-files-sharing",
       "name": "CF Files Sharing",
       "description": "运行在 Cloudflare Workers 上的简单文件分享工具，支持密码保护，R2 + D1 双存储（大文件自动使用 R2），Cloudflare 全球高速访问。",
       "author": {
@@ -1473,27 +1496,38 @@
       "version": "1.0.0",
       "tags": ["worker", "文件分享", "r2", "d1"],
       "type": "worker",
+      "compatibility_date": "2024-01-01",
       "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/joyance-professional/cf-files-sharing/main/src/index.js"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-files-sharing/worker.zip#CF-Worker.zip"
       },
       "bindings": [
         {
           "type": "r2",
           "name": "FILE_BUCKET",
+          "title": "文件存储桶（大文件）",
           "action": "create-or-reuse"
         },
         {
           "type": "d1",
           "name": "DB",
-          "action": "create-or-reuse"
+          "title": "文件元数据数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-files-sharing/init.sql"
+        },
+        {
+          "type": "var",
+          "name": "AUTH_PASSWORD",
+          "title": "管理员登录密码（必需，用于后台登录与会话签发）",
+          "required": true,
+          "secret": true
         }
       ]
     },
     {
-      "id": "kasuganosoras-cloudflare-worker-blog",
+      "id": "cloudflare-worker-blog",
       "name": "Cloudflare Worker Blog",
-      "description": "基于 Cloudflare Workers + GitHub 实现的动态博客系统，使用边缘计算，无需服务器，文章存放于 GitHub 仓库。",
+      "description": "基于 Cloudflare Workers + GitHub 实现的动态博客系统，使用边缘计算，无需服务器，文章存放于 GitHub 仓库。部署后在环境变量 GITHUB_BASE 中填写你自己的 `owner/repo`（其中 posts/ 与 list.json 存放文章）即可。",
       "author": {
         "name": "kasuganosoras",
         "url": "https://github.com/kasuganosoras"
@@ -1505,11 +1539,19 @@
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/kasuganosoras/cloudflare-worker-blog/master/workers.js"
-      }
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-worker-blog/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "var",
+          "name": "GITHUB_BASE",
+          "title": "文章来源仓库（owner/repo）",
+          "required": false
+        }
+      ]
     },
     {
-      "id": "lyc8503-uptimeflare",
+      "id": "uptimeflare",
       "name": "UptimeFlare",
       "description": "基于 Cloudflare Workers + D1 的无服务器宕机监控与状态页，支持多地区探测、100+ 通知渠道、暗色状态页与自定义域名。",
       "author": {
@@ -1517,23 +1559,27 @@
         "url": "https://github.com/lyc8503"
       },
       "homepage": "https://github.com/lyc8503/UptimeFlare",
+      "readmeUrl": "https://raw.githubusercontent.com/lyc8503/UptimeFlare/main/README.md",
       "version": "0.1.0",
       "tags": ["监控", "状态页", "pages", "d1", "uptime"],
       "type": "pages",
+      "compatibility_date": "2025-04-02",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/lyc8503/UptimeFlare/archive/refs/heads/main.zip"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/pages.zip"
       },
       "bindings": [
         {
           "type": "d1",
           "name": "UPTIMEFLARE_D1",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/init.sql"
         }
       ]
     },
     {
-      "id": "monopink-url-shorten-worker",
+      "id": "url-shorten-worker",
       "name": "Url Shorten Worker",
       "description": "部署在 Cloudflare Workers 上的短链接服务，支持 KV 存储、管理员/访客分级密码、正则重定向与 PWA，无需服务器。",
       "author": {
@@ -1582,9 +1628,9 @@
       ]
     },
     {
-      "id": "nicepkg-shotog",
+      "id": "shotog",
       "name": "ShotOG",
-      "description": "基于 Cloudflare Workers + D1 的 Open Graph 图片生成服务，单次 URL 调用即可生成精美 OG 图，无需无头浏览器与服务器。",
+      "description": "基于 Cloudflare Workers + D1 的 Open Graph 图片生成服务，使用 Satori + resvg（WASM）在边缘直接生成精美 OG 图，无需无头浏览器。单次 URL 调用即可生成，支持 API Key 与用量统计。",
       "author": {
         "name": "nicepkg",
         "url": "https://github.com/nicepkg"
@@ -1594,21 +1640,28 @@
       "version": "0.6.0",
       "tags": ["og图片", "worker", "d1"],
       "type": "worker",
+      "compatibility_date": "2025-01-01",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/nicepkg/shotog/main/src/index.ts"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/shotog/server.zip",
+        "mainModule": "index.js"
+      },
+      "env": {
+        "ENVIRONMENT": "production"
       },
       "bindings": [
         {
           "type": "d1",
           "name": "DB",
+          "title": "ShotOG Database",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/nicepkg/shotog/main/migrations/001_init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/shotog/init.sql"
         }
       ]
     },
     {
-      "id": "s0urcelab-serverless-cloud-notepad",
+      "id": "serverless-cloud-notepad",
       "name": "Serverless Cloud Notepad",
       "description": "基于 Cloudflare Workers + KV 的无服务器云端记事本，无需后端与数据库，支持自动保存与国际化，可一键私有部署。",
       "author": {
@@ -1620,9 +1673,11 @@
       "version": "1.0.0",
       "tags": ["记事本", "worker", "kv"],
       "type": "worker",
+      "compatibility_date": "2022-05-13",
+      "compatibility_flags": ["nodejs_compat"],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/s0urcelab/serverless-cloud-notepad/master/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/serverless-cloud-notepad/worker.js"
       },
       "bindings": [
         {
@@ -1638,7 +1693,7 @@
       ]
     },
     {
-      "id": "thun888-micro-notepad",
+      "id": "micro-notepad",
       "name": "Micro Notepad",
       "description": "基于 Cloudflare Workers + KV 的迷你笔记本，是 minimalist-web-notepad 的 Worker 实现，无需服务器，绑定一个 KV 即可使用。",
       "author": {
@@ -1663,21 +1718,21 @@
       ]
     },
     {
-      "id": "thun888-whisper-cloudflare",
+      "id": "whisper-cloudflare",
       "name": "Whisper on Cloudflare",
       "description": "基于 Cloudflare AI (Whisper) 的在线音频转写工具，部署在 Workers 上，可将音频转为文字并生成 SRT 字幕。",
       "author": {
         "name": "thun888",
         "url": "https://github.com/thun888"
       },
-      "homepage": "https://github.com/thun888/whisper-cloudflare",
-      "readmeUrl": "https://raw.githubusercontent.com/thun888/whisper-cloudflare/main/README.md",
+      "homepage": "https://github.com/thun888/whisper_cloudflare",
+      "readmeUrl": "https://raw.githubusercontent.com/thun888/whisper_cloudflare/main/README.md",
       "version": "1.0.0",
       "tags": ["转录", "whisper", "worker", "ai"],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/thun888/whisper-cloudflare/main/index.js"
+        "url": "https://raw.githubusercontent.com/thun888/whisper_cloudflare/main/index.js"
       },
       "bindings": [
         {
@@ -1688,7 +1743,7 @@
       ]
     },
     {
-      "id": "tbxark-chatgpt-telegram-workers",
+      "id": "chatgpt-telegram-workers",
       "name": "ChatGPT Telegram Workers",
       "description": "部署在 Cloudflare Workers 上的 Telegram ChatGPT 机器人，单文件无依赖，支持多 AI 服务商与多平台，可自定义模型与预设。",
       "author": {
@@ -1729,7 +1784,7 @@
       ]
     },
     {
-      "id": "wangquexl-pixr2",
+      "id": "pixr2",
       "name": "PixR2",
       "description": "基于 Cloudflare Workers + R2 的多入口图床与图片管理平台，支持网页端与 Telegram Bot 上传、在线预览与分享链接管理。",
       "author": {
@@ -1778,6 +1833,14 @@
           "secret": false
         },
         {
+          "name": "TELEGRAM_BOT_TOKEN",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "Telegram Bot Token（启用 Bot 时填写）",
+          "secret": false
+        },
+        {
           "name": "USER_ID",
           "type": "var",
           "action": "prompt",
@@ -1796,7 +1859,7 @@
       ]
     },
     {
-      "id": "xinjianzhanghao-page-api-forwarder",
+      "id": "page-api-forwarder",
       "name": "Page API Forwarder",
       "description": "部署在 Cloudflare Pages/Workers 上的 API 请求转发脚本，可绕过部分 API 的 IP 限制，支持协议覆盖与简单鉴权头/参数。",
       "author": {
@@ -1819,6 +1882,14 @@
           "action": "prompt",
           "required": true,
           "title": "目标 API 主机地址（含路径，如 example.com/api）",
+          "secret": false
+        },
+        {
+          "name": "PROTOCOL",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "转发使用的协议（http/https，留空则沿用 APIHOST 的协议）",
           "secret": false
         },
         {
@@ -1864,28 +1935,30 @@
       ]
     },
     {
-      "id": "yestool-analytics-with-cloudflare",
+      "id": "analytics-with-cloudflare",
       "name": "Web Analytics (yestool)",
       "description": "基于 Cloudflare Workers + Hono + D1 的网站访问统计分析服务，支持 D1 存储访问数据，可私有化部署。",
       "author": {
         "name": "yestool",
         "url": "https://github.com/yestool"
       },
-      "homepage": "https://github.com/yestool/analytics-with-cloudflare",
-      "readmeUrl": "https://raw.githubusercontent.com/yestool/analytics-with-cloudflare/main/README.md",
+      "homepage": "https://github.com/yestool/analytics_with_cloudflare",
+      "readmeUrl": "https://raw.githubusercontent.com/yestool/analytics_with_cloudflare/main/README.md",
       "version": "1.0.0",
       "tags": ["分析", "统计", "worker", "d1"],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/yestool/analytics-with-cloudflare/main/src/index.ts"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/analytics-with-cloudflare/worker.js"
       },
+      "compatibility_date": "2024-06-14",
       "bindings": [
         {
           "type": "d1",
           "name": "DB",
+          "title": "Web Analytics D1 Database",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/yestool/analytics-with-cloudflare/main/schema.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/analytics-with-cloudflare/schema.sql"
         }
       ]
     }
