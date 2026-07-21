@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-20T18:40:00.000Z",
+  "updated": "2026-07-21T09:50:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -1959,6 +1959,58 @@
           "title": "Web Analytics D1 Database",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/analytics-with-cloudflare/schema.sql"
+        }
+      ]
+    },
+    {
+      "id": "edgeever",
+      "name": "EdgeEver",
+      "description": "基于 Cloudflare Workers + D1 + R2 的开源自托管笔记工作区，保留经典三栏体验，原生支持 MCP AI Agent 接入，零服务器零费用。",
+      "author": {
+        "name": "tianma-if",
+        "url": "https://github.com/tianma-if"
+      },
+      "homepage": "https://github.com/tianma-if/edgeever",
+      "readmeUrl": "https://raw.githubusercontent.com/tianma-if/edgeever/main/README.zh-CN.md",
+      "version": "0.2.6",
+      "tags": ["笔记", "AI", "MCP", "worker", "d1", "r2"],
+      "type": "worker",
+      "compatibility_date": "2026-06-26",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgeever/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgeever/assets.zip"
+        },
+        "binding": "ASSETS",
+        "config": {
+          "not_found_handling": "single-page-application"
+        }
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "EdgeEver D1 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgeever/init.sql"
+        },
+        {
+          "type": "r2",
+          "name": "RESOURCES",
+          "title": "EdgeEver R2 对象存储桶",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "EDGE_EVER_AUTH_PASSWORD",
+          "title": "首次登录密码（必填，部署后可在个人设置中修改）",
+          "required": true,
+          "secret": true,
+          "action": "prompt"
         }
       ]
     }
