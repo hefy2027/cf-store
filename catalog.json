@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-21T09:50:00.000Z",
+  "updated": "2026-07-22T07:30:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -322,7 +322,7 @@
       "version": "2.0.0",
       "tags": ["邮箱", "worker", "d1", "r2", "react-router"],
       "type": "worker",
-      "compatibility_date": "2025-01-01",
+      "compatibility_date": "2025-11-26",
       "compatibility_flags": ["nodejs_compat"],
       "source": {
         "kind": "release",
@@ -1972,7 +1972,7 @@
       },
       "homepage": "https://github.com/tianma-if/edgeever",
       "readmeUrl": "https://raw.githubusercontent.com/tianma-if/edgeever/main/README.zh-CN.md",
-      "version": "0.2.6",
+      "version": "1.5.2",
       "tags": ["笔记", "AI", "MCP", "worker", "d1", "r2"],
       "type": "worker",
       "compatibility_date": "2026-06-26",

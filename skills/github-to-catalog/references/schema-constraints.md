@@ -79,12 +79,50 @@ Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip
 
 必填：`type`、`name`。
 
-- `type`：`kv` / `d1` / `r2` / `ai` / `var`。
+### 通用字段
+
+- `type`：`kv` / `d1` / `r2` / `ai` / `var` / `durable_object` / `service` / `queue`。
 - `name`：**必须全大写**，正则 `^[A-Z][A-Z0-9_]*$`（如 `MY_KV`）。它是绑定**变量名**，必须与项目代码实际引用的 `env.XXX` 一致（如代码用 `env.D1` 则写 `D1`）——这是代码契约、不可改。注意它**不同于** wrangler 里的 `bucket_name` / `database_name`（Cloudflare 账户内的资源实际名，由 `create-or-reuse` 自动生成，catalog 也无此字段，**无需照抄作者命名**）。
+- `resourceName`（可选）：Cloudflare 资源名（D1/KV/R2），格式 `^[a-zA-Z0-9][a-zA-Z0-9_-]*$`。缺省时部署端用 `templateId-bindingName` 兜底自动生成。**仅 kv/d1/r2 可用**。
 - `action`：`create-or-reuse`（默认）或 `prompt`（部署时询问用户）。
 - `title` / `required`：展示与必填标记（可选）。
-- `d1` 专属：`initSql`（内联 SQL）或 `initSqlUrl`（SQL 文件地址），仅 `d1` 可用，其余类型禁止。建议将建表迁移自托管为 `templates/<id>/init.sql` 并用 `initSqlUrl` 引用（优先幂等 `IF NOT EXISTS`，避免 D1 部署后为空库、Worker 查表报错）。若 `initSqlUrl` 指向本仓库 `main/` 前缀（如 `templates/<id>/init.sql`），surge 备用源（`scripts/build-surge.mjs`）会自动改写为 surge 域名并复制该 SQL，使备用源在 GitHub 不可用时仍可用。
-- `var` 专属：`secret`（true/缺省 = 加密 secret_text，前端密码框；false = 明文环境变量，前端普通文本框）。其余类型禁止 `secret`。
+
+### d1 专属
+
+- `initSql`（内联 SQL）或 `initSqlUrl`（SQL 文件地址），仅 `d1` 可用，其余类型禁止（schema if/then/else 强制校验）。建议将建表迁移自托管为 `templates/<id>/init.sql` 并用 `initSqlUrl` 引用（优先幂等 `IF NOT EXISTS`，避免 D1 部署后为空库、Worker 查表报错）。若 `initSqlUrl` 指向本仓库 `main/` 前缀（如 `templates/<id>/init.sql`），surge 备用源（`scripts/build-surge.mjs`）会自动改写为 surge 域名并复制该 SQL，使备用源在 GitHub 不可用时仍可用。
+
+### var 专属
+
+- `secret`：true/缺省 = 加密 secret_text，前端密码框；false = 明文环境变量（plain_text），前端普通文本框。**其余类型禁止 `secret`**。
+
+### durable_object 专属
+
+- `className`（必填）：DO class 名，必须与入口文件的 `export class <className>` 一致。wrangler 部署后会验证 class 名是否在入口文件的导出中。
+- `scriptName`（可选）：DO 所在脚本名（仅跨 Worker 引用时需要，一般情况下不用写，使用当前脚本）。
+- `environment`（可选）：Worker 环境名。
+
+### service 专属
+
+- `service`（必填）：目标 Worker 服务名。
+- `environment`（可选）：目标 Worker 环境名。
+- `entrypoint`（可选）：入口点（指定调用的具体 handler）。
+
+### queue 专属
+
+- `queueName`（必填）：队列名。
+- `deliveryDelay`（可选）：投递延迟秒数（number 类型）。
+
+### Durable Object 迁移：migrations 字段
+
+模板对象的 `migrations` 字段（数组，可选）用于声明 DO 迁移步骤，按顺序执行，每个 tag 代表一次迁移。**仅声明 DO binding 的模板需要关注**。
+
+- 每个迁移对象必填 `tag`（string）。
+- 可选字段：
+  - `new_classes`（string[]）：新建的 DO class。
+  - `renamed_classes`（[{ from: string, to: string }]）：重命名的 class。
+  - `deleted_classes`（string[]）：删除的 class。
+
+> **注意区分**：`bindings[].className` 是运行时对外的 DO class 名，`migrations[].tag` 是迁移标记——两者在 wrangler 的 DO 配置中是同一概念的不同维度。如果 wrangler.toml 中有 `[[migrations]]`，就要提取其内容加到 catalog 中。
 
 ## env / routes
 
@@ -99,8 +137,20 @@ Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip
 - 适用范围：**仅 `worker` / `hybrid` 的 worker 部分**；schema 已禁止 `pages` 类型使用 `crons`（定时任务是 Worker 脚本特性，Pages 项目无脚本入口）。
 - 用途示例：smail 用 `"crons": ["*/30 * * * *"]` 每 30 分钟清理过期邮件。
 
+## 部署行为控制字段
+
+这些可选字段控制 cf-manager 部署时的 Worker 元数据（对应 wrangler.toml 顶层配置）：
+
+- `keep_vars`（boolean，默认 `true`）：部署时保留已有的明文环境变量。默认 true 更安全（已有 vars 不会被覆盖）。
+- `keep_secrets`（boolean，默认 `true`）：部署时保留已有的加密 Secrets。默认 true 更安全。
+- `keep_bindings`（boolean，默认 `true`）：部署时保留已有的非 var/secret 绑定（KV、D1、R2 等）。默认 true 更安全。对应 wrangler 的 `metadata.keep_bindings`。
+- `placement`（object，可选）：`{ "mode": "smart" | "off" }`。Placement 模式。
+- `tail_consumers`（array，可选）：`[{ "service": "xxx", "environment"?: "xxx" }]`。Tail Worker 消费者列表。
+- `limits`（object，可选）：`{ "cpu_ms": number, "memory_mb": number }`。Worker 资源限制。
+- `logpush`（boolean，默认 `false`）：是否开启 Logpush。
+
 ## 已知表达限制
 
 catalog 当前仍无法表达以下 wrangler 能力，新增模板时若项目依赖，需向用户说明其在 cf-manager 部署后不会生效，或在 `description` 中提示：
 
-- `send_email` 邮件路由等高级绑定（`crons` 定时触发器已通过 `crons` 字段支持，可直接在模板声明）。
+- `send_email` 邮件路由等高级绑定（`crons` 定时触发器已通过 `crons` 字段支持；DO/service/queue 绑定已通过对应 binding type 支持）。

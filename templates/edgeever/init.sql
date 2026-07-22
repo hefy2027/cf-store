@@ -211,6 +211,7 @@ CREATE INDEX IF NOT EXISTS idx_users_username
 CREATE TABLE IF NOT EXISTS sessions (
   id TEXT PRIMARY KEY,
   user_id TEXT NOT NULL,
+  device_id TEXT,
   token_hash TEXT NOT NULL UNIQUE,
   user_agent TEXT,
   ip_hash TEXT,
@@ -225,6 +226,8 @@ CREATE INDEX IF NOT EXISTS idx_sessions_token_hash
   ON sessions(token_hash, revoked_at, expires_at);
 CREATE INDEX IF NOT EXISTS idx_sessions_user
   ON sessions(user_id, expires_at DESC);
+CREATE INDEX IF NOT EXISTS idx_sessions_user_device
+  ON sessions(user_id, device_id, revoked_at, expires_at);
 
 -- ============================================================
 -- workspaces
@@ -334,7 +337,7 @@ VALUES (
 
 接下来可以创建笔记本、写笔记、搜索内容，并把多条笔记合并成一条新的长期笔记。',
   '欢迎来到 EdgeEver 这是第一条 EdgeEver 笔记，三栏、边缘、Agent-ready。 接下来可以创建笔记本、写笔记、搜索内容，并把多条笔记合并成一条新的长期笔记。',
-  'seed', 0
+  '4edcf7092f86c561210d4eb788e96f28ec5c045f93952c82f5f57e1902f548bd', 0
 );
 
 INSERT OR IGNORE INTO memos_fts (memo_id, title, content_text, tags)
