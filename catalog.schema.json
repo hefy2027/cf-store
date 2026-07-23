@@ -137,7 +137,12 @@
               "type": "object",
               "properties": {
                 "html_handling": { "type": "string" },
-                "not_found_handling": { "type": "string" }
+                "not_found_handling": { "type": "string" },
+                "run_worker_first": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "description": "指定路径前缀由 Worker 优先处理（如 [\"/api/*\"]），避免被 assets 层拦截"
+                }
               }
             }
           }

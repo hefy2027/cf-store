@@ -57,7 +57,7 @@ Worker 类型的 `source.kind: release`（或 `repo-archive`）+ **多模块 zip
 
 - `source`：**必填**，复用 `source` 对象（`kind` 可为 `raw` / `release` / `repo-archive`；zip 内文件应放在根目录，对应 wrangler 的 `directory`）。`⚠️` 若 `source` 是 zip（静态资源目录打包），kind **不能填 `raw`**——后端 `workerService` 对 `assets.source.kind === 'raw'` 走单文件分支，会把整个 zip 当作一个名为 `xxx.zip` 的文件上传，导致资产失效；务必用 `release` / `repo-archive`。`raw` 仅适用于真正的单文件资产。
 - `binding`：资产绑定变量名，可选，缺省 `ASSETS`。
-- `config`：可选，`{ html_handling, not_found_handling }`，仅需要自定义 SPA 回退 / 404 时填。
+- `config`：可选，`{ html_handling, not_found_handling, run_worker_first }`，仅需要自定义 SPA 回退 / 404 / 路径优先级时填。`run_worker_first` 为字符串数组，指定由 Worker 优先处理的路径前缀（如 `["/api/*"]`），避免被 assets 层拦截。
 - 与 `hybrid` 区别：有 `[assets] directory` 或只需托管静态文件时，**优先用 `worker` + `assets`**，而非拆成 `hybrid`（worker.js + pages.zip）。
 
 ## 可选展示字段

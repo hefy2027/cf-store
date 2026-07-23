@@ -73,7 +73,7 @@ cf-store/
 - 用于让 `worker`（也含 `pages`/`hybrid`）顺带托管静态文件（favicon、前端资源等），对应 wrangler 的 `[assets] directory`。
 - `source`：**必填**，复用 `source` 对象；zip 内文件应放在**根目录**（对应 `directory` 所指目录内容）。
 - `binding`：资产绑定变量名，可选，缺省 `ASSETS`。
-- `config`：可选，`{ html_handling, not_found_handling }`，仅需自定义 SPA 回退 / 404 时填。
+- `config`：可选，`{ html_handling, not_found_handling, run_worker_first }`，仅需自定义 SPA 回退 / 404 / 路径优先级时填。`run_worker_first` 为字符串数组，指定由 Worker 优先处理的路径前缀（如 `["/api/*"]`），避免被 assets 层拦截。
 - **优先级**：有 `[assets] directory` 或只需托管静态文件时，用 `worker` + `assets`，而非拆成 `hybrid`。
 
 ## 如何新增模板

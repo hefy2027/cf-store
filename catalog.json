@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-22T07:30:00.000Z",
+  "updated": "2026-07-23T08:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -1094,7 +1094,7 @@
       ]
     },
     {
-      "id": "harrisonwang-linklet",
+      "id": "linklet",
       "name": "Linklet",
       "description": "基于 Cloudflare Pages 创建的 URL 缩短器，使用 D1 存储，支持 API 模式，适合更多使用场景。",
       "author": {
@@ -1102,6 +1102,7 @@
         "url": "https://github.com/harrisonwang"
       },
       "homepage": "https://github.com/harrisonwang/linklet",
+      "readmeUrl": "https://raw.githubusercontent.com/harrisonwang/linklet/main/README.md",
       "version": "1.0.0",
       "tags": ["pages", "短链", "d1"],
       "type": "pages",
@@ -1113,7 +1114,9 @@
         {
           "type": "d1",
           "name": "DB",
-          "action": "create-or-reuse"
+          "title": "linklet-db",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/linklet/short.sql"
         }
       ]
     },
