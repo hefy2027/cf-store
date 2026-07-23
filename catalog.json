@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2025-01-21T00:00:00.000Z",
+  "updated": "2026-07-23T12:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2748,8 +2748,22 @@
     {
       "id": "alle",
       "name": "Alle 多邮箱聚合",
+      "description": "AI 驱动的个人邮件聚合与管理平台，基于 Cloudflare Workers 构建。通过邮件转发规则聚合 Gmail、Outlook、QQ 等多账户邮件（无需密码），AI 自动提取验证码、分类邮件链接（验证/通知/退订），支持无限临时邮箱地址创建，使用 D1 + R2 存储邮件数据与附件。注意：Worker 内置 email 邮件路由处理器，需在 Cloudflare 控制台手动配置 Email Routing 后才会生效。",
+      "author": {
+        "name": "bestruirui",
+        "url": "https://github.com/bestruirui"
+      },
+      "homepage": "https://github.com/bestruirui/Alle",
+      "readmeUrl": "https://raw.githubusercontent.com/bestruirui/Alle/v2/README.md",
       "version": "2.0.0",
-      "description": "部署在 Cloudflare Workers 上的现代化多邮箱聚合服务，支持拉取 IMAP/POP3 账号邮件、Web 收件箱、邮件路由转发与附件存储（R2）。需要 D1 数据库、R2 存储桶与 SECRET 密钥。注意：Worker 内置 email 邮件路由处理器，需在 Cloudflare 控制台手动配置 Email Routing 后才会生效。",
+      "tags": [
+        "邮箱",
+        "AI",
+        "worker",
+        "d1",
+        "r2",
+        "临时邮箱"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -2757,7 +2771,7 @@
       },
       "assets": {
         "source": {
-          "kind": "raw",
+          "kind": "release",
           "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/assets.zip"
         },
         "config": {
