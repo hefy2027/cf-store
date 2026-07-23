@@ -177,23 +177,20 @@ cf-store/
 
 ## CF Manager 如何消费
 
-Store 路由的默认源地址（两端一致）：
-
-```
-https://raw.githubusercontent.com/hefy2027/cf-store/main/catalog.json
-```
-
-- 后端：`backend/src/routes/store.ts`
-- Worker：`worker/src/routes/store.ts`
-
-前端打开 Store 页会自动调用 `/store/init` 并同步默认源地址，无需手动配置。
-
-## 备用源：surge.sh 镜像
-
-当 GitHub / raw.githubusercontent.com 不可用时，可使用 surge.sh 镜像源。镜像由 CI 自动生成并部署，内容与本仓库完全一致，`catalog.json` 内部所有 URL 都已改写指向 surge 自身，因此镜像可独立工作。
+Store 页面默认拉取的源地址（前端、后端 Worker 一致）：
 
 ```
 https://cf-store.surge.sh/catalog.json
+```
+
+前端打开 Store 页会自动调用 `/store/init` 并同步上述默认源地址，无需手动配置。消费该 `catalog.json` 的代码位于 CF Manager 主仓库（后端 `backend/src/routes/store.ts`、Worker `worker/src/routes/store.ts`）。
+
+## 备用源：GitHub 原始源
+
+当 surge.sh 镜像不可用时，可改用 GitHub 原始源（内容与 surge 镜像一致，但内部 URL 指向本仓库 `main/`）：
+
+```
+https://raw.githubusercontent.com/hefy2027/cf-store/main/catalog.json
 ```
 
 在 CF Manager 的 Store 页面把源地址改成上面的地址即可。
