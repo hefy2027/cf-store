@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-23T13:45:00.000Z",
+  "updated": "2026-07-23T14:40:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2056,10 +2056,11 @@
         },
         {
           "type": "r2",
-          "name": "PDF_BUCKET",
-          "title": "WikiShare R2 对象存储桶（存储 PDF 等文件）",
-          "action": "create-or-reuse"
-        },
+        "name": "PDF_BUCKET",
+        "title": "WikiShare R2 对象存储桶（存储 PDF 等文件）",
+        "resourceName": "wiki-share-pdf",
+        "action": "create-or-reuse"
+      },
         {
           "name": "MAX_UPLOAD_BYTES",
           "type": "var",
