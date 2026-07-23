@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-23T14:40:00.000Z",
+  "updated": "2025-01-21T00:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -13,7 +13,11 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["入门", "worker", "示例"],
+      "tags": [
+        "入门",
+        "worker",
+        "示例"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "worker",
       "source": {
@@ -30,7 +34,11 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["调试", "webhook", "worker"],
+      "tags": [
+        "调试",
+        "webhook",
+        "worker"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "worker",
       "source": {
@@ -47,7 +55,11 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["kv", "存储", "worker"],
+      "tags": [
+        "kv",
+        "存储",
+        "worker"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "worker",
       "source": {
@@ -72,7 +84,12 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["d1", "数据库", "worker", "CRUD"],
+      "tags": [
+        "d1",
+        "数据库",
+        "worker",
+        "CRUD"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "worker",
       "source": {
@@ -98,7 +115,12 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["ai", "LLM", "推理", "worker"],
+      "tags": [
+        "ai",
+        "LLM",
+        "推理",
+        "worker"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "worker",
       "source": {
@@ -122,7 +144,12 @@
         "url": "https://github.com/hefy2027"
       },
       "version": "1.0.0",
-      "tags": ["hybrid", "双模", "worker", "pages"],
+      "tags": [
+        "hybrid",
+        "双模",
+        "worker",
+        "pages"
+      ],
       "homepage": "https://github.com/hefy2027/cf-store",
       "type": "hybrid",
       "sources": {
@@ -147,7 +174,15 @@
       "homepage": "https://github.com/cmliu/edgetunnel",
       "readmeUrl": "https://raw.githubusercontent.com/cmliu/edgetunnel/main/README.md",
       "version": "2.1.0",
-      "tags": ["隧道", "代理", "worker", "pages", "hybrid", "第三方"],
+      "compatibility_date": "2025-11-04",
+      "tags": [
+        "隧道",
+        "代理",
+        "worker",
+        "pages",
+        "hybrid",
+        "第三方"
+      ],
       "type": "hybrid",
       "sources": {
         "worker": {
@@ -182,8 +217,7 @@
           "title": "VLESS 用户 UUID（标准 UUID 格式，留空使用默认）",
           "secret": false
         }
-      ],
-      "env": {}
+      ]
     },
     {
       "id": "cf-proxy-ex",
@@ -194,10 +228,17 @@
         "url": "https://github.com/1234567Yang"
       },
       "homepage": "https://github.com/1234567Yang/cf-proxy-ex",
-      "readmeUrl": "https://raw.githubusercontent.com/1234567yang/cf-proxy-ex/main/README.md",
+      "readmeUrl": "https://raw.githubusercontent.com/1234567Yang/cf-proxy-ex/main/README.md",
       "version": "1.5.1",
-      "tags": ["代理", "worker", "加速", "openai", "github"],
+      "tags": [
+        "代理",
+        "worker",
+        "加速",
+        "openai",
+        "github"
+      ],
       "type": "worker",
+      "compatibility_date": "2025-07-13",
       "source": {
         "kind": "release",
         "url": "https://github.com/1234567Yang/cf-proxy-ex/releases/latest/download/_worker.js"
@@ -214,7 +255,12 @@
       "homepage": "https://github.com/7Sageer/sublink-worker",
       "readmeUrl": "https://raw.githubusercontent.com/7sageer/sublink-worker/main/README.md",
       "version": "2.4.2",
-      "tags": ["订阅", "worker", "kv", "代理"],
+      "tags": [
+        "订阅",
+        "worker",
+        "kv",
+        "代理"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -245,9 +291,16 @@
       "homepage": "https://github.com/FactrueSolin/cf-page-publish-mcp",
       "readmeUrl": "https://raw.githubusercontent.com/FactrueSolin/cf-page-publish-mcp/main/README.md",
       "version": "1.0.0",
-      "tags": ["mcp", "worker", "kv", "工具"],
+      "tags": [
+        "mcp",
+        "worker",
+        "kv",
+        "工具"
+      ],
       "type": "worker",
-      "compatibility_flags": ["nodejs_compat"],
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-page-publish-mcp/worker.js"
@@ -279,7 +332,11 @@
       "homepage": "https://github.com/Ai-Yolo/CloudflareWorker-KV-UrlShort",
       "readmeUrl": "https://raw.githubusercontent.com/Ai-Yolo/CloudflareWorker-KV-UrlShort/main/README.md",
       "version": "1.0.0",
-      "tags": ["短链", "worker", "kv"],
+      "tags": [
+        "短链",
+        "worker",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -320,10 +377,18 @@
       "homepage": "https://github.com/akazwz/smail",
       "readmeUrl": "https://raw.githubusercontent.com/akazwz/smail/main/README.md",
       "version": "2.0.0",
-      "tags": ["邮箱", "worker", "d1", "r2", "react-router"],
+      "tags": [
+        "邮箱",
+        "worker",
+        "d1",
+        "r2",
+        "react-router"
+      ],
       "type": "worker",
       "compatibility_date": "2025-11-26",
-      "compatibility_flags": ["nodejs_compat"],
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "release",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/server.zip",
@@ -356,7 +421,9 @@
           "secret": true
         }
       ],
-      "crons": ["*/30 * * * *"]
+      "crons": [
+        "*/30 * * * *"
+      ]
     },
     {
       "id": "deploy-mcp",
@@ -369,9 +436,16 @@
       "homepage": "https://github.com/alexpota/deploy-mcp",
       "readmeUrl": "https://raw.githubusercontent.com/alexpota/deploy-mcp/main/README.md",
       "version": "0.6.5",
-      "tags": ["mcp", "worker", "kv", "监控"],
+      "tags": [
+        "mcp",
+        "worker",
+        "kv",
+        "监控"
+      ],
       "type": "worker",
-      "compatibility_flags": ["nodejs_compat"],
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/deploy-mcp/worker.js"
@@ -393,13 +467,18 @@
         "url": "https://github.com/beanqi"
       },
       "homepage": "https://github.com/beanqi/cohere2openai",
-      "readmeUrl": "https://raw.githubusercontent.com/beanqi/cohere2openai/main/README.md",
+      "readmeUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cohere2openai/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "openai", "代理", "api"],
+      "tags": [
+        "worker",
+        "openai",
+        "代理",
+        "api"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/beanqi/cohere2openai/main/worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cohere2openai/worker.js"
       },
       "bindings": [
         {
@@ -423,7 +502,12 @@
       "homepage": "https://github.com/beilunyang/img-mom",
       "readmeUrl": "https://raw.githubusercontent.com/beilunyang/img-mom/master/README.md",
       "version": "0.1.0",
-      "tags": ["图床", "worker", "telegram", "r2"],
+      "tags": [
+        "图床",
+        "worker",
+        "telegram",
+        "r2"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -523,9 +607,9 @@
       ]
     },
     {
-      "id": "beilunyang-moemail",
+      "id": "moemail",
       "name": "MoeMail",
-      "description": "基于 Next.js + Cloudflare Pages 技术栈构建的可爱临时邮箱服务，支持多语言、多邮件渠道与附件，使用 D1 与 KV 存储。",
+      "description": "基于 Next.js + Cloudflare Pages 技术栈构建的可爱临时邮箱服务，支持多语言、多邮件渠道与附件，使用 D1 与 KV 存储。注意：本模板仅部署主站（Pages），邮件接收 Worker（email-receiver）与定时清理 Worker（cleanup）需另行部署，并需自行配置 Cloudflare Email Routing；D1 数据表需通过仓库的 drizzle 迁移初始化。",
       "author": {
         "name": "beilunyang",
         "url": "https://github.com/beilunyang"
@@ -533,8 +617,16 @@
       "homepage": "https://github.com/beilunyang/moemail",
       "readmeUrl": "https://raw.githubusercontent.com/beilunyang/moemail/master/README.md",
       "version": "0.1.0",
-      "tags": ["邮箱", "pages", "nextjs", "d1"],
+      "tags": [
+        "邮箱",
+        "pages",
+        "nextjs",
+        "d1"
+      ],
       "type": "pages",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "repo-archive",
         "url": "https://github.com/beilunyang/moemail/archive/refs/heads/master.zip"
@@ -553,195 +645,7 @@
       ]
     },
     {
-      "id": "beilunyang-moepush",
-      "name": "MoePush",
-      "description": "基于 Next.js + Cloudflare Pages 技术栈构建的可爱消息推送服务，支持钉钉、企业微信、Telegram 等多种推送渠道，使用 D1 存储。",
-      "author": {
-        "name": "beilunyang",
-        "url": "https://github.com/beilunyang"
-      },
-      "homepage": "https://github.com/beilunyang/moepush",
-      "readmeUrl": "https://raw.githubusercontent.com/beilunyang/moepush/main/README.md",
-      "version": "0.2.0",
-      "tags": ["推送", "pages", "nextjs", "d1"],
-      "type": "pages",
-      "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/beilunyang/moepush/archive/refs/heads/main.zip"
-      },
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "bestruirui-alle",
-      "name": "Alle",
-      "description": "邮件聚合与管理平台，整合各邮箱服务商的邮件转发实现跨账户集中管理，基于 Cloudflare Workers + D1 + R2 构建。",
-      "author": {
-        "name": "bestruirui",
-        "url": "https://github.com/bestruirui"
-      },
-      "homepage": "https://github.com/bestruirui/Alle",
-      "readmeUrl": "https://raw.githubusercontent.com/bestruirui/alle/v2/README.md",
-      "version": "1.0.0",
-      "tags": ["邮箱", "worker", "d1", "r2"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/bestruirui/alle/v2/worker/index.ts"
-      },
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        },
-        {
-          "type": "r2",
-          "name": "ATTACHMENTS",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "brancogao-redirect-checker",
-      "name": "Redirect Checker",
-      "description": "基于 Cloudflare Workers 的 HTTP 重定向链分析器，支持检测重定向循环、性能测量与多种 User-Agent 预设，提供 RESTful API 与响应式 Web UI。",
-      "author": {
-        "name": "brancogao",
-        "url": "https://github.com/brancogao"
-      },
-      "homepage": "https://github.com/brancogao/redirect-checker",
-      "readmeUrl": "https://raw.githubusercontent.com/brancogao/redirect-checker/main/README.md",
-      "version": "0.0.1",
-      "tags": ["worker", "工具", "分析", "重定向"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/brancogao/redirect-checker/main/src/index.ts"
-      }
-    },
-    {
-      "id": "brancogao-ssl-certificate-monitor",
-      "name": "SSL Certificate Monitor",
-      "description": "基于 Cloudflare Workers 的 SSL 证书到期监控工具，检查证书有效期与详情并通过 RESTful API 提供服务，使用 KV 与 D1 存储。",
-      "author": {
-        "name": "brancogao",
-        "url": "https://github.com/brancogao"
-      },
-      "homepage": "https://github.com/brancogao/ssl-certificate-monitor",
-      "readmeUrl": "https://raw.githubusercontent.com/brancogao/ssl-certificate-monitor/main/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "监控", "ssl", "d1", "kv"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/brancogao/ssl-certificate-monitor/main/src/worker.ts"
-      },
-      "bindings": [
-        {
-          "type": "kv",
-          "name": "SSL_KV",
-          "action": "create-or-reuse"
-        },
-        {
-          "type": "d1",
-          "name": "SSL_DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "brancogao-webhook-debugger",
-      "name": "Webhook Debugger",
-      "description": "自托管 Webhook 调试工具，支持签名验证（Stripe/GitHub/Slack/Shopify）、90 天历史、全文搜索与一键重放，基于 Cloudflare Workers + D1 构建。",
-      "author": {
-        "name": "brancogao",
-        "url": "https://github.com/brancogao"
-      },
-      "homepage": "https://github.com/brancogao/webhook-debugger",
-      "readmeUrl": "https://raw.githubusercontent.com/brancogao/webhook-debugger/main/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "webhook", "d1", "调试"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/brancogao/webhook-debugger/main/src/index.ts"
-      },
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "ccbikai-cloudflare-worker-image",
-      "name": "Cloudflare Worker Image",
-      "description": "使用 Cloudflare Worker（依赖 Photon / Cloudflare Container）处理图片，支持缩放、剪裁、水印、滤镜等功能，需启用 Container 绑定。",
-      "author": {
-        "name": "ccbikai",
-        "url": "https://github.com/ccbikai"
-      },
-      "homepage": "https://github.com/ccbikai/cloudflare-worker-image",
-      "readmeUrl": "https://raw.githubusercontent.com/ccbikai/cloudflare-worker-image/master/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "图片", "处理"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/ccbikai/cloudflare-worker-image/master/src/index.js"
-      }
-    },
-    {
-      "id": "ccbikai-ip-api",
-      "name": "IP-API",
-      "description": "利用 Cloudflare Workers 快速搭建获取客户端 IP 地址与地理位置信息的接口，支持 IPv4/IPv6 与 /geo 路径。",
-      "author": {
-        "name": "ccbikai",
-        "url": "https://github.com/ccbikai"
-      },
-      "homepage": "https://github.com/ccbikai/ip-api",
-      "readmeUrl": "https://raw.githubusercontent.com/ccbikai/ip-api/master/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "ip", "工具"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/ccbikai/ip-api/master/src/index.js"
-      }
-    },
-    {
-      "id": "ccbikai-nextflare",
-      "name": "Nextflare",
-      "description": "基于 Next.js + Cloudflare Pages 的 SaaS 起步模板，集成 Lemon Squeezy 订阅计费、Auth.js（GitHub OAuth）鉴权与 D1 数据库。",
-      "author": {
-        "name": "ccbikai",
-        "url": "https://github.com/ccbikai"
-      },
-      "homepage": "https://github.com/ccbikai/nextflare",
-      "version": "0.1.0",
-      "tags": ["pages", "nextjs", "saas", "d1"],
-      "type": "pages",
-      "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/ccbikai/nextflare/archive/refs/heads/main.zip"
-      },
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "ccbikai-sink",
+      "id": "sink",
       "name": "Sink",
       "description": "100% 运行在 Cloudflare 上的极简、快速、安全的短链服务，内置分析面板与控制台，基于 Nuxt + Workers AI + KV + R2 构建。",
       "author": {
@@ -750,7 +654,13 @@
       },
       "homepage": "https://github.com/ccbikai/sink",
       "version": "0.2.10",
-      "tags": ["短链", "pages", "ai", "kv", "r2"],
+      "tags": [
+        "短链",
+        "pages",
+        "ai",
+        "kv",
+        "r2"
+      ],
       "type": "pages",
       "source": {
         "kind": "repo-archive",
@@ -784,7 +694,12 @@
       },
       "homepage": "https://github.com/cf-pages/Telegraph-Image",
       "version": "1.0.0",
-      "tags": ["图床", "pages", "telegram", "kv"],
+      "tags": [
+        "图床",
+        "pages",
+        "telegram",
+        "kv"
+      ],
       "type": "pages",
       "source": {
         "kind": "repo-archive",
@@ -795,11 +710,27 @@
           "type": "kv",
           "name": "IMG_URL",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "TG_BOT_TOKEN",
+          "secret": true,
+          "action": "create-or-reuse",
+          "required": true,
+          "title": "Telegram Bot Token"
+        },
+        {
+          "type": "var",
+          "name": "TG_CHAT_ID",
+          "secret": true,
+          "action": "create-or-reuse",
+          "required": true,
+          "title": "Telegram Chat ID"
         }
       ]
     },
     {
-      "id": "ciiiii-cloudflare-docker-proxy",
+      "id": "cloudflare-docker-proxy",
       "name": "Cloudflare Docker Proxy",
       "description": "运行在 Cloudflare Workers 上的 Docker 镜像代理，中转对 Docker 官方镜像仓库的请求（注意官方已对 Worker IP 限流，不推荐生产使用）。",
       "author": {
@@ -809,8 +740,13 @@
       "homepage": "https://github.com/ciiiii/cloudflare-docker-proxy",
       "readmeUrl": "https://raw.githubusercontent.com/ciiiii/cloudflare-docker-proxy/master/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "docker", "代理"],
+      "tags": [
+        "worker",
+        "docker",
+        "代理"
+      ],
       "type": "worker",
+      "compatibility_date": "2023-12-01",
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/ciiiii/cloudflare-docker-proxy/master/src/index.js"
@@ -820,8 +756,26 @@
           "name": "CUSTOM_DOMAIN",
           "type": "var",
           "action": "prompt",
+          "required": true,
+          "title": "自定义域名",
+          "secret": false
+        },
+        {
+          "name": "MODE",
+          "type": "var",
+          "action": "create-or-reuse",
           "required": false,
-          "title": "自定义域名（可选）",
+          "value": "production",
+          "title": "运行模式（production/debug/staging）",
+          "secret": false
+        },
+        {
+          "name": "TARGET_UPSTREAM",
+          "type": "var",
+          "action": "create-or-reuse",
+          "required": false,
+          "value": "",
+          "title": "上游地址（debug 模式回退用，生产留空）",
           "secret": false
         }
       ]
@@ -837,7 +791,12 @@
       "homepage": "https://github.com/ckt1031/cohere2openai-cf-worker",
       "readmeUrl": "https://raw.githubusercontent.com/ckt1031/cohere2openai-cf-worker/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "openai", "代理", "弃用"],
+      "tags": [
+        "worker",
+        "openai",
+        "代理",
+        "弃用"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -855,7 +814,11 @@
       "homepage": "https://github.com/cmliu/CF-Workers-docker.io",
       "readmeUrl": "https://raw.githubusercontent.com/cmliu/CF-Workers-docker.io/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "docker", "代理"],
+      "tags": [
+        "worker",
+        "docker",
+        "代理"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -863,52 +826,9 @@
       }
     },
     {
-      "id": "crazypeace-gh-proxy",
-      "name": "gh-proxy",
-      "description": "基于 Cloudflare Workers 的 GitHub 资源与脚本加速代理，解决 github 访问不通的问题，支持对 github 脚本的无限嵌套调用。",
-      "author": {
-        "name": "crazypeace",
-        "url": "https://github.com/crazypeace"
-      },
-      "homepage": "https://github.com/crazypeace/gh-proxy",
-      "readmeUrl": "https://raw.githubusercontent.com/crazypeace/gh-proxy/master/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "代理", "加速", "github"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/crazypeace/gh-proxy/master/worker.js"
-      }
-    },
-    {
-      "id": "crazypeace-url-shorten-worker",
-      "name": "Url-Shorten-Worker",
-      "description": "基于 Cloudflare Worker + KV 的 URL 缩短器，支持秘密路径访问、自定义短链、变身 Pastebin 与图床，需要 KV 命名空间。",
-      "author": {
-        "name": "crazypeace",
-        "url": "https://github.com/crazypeace"
-      },
-      "homepage": "https://github.com/crazypeace/Url-Shorten-Worker",
-      "readmeUrl": "https://raw.githubusercontent.com/crazypeace/Url-Shorten-Worker/main/README.md",
-      "version": "1.0.0",
-      "tags": ["短链", "worker", "kv"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/crazypeace/Url-Shorten-Worker/main/worker.js"
-      },
-      "bindings": [
-        {
-          "type": "kv",
-          "name": "LINKS",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "dferber90-githubbox",
-      "name": "githubbox",
-      "description": "将 GitHub 仓库快速在 CodeSandbox 打开的 Cloudflare Worker：把地址中的 github.com 改为 githubbox.com 即可。",
+      "id": "githubbox",
+      "name": "GitHubbox",
+      "description": "将 GitHub 仓库快速在 CodeSandbox 打开的 Cloudflare Worker：把地址中的 github.com 改为你的 Worker 域名即可自动跳转到 CodeSandbox。支持仓库、分支、标签、commit 及文件路径。",
       "author": {
         "name": "dferber90",
         "url": "https://github.com/dferber90"
@@ -916,66 +836,95 @@
       "homepage": "https://github.com/dferber90/githubbox",
       "readmeUrl": "https://raw.githubusercontent.com/dferber90/githubbox/master/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "工具", "github"],
+      "tags": [
+        "worker",
+        "工具",
+        "github",
+        "跳转"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/dferber90/githubbox/master/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/githubbox/worker.js"
       }
     },
     {
-      "id": "dreamhunter2333-cloudflare-temp-email",
+      "id": "cloudflare-temp-email",
       "name": "Cloudflare Temp Email",
-      "description": "使用 Cloudflare 免费服务搭建的临时邮箱，D1 作为数据库，带前端与后端，支持多国语言、自动回复与附件（IMAP/SMTP），含邮件路由 Worker。",
+      "description": "基于 Cloudflare Workers + D1 + Assets 的全功能临时邮箱服务，支持多语言、邮件附件、自动回复、Telegram Bot、用户管理与管理后台。前端已预构建随 Worker 一同部署，Rust WASM 邮件解析高性能。部署后需在 Cloudflare 邮件路由中配置将邮件转发到此 Worker。",
       "author": {
         "name": "dreamhunter2333",
         "url": "https://github.com/dreamhunter2333"
       },
       "homepage": "https://github.com/dreamhunter2333/cloudflare_temp_email",
-      "version": "1.0.0",
-      "tags": ["邮箱", "pages", "d1"],
-      "type": "pages",
+      "readmeUrl": "https://raw.githubusercontent.com/dreamhunter2333/cloudflare_temp_email/main/README.md",
+      "version": "1.10.0",
+      "tags": [
+        "邮箱",
+        "worker",
+        "d1",
+        "assets",
+        "临时邮箱"
+      ],
+      "type": "worker",
+      "compatibility_date": "2025-04-01",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/dreamhunter2333/cloudflare_temp_email/archive/refs/heads/main.zip"
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-temp-email/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-temp-email/assets.zip"
+        },
+        "binding": "ASSETS",
+        "config": {
+          "run_worker_first": [
+            "/*"
+          ]
+        }
       },
       "bindings": [
         {
           "type": "d1",
           "name": "DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "eidam-cf-workers-status-page",
-      "name": "CF Workers Status Page",
-      "description": "基于 Cloudflare Workers + KV + CRON 触发器 的网站状态页，展示每日历史记录，网站状态变化时发送 Slack/Discord 通知。",
-      "author": {
-        "name": "eidam",
-        "url": "https://github.com/eidam"
-      },
-      "homepage": "https://github.com/eidam/cf-workers-status-page",
-      "readmeUrl": "https://raw.githubusercontent.com/eidam/cf-workers-status-page/main/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "监控", "kv", "状态页"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/eidam/cf-workers-status-page/main/index.js"
-      },
-      "bindings": [
+          "title": "临时邮箱数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-temp-email/init.sql"
+        },
         {
-          "type": "kv",
-          "name": "KV_STATUS_PAGE",
-          "action": "create-or-reuse"
+          "name": "JWT_SECRET",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "JWT 签名密钥（用于用户认证，请设置随机字符串）",
+          "secret": true
+        },
+        {
+          "name": "DOMAINS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "邮箱域名列表（JSON 数组格式，如 [\"mail.example.com\"]）",
+          "secret": false
+        },
+        {
+          "name": "DEFAULT_DOMAINS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "默认邮箱域名（JSON 数组格式，如 [\"mail.example.com\"]）",
+          "secret": false
         }
       ]
     },
     {
-      "id": "emaction-emaction-backend",
-      "name": "emaction Backend",
-      "description": "emaction 的 GitHub 风格 Reactions 点赞功能后端，基于 Cloudflare Workers + D1 实现，可自托管保存数据。",
+      "id": "emaction-backend",
+      "name": "Emaction Backend",
+      "description": "GitHub 风格的 Reactions（点赞/表情）后端，基于 Cloudflare Workers + D1 实现。提供 GET /reactions 与 PATCH /reaction 接口，可私有化自托管互动计数数据。",
       "author": {
         "name": "emaction",
         "url": "https://github.com/emaction"
@@ -983,36 +932,66 @@
       "homepage": "https://github.com/emaction/emaction.backend",
       "readmeUrl": "https://raw.githubusercontent.com/emaction/emaction.backend/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "d1", "点赞", "后端"],
+      "tags": [
+        "worker",
+        "d1",
+        "reactions",
+        "点赞",
+        "后端",
+        "api"
+      ],
       "type": "worker",
+      "compatibility_date": "2023-07-25",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/emaction/emaction.backend/main/src/worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/emaction-backend/worker.js"
       },
       "bindings": [
         {
           "type": "d1",
           "name": "D1",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "required": true,
+          "title": "D1 数据库（存储 reactions 计数）",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/emaction-backend/init.sql"
         }
       ]
     },
     {
-      "id": "fatwang2-gitpush",
+      "id": "gitpush",
       "name": "GitPush",
-      "description": "基于 Cloudflare Workers + Workflows + Workers AI + Email Routing 的 GitHub Release 追踪器，AI 总结更新内容并通过邮件推送通知。",
+      "description": "基于 Cloudflare Workers + Workflows + Workers AI + Email Routing 的 GitHub Release 追踪器，每日定时拉取关注的仓库 Release，用 Workers AI 总结更新内容并通过邮件推送。部署后需手动在 Cloudflare 后台补充两个绑定才能正常运行：1) Workflow 绑定 name=GITPUSH、class_name=GitPushWorkflow；2) send_email 绑定 name=SEND_EMAIL（目标地址为 EMAIL_TO_ADDRESS）。缺少这两个绑定时定时任务与发邮件会报错。",
       "author": {
         "name": "fatwang2",
         "url": "https://github.com/fatwang2"
       },
       "homepage": "https://github.com/fatwang2/gitpush",
       "readmeUrl": "https://raw.githubusercontent.com/fatwang2/gitpush/main/README.md",
-      "version": "0.0.1",
-      "tags": ["worker", "ai", "监控", "邮件"],
+      "version": "1.0.0",
+      "tags": [
+        "worker",
+        "ai",
+        "workflow",
+        "邮件",
+        "监控"
+      ],
       "type": "worker",
+      "compatibility_date": "2024-12-30",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
+      "crons": [
+        "0 1 * * *"
+      ],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/fatwang2/gitpush/main/src/index.ts"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gitpush/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gitpush/assets.zip"
+        }
       },
       "bindings": [
         {
@@ -1021,16 +1000,11 @@
           "action": "create-or-reuse"
         },
         {
-          "type": "kv",
-          "name": "GITPUSH",
-          "action": "create-or-reuse"
-        },
-        {
           "name": "GITHUB_REPOS",
           "type": "var",
           "action": "prompt",
           "required": true,
-          "title": "要监控的 GitHub 仓库（逗号分隔）",
+          "title": "要监控的 GitHub 仓库（逗号分隔，如 owner/repo）",
           "secret": false
         },
         {
@@ -1038,33 +1012,24 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "GitHub Token（可选，提升速率）",
+          "title": "GitHub Token（可选，提升 API 速率）",
           "secret": true
-        }
-      ]
-    },
-    {
-      "id": "fatwang2-siri-ultra",
-      "name": "Siri Ultra",
-      "description": "运行在 Cloudflare Workers 上的 Siri Ultra 语音助手，配合 Apple 快捷指令，支持实时对话、语音、联网搜索，可对接任意 LLM。",
-      "author": {
-        "name": "fatwang2",
-        "url": "https://github.com/fatwang2"
-      },
-      "homepage": "https://github.com/fatwang2/siri-ultra",
-      "readmeUrl": "https://raw.githubusercontent.com/fatwang2/siri-ultra/main/README.md",
-      "version": "0.0.1",
-      "tags": ["worker", "ai", "助手"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/fatwang2/siri-ultra/main/src/index.ts"
-      },
-      "bindings": [
+        },
         {
-          "type": "kv",
-          "name": "SIRI_AI_CHATS",
-          "action": "create-or-reuse"
+          "name": "EMAIL_FROM_ADDRESS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "发件人邮箱（须为已验证的 Email Routing 地址）",
+          "secret": false
+        },
+        {
+          "name": "EMAIL_TO_ADDRESS",
+          "type": "var",
+          "action": "prompt",
+          "required": true,
+          "title": "收件人邮箱",
+          "secret": false
         }
       ]
     },
@@ -1079,7 +1044,11 @@
       "homepage": "https://github.com/gdtool/cloudflare-workers-blog",
       "readmeUrl": "https://raw.githubusercontent.com/gdtool/cloudflare-workers-blog/master/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "博客", "kv"],
+      "tags": [
+        "worker",
+        "博客",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1104,7 +1073,11 @@
       "homepage": "https://github.com/harrisonwang/linklet",
       "readmeUrl": "https://raw.githubusercontent.com/harrisonwang/linklet/main/README.md",
       "version": "1.0.0",
-      "tags": ["pages", "短链", "d1"],
+      "tags": [
+        "pages",
+        "短链",
+        "d1"
+      ],
       "type": "pages",
       "source": {
         "kind": "repo-archive",
@@ -1131,7 +1104,11 @@
       "homepage": "https://github.com/horsemail/Url-Shorten-Worker",
       "readmeUrl": "https://raw.githubusercontent.com/horsemail/Url-Shorten-Worker/main/README.md",
       "version": "1.0.0",
-      "tags": ["短链", "worker", "kv"],
+      "tags": [
+        "短链",
+        "worker",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1146,9 +1123,9 @@
       ]
     },
     {
-      "id": "huarzone-text2img-cloudflare-workers",
+      "id": "text2img-cloudflare-workers",
       "name": "Text2img Cloudflare Workers",
-      "description": "基于 Cloudflare AI & Workers 的在线文生图服务，免费部署，调用 Workers AI 文本生成图像模型。",
+      "description": "基于 Cloudflare Workers AI 的在线文生图服务，免费部署，调用 @cf/meta/stable-diffusion-xl-base-1.0 等文本生成图像模型，内置响应式 Web UI。前端 index.html 已随 Worker 打包为单文件，一键部署即可使用。",
       "author": {
         "name": "huarzone",
         "url": "https://github.com/huarzone"
@@ -1156,11 +1133,16 @@
       "homepage": "https://github.com/huarzone/text2img-cloudflare-workers",
       "readmeUrl": "https://raw.githubusercontent.com/huarzone/text2img-cloudflare-workers/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "ai", "文生图"],
+      "tags": [
+        "worker",
+        "ai",
+        "文生图",
+        "workers-ai"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/huarzone/text2img-cloudflare-workers/main/src/worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/text2img-cloudflare-workers/worker.js"
       },
       "bindings": [
         {
@@ -1171,27 +1153,9 @@
       ]
     },
     {
-      "id": "hunshcn-gh-proxy",
-      "name": "gh-proxy (hunshcn)",
-      "description": "GitHub release、archive 与项目文件加速项目，提供 Cloudflare Workers 无服务器版本，支持 clone 与文件访问加速。",
-      "author": {
-        "name": "hunshcn",
-        "url": "https://github.com/hunshcn"
-      },
-      "homepage": "https://github.com/hunshcn/gh-proxy",
-      "readmeUrl": "https://raw.githubusercontent.com/hunshcn/gh-proxy/master/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "代理", "加速", "github"],
-      "type": "worker",
-      "source": {
-        "kind": "raw",
-        "url": "https://raw.githubusercontent.com/hunshcn/gh-proxy/master/index.js"
-      }
-    },
-    {
-      "id": "iamshaynez-telegram-counter",
+      "id": "telegram-counter",
       "name": "Telegram Counter",
-      "description": "使用 Cloudflare Worker + D1 + Workers AI 编写的 Telegram 后端，可随时随地进行打卡等记录。",
+      "description": "使用 Cloudflare Worker + D1 + Workers AI 编写的 Telegram 机器人后端，可在 Telegram 中通过简单命令进行打卡、查询、设置目标与翻译。",
       "author": {
         "name": "iamshaynez",
         "url": "https://github.com/iamshaynez"
@@ -1199,50 +1163,89 @@
       "homepage": "https://github.com/iamshaynez/telegram-counter",
       "readmeUrl": "https://raw.githubusercontent.com/iamshaynez/telegram-counter/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "d1", "ai", "telegram"],
+      "tags": [
+        "worker",
+        "d1",
+        "ai",
+        "telegram"
+      ],
       "type": "worker",
+      "compatibility_date": "2024-09-23",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/iamshaynez/telegram-counter/main/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/telegram-counter/worker.js"
       },
       "bindings": [
         {
           "type": "d1",
           "name": "DB",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/telegram-counter/init.sql"
         },
         {
           "type": "ai",
           "name": "AI",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "TG_BOT_TOKEN",
+          "title": "Telegram Bot Token",
+          "secret": true,
+          "required": true
+        },
+        {
+          "type": "var",
+          "name": "TG_CHAT_ID",
+          "title": "Telegram Chat ID",
+          "secret": false,
+          "required": true
         }
       ]
     },
     {
-      "id": "ichimarugin728-gins-blog",
+      "id": "gins-blog",
       "name": "Gins Blog",
-      "description": "高性能、边缘优先的博客平台，基于 Astro + Cloudflare 技术栈，使用 D1、R2、KV、Workers AI（及 Vectorize）构建，内置 MCP 与 OpenClaw 自动部署。",
+      "description": "基于 Astro + Cloudflare 技术栈构建的多功能博客平台，内置评论、点赞、音乐播放、AI 对话与向量检索；使用 D1、R2、KV、Workers AI 等多种 Cloudflare 服务。注意：Catalog Schema 当前不支持 Vectorize 绑定，部署后需手动在 Worker 上补加 VECTOR_INDEX 绑定（index_name: gins-vector）才能使 AI 向量检索功能生效。",
       "author": {
         "name": "ichimarugin728",
         "url": "https://github.com/ichimarugin728"
       },
       "homepage": "https://github.com/ichimarugin728/Gins-Blog",
+      "readmeUrl": "https://raw.githubusercontent.com/ichimarugin728/Gins-Blog/main/README.md",
       "version": "1.0.0",
-      "tags": ["博客", "pages", "d1", "r2", "ai"],
-      "type": "pages",
+      "tags": [
+        "博客",
+        "astro",
+        "d1",
+        "r2",
+        "worker-ai",
+        "kv"
+      ],
+      "type": "worker",
+      "compatibility_date": "2026-04-17",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/ichimarugin728/Gins-Blog/archive/refs/heads/main.zip"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gins-blog/server.zip",
+        "mainModule": "entry.mjs"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gins-blog/assets.zip"
+        },
+        "binding": "ASSETS"
       },
       "bindings": [
         {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        },
-        {
-          "type": "r2",
-          "name": "BUCKET",
+          "type": "kv",
+          "name": "SESSION",
           "action": "create-or-reuse"
         },
         {
@@ -1256,28 +1259,95 @@
           "action": "create-or-reuse"
         },
         {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gins-blog/init.sql"
+        },
+        {
+          "type": "r2",
+          "name": "BUCKET",
+          "action": "create-or-reuse"
+        },
+        {
           "type": "ai",
           "name": "AI",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "GITHUB_REDIRECT_URI",
+          "action": "prompt",
+          "required": false,
+          "title": "GitHub OAuth 回调地址"
+        },
+        {
+          "type": "var",
+          "name": "GOOGLE_REDIRECT_URI",
+          "action": "prompt",
+          "required": false,
+          "title": "Google OAuth 回调地址"
+        },
+        {
+          "type": "var",
+          "name": "DISCORD_REDIRECT_URI",
+          "action": "prompt",
+          "required": false,
+          "title": "Discord OAuth 回调地址"
+        },
+        {
+          "type": "var",
+          "name": "PUBLIC_CF_AVATAR_ID",
+          "action": "prompt",
+          "required": false,
+          "title": "Cloudflare Images 头像图片 ID"
+        },
+        {
+          "type": "var",
+          "name": "PUBLIC_ASSETS_DOMAIN",
+          "action": "prompt",
+          "required": false,
+          "title": "R2 静态资源自定义域名"
         }
       ]
     },
     {
-      "id": "ifyour-cf-image-hosting",
+      "id": "cf-image-hosting",
       "name": "CF Image Hosting",
-      "description": "基于 Cloudflare Pages 的免费无限图床，使用 Telegraph 存储，支持拖拽与粘贴上传，单文件上限 5MB。",
+      "description": "基于 Cloudflare Pages 的免费无限图床，使用 Telegraph 存储，支持拖拽与粘贴上传图片/视频/GIF，单文件上限 5MB。基于 Hono + Vite 构建，已预编译为 Pages 部署包。",
       "author": {
         "name": "ifyour",
         "url": "https://github.com/ifyour"
       },
       "homepage": "https://github.com/ifyour/cf-image-hosting",
+      "readmeUrl": "https://raw.githubusercontent.com/ifyour/cf-image-hosting/main/README.md",
       "version": "1.0.0",
-      "tags": ["pages", "图床", "telegram"],
+      "tags": [
+        "pages",
+        "图床",
+        "telegraph",
+        "hono"
+      ],
       "type": "pages",
+      "compatibility_date": "2024-04-30",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/ifyour/cf-image-hosting/archive/refs/heads/main.zip"
-      }
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-image-hosting/pages.zip"
+      },
+      "bindings": [
+        {
+          "name": "API_HOST",
+          "type": "var",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "图床 API 地址（默认 Telegraph）",
+          "value": "https://telegra.ph"
+        }
+      ]
     },
     {
       "id": "ifyour-deeplx-for-cloudflare",
@@ -1290,41 +1360,21 @@
       "homepage": "https://github.com/ifyour/deeplx-for-cloudflare",
       "readmeUrl": "https://raw.githubusercontent.com/ifyour/deeplx-for-cloudflare/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "翻译", "api"],
+      "tags": [
+        "worker",
+        "翻译",
+        "api"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/ifyour/deeplx-for-cloudflare/main/src/index.ts"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/ifyour-deeplx-for-cloudflare/worker.js"
       }
     },
     {
-      "id": "igengdu-short",
-      "name": "Short (igengdu)",
-      "description": "基于 Cloudflare Pages 创建的 URL 缩短器，使用 D1 存储，Fork 自 x-dr/short，支持自定义短链。",
-      "author": {
-        "name": "igengdu",
-        "url": "https://github.com/igengdu"
-      },
-      "homepage": "https://github.com/igengdu/short",
-      "version": "1.0.0",
-      "tags": ["pages", "短链", "d1"],
-      "type": "pages",
-      "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/igengdu/short/archive/refs/heads/main.zip"
-      },
-      "bindings": [
-        {
-          "type": "d1",
-          "name": "DB",
-          "action": "create-or-reuse"
-        }
-      ]
-    },
-    {
-      "id": "iiop123-dingding",
+      "id": "dingding",
       "name": "丁丁快传 (DingDing)",
-      "description": "基于 Cloudflare Workers 的文件传输工具「丁丁快传」，文件存储在 KV，支持拖拽/多文件上传、定时删除、二维码接收与文件口令传输。",
+      "description": "基于 Cloudflare Workers 的文件传输工具「丁丁快传」，文件存储在 KV，支持拖拽/多文件上传、定时删除、二维码接收与文件口令传输。前端已打包为静态资源，随 Worker 通过 Worker Assets 一同部署。",
       "author": {
         "name": "iiop123",
         "url": "https://github.com/iiop123"
@@ -1332,11 +1382,25 @@
       "homepage": "https://github.com/iiop123/dingding",
       "readmeUrl": "https://raw.githubusercontent.com/iiop123/dingding/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "文件传输", "kv"],
+      "tags": [
+        "worker",
+        "文件传输",
+        "kv"
+      ],
       "type": "worker",
+      "compatibility_date": "2024-09-23",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/iiop123/dingding/main/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/dingding/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/dingding/assets.zip"
+        }
       },
       "bindings": [
         {
@@ -1349,31 +1413,56 @@
     {
       "id": "iiop123-workers-image-hosting",
       "name": "Workers Image Hosting",
-      "description": "基于 Cloudflare Workers 数据存储于 KV 的图床，Material 风格，支持拖拽上传、图片预览与 /list.html 查询已上传照片。",
+      "description": "基于 Cloudflare Workers 数据存储于 KV 的图床，Material 风格，支持拖拽上传、图片预览与 /list.html 查询已上传照片。默认密码为 123，可通过环境变量 PASS 自定义。",
       "author": {
         "name": "iiop123",
         "url": "https://github.com/iiop123"
       },
       "homepage": "https://github.com/iiop123/workers-image-hosting",
       "readmeUrl": "https://raw.githubusercontent.com/iiop123/workers-image-hosting/main/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "图床", "kv"],
+      "version": "1.0.1",
+      "tags": [
+        "worker",
+        "图床",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/iiop123/workers-image-hosting/main/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/workers-image-hosting/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/workers-image-hosting/assets.zip"
+        },
+        "config": {
+          "run_worker_first": [
+            "/api/*",
+            "/query"
+          ]
+        }
       },
       "bindings": [
         {
           "type": "kv",
           "name": "LINK",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "PASS",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "查询密码（默认 123）",
+          "value": "123"
         }
       ]
     },
     {
-      "id": "illusionlie-subpool-worker",
-      "name": "Sub Pool Worker",
+      "id": "subpool-worker",
+      "name": "SubPool Worker",
       "description": "基于 Cloudflare Workers 的轻量订阅池服务，统一管理多组订阅来源、按客户端格式分发，含 Web 管理后台（Worker + KV + Assets）。",
       "author": {
         "name": "illusionlie",
@@ -1381,41 +1470,93 @@
       },
       "homepage": "https://github.com/illusionlie/subpool-worker",
       "readmeUrl": "https://raw.githubusercontent.com/illusionlie/subpool-worker/main/README.md",
+      "icon": "📦",
       "version": "0.1.0",
-      "tags": ["worker", "订阅", "kv"],
+      "tags": [
+        "worker",
+        "订阅",
+        "kv",
+        "assets"
+      ],
       "type": "worker",
+      "compatibility_date": "2025-11-02",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/illusionlie/subpool-worker/main/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/subpool-worker/worker.js"
+      },
+      "assets": {
+        "binding": "ASSETS",
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/subpool-worker/assets.zip"
+        },
+        "config": {
+          "run_worker_first": [
+            "/admin/*",
+            "/sub/*",
+            "/favicon.ico",
+            "/robots.txt"
+          ]
+        }
       },
       "bindings": [
         {
           "type": "kv",
           "name": "KV",
+          "title": "KV 命名空间",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "INIT_SECRET",
+          "title": "初始化密钥（首次初始化后台管理员时设置，部署后请妥善保存）",
+          "required": true,
+          "secret": true,
+          "action": "prompt"
         }
       ]
     },
     {
-      "id": "jiacai2050-edgebin",
+      "id": "edgebin",
       "name": "Edgebin",
-      "description": "类似 httpbin 的 HTTP 测试服务，基于 Cloudflare Workers + Assets 边缘部署，支持请求/响应检视、重定向、Cookie、缓存等。",
+      "description": "类似 httpbin 的 HTTP 测试服务，基于 Cloudflare Workers + Assets 边缘部署，支持请求/响应检视、重定向、Cookie、缓存、二维码、Markdown 互转等。",
       "author": {
         "name": "jiacai2050",
         "url": "https://github.com/jiacai2050"
       },
       "homepage": "https://github.com/jiacai2050/edgebin",
       "readmeUrl": "https://raw.githubusercontent.com/jiacai2050/edgebin/main/README.md",
-      "version": "1.0.0",
-      "tags": ["worker", "工具", "http"],
+      "version": "1.5.0",
+      "tags": [
+        "worker",
+        "工具",
+        "http"
+      ],
       "type": "worker",
+      "compatibility_date": "2025-10-04",
+      "compatibility_flags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+      ],
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/jiacai2050/edgebin/main/src/index.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgebin/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgebin/assets.zip"
+        },
+        "binding": "ASSETS",
+        "config": {
+          "run_worker_first": [
+            "/*"
+          ]
+        }
       }
     },
     {
-      "id": "jiaocz-cloudflare-pages-urlshorten",
+      "id": "cloudflare-pages-urlshorten",
       "name": "CloudFlare Pages UrlShorten",
       "description": "基于 Cloudflare Pages Functions 的多功能 URL 短链工具，使用 KV 存储，通过 Pages Functions 实现路由与跳转。",
       "author": {
@@ -1424,11 +1565,15 @@
       },
       "homepage": "https://github.com/jiaocz/CloudFlare-Pages-UrlShorten",
       "version": "1.0.0",
-      "tags": ["pages", "短链", "kv"],
+      "tags": [
+        "pages",
+        "短链",
+        "kv"
+      ],
       "type": "pages",
       "source": {
         "kind": "repo-archive",
-        "url": "https://github.com/jiaocz/CloudFlare-Pages-UrlShorten/archive/refs/heads/main.zip"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-pages-urlshorten/repo.zip"
       },
       "bindings": [
         {
@@ -1449,7 +1594,11 @@
       "homepage": "https://github.com/joyance-professional/cf-comment",
       "readmeUrl": "https://raw.githubusercontent.com/joyance-professional/cf-comment/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "评论", "d1"],
+      "tags": [
+        "worker",
+        "评论",
+        "d1"
+      ],
       "type": "worker",
       "compatibility_date": "2024-09-23",
       "source": {
@@ -1497,12 +1646,18 @@
       "homepage": "https://github.com/joyance-professional/cf-files-sharing",
       "readmeUrl": "https://raw.githubusercontent.com/joyance-professional/cf-files-sharing/main/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "文件分享", "r2", "d1"],
+      "tags": [
+        "worker",
+        "文件分享",
+        "r2",
+        "d1"
+      ],
       "type": "worker",
       "compatibility_date": "2024-01-01",
       "source": {
         "kind": "release",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-files-sharing/worker.zip#CF-Worker.zip"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-files-sharing/worker.zip",
+        "mainModule": "src/index.js"
       },
       "bindings": [
         {
@@ -1538,7 +1693,10 @@
       "homepage": "https://github.com/kasuganosoras/cloudflare-worker-blog",
       "readmeUrl": "https://raw.githubusercontent.com/kasuganosoras/cloudflare-worker-blog/master/README.md",
       "version": "1.0.0",
-      "tags": ["worker", "博客"],
+      "tags": [
+        "worker",
+        "博客"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1564,20 +1722,39 @@
       "homepage": "https://github.com/lyc8503/UptimeFlare",
       "readmeUrl": "https://raw.githubusercontent.com/lyc8503/UptimeFlare/main/README.md",
       "version": "0.1.0",
-      "tags": ["监控", "状态页", "pages", "d1", "uptime"],
-      "type": "pages",
+      "tags": [
+        "监控",
+        "状态页",
+        "pages",
+        "d1",
+        "uptime"
+      ],
+      "type": "hybrid",
       "compatibility_date": "2025-04-02",
-      "compatibility_flags": ["nodejs_compat"],
-      "source": {
-        "kind": "release",
-        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/pages.zip"
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
+      "sources": {
+        "worker": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/worker.js",
+          "mainModule": "worker.js"
+        },
+        "pages": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/pages.zip"
+        }
       },
+      "crons": [
+        "* * * * *"
+      ],
       "bindings": [
         {
           "type": "d1",
           "name": "UPTIMEFLARE_D1",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/init.sql",
+          "title": "UptimeFlare 监控数据 (D1)"
         }
       ]
     },
@@ -1592,7 +1769,11 @@
       "homepage": "https://github.com/Monopink/url-shorten-worker",
       "readmeUrl": "https://raw.githubusercontent.com/Monopink/url-shorten-worker/main/README.md",
       "version": "1.0.0",
-      "tags": ["短链", "worker", "kv"],
+      "tags": [
+        "短链",
+        "worker",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1641,10 +1822,16 @@
       "homepage": "https://github.com/nicepkg/shotog",
       "readmeUrl": "https://raw.githubusercontent.com/nicepkg/shotog/main/README.md",
       "version": "0.6.0",
-      "tags": ["og图片", "worker", "d1"],
+      "tags": [
+        "og图片",
+        "worker",
+        "d1"
+      ],
       "type": "worker",
       "compatibility_date": "2025-01-01",
-      "compatibility_flags": ["nodejs_compat"],
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "release",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/shotog/server.zip",
@@ -1674,10 +1861,16 @@
       "homepage": "https://github.com/s0urcelab/serverless-cloud-notepad",
       "readmeUrl": "https://raw.githubusercontent.com/s0urcelab/serverless-cloud-notepad/master/README.md",
       "version": "1.0.0",
-      "tags": ["记事本", "worker", "kv"],
+      "tags": [
+        "记事本",
+        "worker",
+        "kv"
+      ],
       "type": "worker",
       "compatibility_date": "2022-05-13",
-      "compatibility_flags": ["nodejs_compat"],
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/serverless-cloud-notepad/worker.js"
@@ -1706,11 +1899,16 @@
       "homepage": "https://github.com/thun888/micro-notepad",
       "readmeUrl": "https://raw.githubusercontent.com/thun888/micro-notepad/main/README.md",
       "version": "1.0.0",
-      "tags": ["记事本", "worker", "kv"],
+      "tags": [
+        "记事本",
+        "worker",
+        "kv"
+      ],
       "type": "worker",
+      "compatibility_date": "2024-01-01",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/thun888/micro-notepad/main/src/worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/micro-notepad/worker.js"
       },
       "bindings": [
         {
@@ -1731,7 +1929,12 @@
       "homepage": "https://github.com/thun888/whisper_cloudflare",
       "readmeUrl": "https://raw.githubusercontent.com/thun888/whisper_cloudflare/main/README.md",
       "version": "1.0.0",
-      "tags": ["转录", "whisper", "worker", "ai"],
+      "tags": [
+        "转录",
+        "whisper",
+        "worker",
+        "ai"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1756,8 +1959,18 @@
       "homepage": "https://github.com/tbxark/chatgpt-telegram-workers",
       "readmeUrl": "https://raw.githubusercontent.com/tbxark/chatgpt-telegram-workers/master/README.md",
       "version": "1.10.7",
-      "tags": ["telegram", "机器人", "worker", "ai", "kv"],
+      "tags": [
+        "telegram",
+        "机器人",
+        "worker",
+        "ai",
+        "kv"
+      ],
       "type": "worker",
+      "compatibility_date": "2024-11-11",
+      "compatibility_flags": [
+        "nodejs_compat_v2"
+      ],
       "source": {
         "kind": "raw",
         "url": "https://raw.githubusercontent.com/tbxark/chatgpt-telegram-workers/master/dist/index.js"
@@ -1797,7 +2010,12 @@
       "homepage": "https://github.com/WangQueXL/PixR2",
       "readmeUrl": "https://raw.githubusercontent.com/WangQueXL/PixR2/main/README.md",
       "version": "1.0.0",
-      "tags": ["图床", "worker", "r2", "kv"],
+      "tags": [
+        "图床",
+        "worker",
+        "r2",
+        "kv"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1841,7 +2059,7 @@
           "action": "prompt",
           "required": false,
           "title": "Telegram Bot Token（启用 Bot 时填写）",
-          "secret": false
+          "secret": true
         },
         {
           "name": "USER_ID",
@@ -1872,7 +2090,11 @@
       "homepage": "https://github.com/xinjianzhanghao/page-api-forwarder",
       "readmeUrl": "https://raw.githubusercontent.com/xinjianzhanghao/page-api-forwarder/main/README.md",
       "version": "1.0.0",
-      "tags": ["转发", "代理", "worker"],
+      "tags": [
+        "转发",
+        "代理",
+        "worker"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1894,14 +2116,6 @@
           "required": false,
           "title": "转发使用的协议（http/https，留空则沿用 APIHOST 的协议）",
           "secret": false
-        },
-        {
-          "name": "PASSWORD",
-          "type": "var",
-          "action": "prompt",
-          "required": false,
-          "title": "访问密码（设置后需携带，留空则不校验）",
-          "secret": true
         },
         {
           "name": "REQUIREHEADERNAME",
@@ -1948,7 +2162,12 @@
       "homepage": "https://github.com/yestool/analytics_with_cloudflare",
       "readmeUrl": "https://raw.githubusercontent.com/yestool/analytics_with_cloudflare/main/README.md",
       "version": "1.0.0",
-      "tags": ["分析", "统计", "worker", "d1"],
+      "tags": [
+        "分析",
+        "统计",
+        "worker",
+        "d1"
+      ],
       "type": "worker",
       "source": {
         "kind": "raw",
@@ -1976,7 +2195,14 @@
       "homepage": "https://github.com/tianma-if/edgeever",
       "readmeUrl": "https://raw.githubusercontent.com/tianma-if/edgeever/main/README.zh-CN.md",
       "version": "1.5.2",
-      "tags": ["笔记", "AI", "MCP", "worker", "d1", "r2"],
+      "tags": [
+        "笔记",
+        "AI",
+        "MCP",
+        "worker",
+        "d1",
+        "r2"
+      ],
       "type": "worker",
       "compatibility_date": "2026-06-26",
       "source": {
@@ -2028,7 +2254,14 @@
       "homepage": "https://github.com/qbmiller/wikiShare",
       "readmeUrl": "https://raw.githubusercontent.com/qbmiller/wikiShare/main/README.md",
       "version": "0.1.0",
-      "tags": ["wiki", "知识库", "文件共享", "worker", "d1", "r2"],
+      "tags": [
+        "wiki",
+        "知识库",
+        "文件共享",
+        "worker",
+        "d1",
+        "r2"
+      ],
       "type": "worker",
       "compatibility_date": "2026-06-19",
       "source": {
@@ -2043,7 +2276,9 @@
         "binding": "ASSETS",
         "config": {
           "not_found_handling": "single-page-application",
-          "run_worker_first": ["/api/*"]
+          "run_worker_first": [
+            "/api/*"
+          ]
         }
       },
       "bindings": [
@@ -2056,11 +2291,11 @@
         },
         {
           "type": "r2",
-        "name": "PDF_BUCKET",
-        "title": "WikiShare R2 对象存储桶（存储 PDF 等文件）",
-        "resourceName": "wiki-share-pdf",
-        "action": "create-or-reuse"
-      },
+          "name": "PDF_BUCKET",
+          "title": "WikiShare R2 对象存储桶（存储 PDF 等文件）",
+          "resourceName": "wiki-share-pdf",
+          "action": "create-or-reuse"
+        },
         {
           "name": "MAX_UPLOAD_BYTES",
           "type": "var",
@@ -2089,7 +2324,472 @@
           "value": "21474836480"
         }
       ],
-      "crons": ["0 * * * *"]
+      "crons": [
+        "0 * * * *"
+      ]
+    },
+    {
+      "id": "short",
+      "name": "Short (igengdu)",
+      "description": "基于 Cloudflare Workers + D1 的 URL 缩短器，Fork 自 x-dr/short。支持自定义短链、访问日志记录与可选 BasicAuth 管理面板，前端使用 Alpine.js，随 Worker Assets 一同部署。",
+      "author": {
+        "name": "igengdu",
+        "url": "https://github.com/igengdu"
+      },
+      "homepage": "https://github.com/igengdu/short",
+      "readmeUrl": "https://raw.githubusercontent.com/igengdu/short/main/README.md",
+      "version": "1.0.0",
+      "tags": [
+        "短链",
+        "worker",
+        "d1"
+      ],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/short/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/short/assets.zip"
+        }
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/short/init.sql"
+        },
+        {
+          "name": "BASIC_USER",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "管理面板用户名（可选，设置后 /manage 路径需 BasicAuth）",
+          "secret": false
+        },
+        {
+          "name": "BASIC_PASS",
+          "type": "var",
+          "action": "prompt",
+          "required": false,
+          "title": "管理面板密码（可选，与 BASIC_USER 配合使用）",
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "siri-ultra",
+      "name": "Siri Ultra",
+      "version": "1.0.0",
+      "description": "基于 Cloudflare Workers 的 ChatGPT 风格 AI 聊天助手，支持多模型、流式回复与对话历史记忆。",
+      "author": {
+        "name": "fatwang2",
+        "url": "https://github.com/fatwang2/siri-ultra"
+      },
+      "type": "worker",
+      "compatibility_date": "2024-09-23",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/siri-ultra/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "SIRI_AI_CHATS",
+          "title": "对话历史 KV 存储",
+          "required": true,
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "API_BASE",
+          "title": "API Base URL（模型接口地址）",
+          "value": "https://api.openai.com/v1",
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "MODEL",
+          "title": "模型名称",
+          "value": "gpt-4o",
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "SYSTEM_PROMPT",
+          "title": "系统提示词",
+          "value": "You are a helpful assistant.",
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "API_KEY",
+          "title": "OpenAI API Key",
+          "secret": true,
+          "required": true
+        },
+        {
+          "type": "var",
+          "name": "SEARCH1API_KEY",
+          "title": "Search1API Key（联网搜索，可选）",
+          "secret": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "gh-proxy",
+      "name": "GitHub 代理加速",
+      "description": "解决 GitHub 资源访问问题，支持 releases、archive、文件下载、clone、api.github.com、git.io、gitlab.com 等多种访问方式的代理服务，支持 GitHub 脚本无限嵌套调用。",
+      "author": {
+        "name": "crazypeace",
+        "url": "https://github.com/crazypeace/gh-proxy"
+      },
+      "version": "1.0.0",
+      "tags": [
+        "代理",
+        "加速",
+        "github",
+        "worker"
+      ],
+      "homepage": "https://github.com/crazypeace/gh-proxy",
+      "readmeUrl": "https://raw.githubusercontent.com/crazypeace/gh-proxy/master/README.md",
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/crazypeace/gh-proxy/master/worker.js"
+      }
+    },
+    {
+      "id": "url-shorten-worker-cf",
+      "name": "Url Shorten Worker (crazypeace)",
+      "description": "部署在 Cloudflare Workers 上的短链接服务，使用 KV 存储，支持自定义短链、访问统计、SPA/PWA 前台与多套主题。静态资源随 Worker Assets 本地托管，不依赖外部 GitHub Pages。",
+      "author": {
+        "name": "crazypeace",
+        "url": "https://github.com/crazypeace"
+      },
+      "homepage": "https://github.com/crazypeace/Url-Shorten-Worker",
+      "readmeUrl": "https://raw.githubusercontent.com/crazypeace/Url-Shorten-Worker/main/README.md",
+      "version": "1.0.0",
+      "tags": [
+        "短链",
+        "worker",
+        "kv",
+        "assets"
+      ],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/url-shorten-worker/worker.js"
+      },
+      "assets": {
+        "binding": "ASSETS",
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/url-shorten-worker/assets.zip"
+        }
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "LINKS",
+          "title": "短链存储 KV",
+          "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "cf-workers-status-page",
+      "name": "Status Page",
+      "description": "基于 Cloudflare Workers + KV + CRON Triggers 的网站状态监控页面，使用 Flareact（React SSR）在边缘渲染，展示服务可用性与响应时间历史直方图，支持 Slack/Discord/Telegram 通知。每分钟自动检查配置的监控目标。注意：监控目标列表在源码 config.yaml 中配置，自定义需 fork 修改后重新构建。",
+      "author": {
+        "name": "Adam Janiš",
+        "url": "https://github.com/eidam"
+      },
+      "homepage": "https://github.com/eidam/cf-workers-status-page",
+      "readmeUrl": "https://raw.githubusercontent.com/eidam/cf-workers-status-page/main/README.md",
+      "version": "1.0.0",
+      "tags": [
+        "监控",
+        "status-page",
+        "kv",
+        "cron",
+        "react"
+      ],
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-workers-status-page/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-workers-status-page/assets.zip"
+        },
+        "binding": "ASSETS"
+      },
+      "crons": [
+        "* * * * *"
+      ],
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "KV_STATUS_PAGE",
+          "title": "状态页 KV 命名空间（存储监控数据）",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "SECRET_SLACK_WEBHOOK_URL",
+          "title": "Slack Webhook URL（可选，状态变更通知）",
+          "secret": true,
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "SECRET_DISCORD_WEBHOOK_URL",
+          "title": "Discord Webhook URL（可选，状态变更通知）",
+          "secret": true,
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "SECRET_TELEGRAM_API_TOKEN",
+          "title": "Telegram Bot API Token（可选，配合 SECRET_TELEGRAM_CHAT_ID 使用）",
+          "secret": true,
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "SECRET_TELEGRAM_CHAT_ID",
+          "title": "Telegram Chat ID（可选，配合 SECRET_TELEGRAM_API_TOKEN 使用）",
+          "secret": true,
+          "required": false
+        }
+      ]
+    },
+    {
+      "id": "webhook-debugger",
+      "name": "Webhook Debugger",
+      "description": "基于 Cloudflare Workers + D1 + Assets 的 Webhook 调试与捕获工具：实时接收任意 Webhook 请求，在仪表盘检视请求头、正文与查询参数，支持标签/备注管理与 GitHub 登录，前端随 Worker Assets 一同部署，并通过 CRON 每日自动清理过期数据。",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao"
+      },
+      "homepage": "https://github.com/brancogao/webhook-debugger",
+      "readmeUrl": "https://raw.githubusercontent.com/brancogao/webhook-debugger/main/README.md",
+      "icon": "🪝",
+      "version": "1.0.0",
+      "tags": [
+        "worker",
+        "webhook",
+        "调试",
+        "d1",
+        "assets"
+      ],
+      "type": "worker",
+      "compatibility_date": "2025-05-27",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/webhook-debugger/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/webhook-debugger/assets.zip"
+        },
+        "binding": "ASSETS"
+      },
+      "crons": [
+        "0 0 * * *"
+      ],
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "Webhook Debugger D1 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/webhook-debugger/init.sql"
+        },
+        {
+          "type": "var",
+          "name": "GITHUB_CLIENT_ID",
+          "title": "GitHub OAuth App 的 Client ID（用于仪表盘登录；需在 GitHub 创建 OAuth App，回调填 {部署域名}/api/auth/github/callback）",
+          "action": "prompt",
+          "required": false
+        },
+        {
+          "type": "var",
+          "name": "GITHUB_CLIENT_SECRET",
+          "title": "GitHub OAuth App 的 Client Secret",
+          "action": "prompt",
+          "required": false,
+          "secret": true
+        },
+        {
+          "type": "var",
+          "name": "COOKIE_SECRET",
+          "title": "会话 Cookie 加密密钥（任意随机字符串，建议 32 位以上）",
+          "action": "prompt",
+          "required": true,
+          "secret": true
+        }
+      ]
+    },
+    {
+      "id": "redirect-checker",
+      "name": "Redirect Checker",
+      "description": "HTTP redirect chain analyzer for developers — trace 301/302/307/308 redirects, detect loops, measure performance. API-first design with RESTful JSON API, multiple User-Agent presets (Googlebot, Bingbot, Mobile, curl), and a web UI rendered inline by the Worker.",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao"
+      },
+      "homepage": "https://github.com/brancogao/redirect-checker",
+      "readmeUrl": "https://raw.githubusercontent.com/brancogao/redirect-checker/main/README.md",
+      "version": "0.0.1",
+      "tags": [
+        "worker",
+        "redirect",
+        "http",
+        "seo",
+        "developer-tools",
+        "api"
+      ],
+      "type": "worker",
+      "compatibility_date": "2026-02-12",
+      "compatibility_flags": [
+        "nodejs_compat",
+        "global_fetch_strictly_public"
+      ],
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/redirect-checker/worker.js"
+      }
+    },
+    {
+      "id": "ip-api",
+      "name": "IP API",
+      "description": "获取访客 IP 地址和地理位置信息的 API 服务。支持根路径返回纯 IP，/geo 路径返回地理位置（国家、城市、AS 信息等），带 CORS 支持，适合前端直接调用。",
+      "author": {
+        "name": "ccbikai",
+        "url": "https://github.com/ccbikai"
+      },
+      "homepage": "https://github.com/ccbikai/ip-api",
+      "version": "1.0.0",
+      "tags": [
+        "worker",
+        "ip",
+        "geo",
+        "location",
+        "api"
+      ],
+      "type": "worker",
+      "compatibility_date": "2023-11-24",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/ip-api/worker.js"
+      }
+    },
+    {
+      "id": "ssl-certificate-monitor",
+      "name": "SSL Certificate Monitor",
+      "description": "Monitor SSL certificates and get alerts before they expire. Features include checking SSL certificate expiry dates, viewing certificate details (issuer, algorithm, SANs), RESTful API for programmatic access, and a web UI for manual checks. No signup required.",
+      "author": {
+        "name": "brancogao",
+        "url": "https://github.com/brancogao"
+      },
+      "homepage": "https://github.com/brancogao/ssl-certificate-monitor",
+      "readmeUrl": "https://raw.githubusercontent.com/brancogao/ssl-certificate-monitor/main/README.md",
+      "version": "1.0.0",
+      "tags": [
+        "ssl",
+        "certificate",
+        "monitor",
+        "tls",
+        "expiry",
+        "api",
+        "worker"
+      ],
+      "type": "worker",
+      "compatibility_date": "2024-01-17",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/ssl-certificate-monitor/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "kv",
+          "name": "SSL_KV",
+          "title": "SSL 证书监控 KV 存储",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "d1",
+          "name": "SSL_DB",
+          "title": "SSL 证书监控 D1 数据库",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "ENVIRONMENT",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "运行环境（默认 production）"
+        }
+      ]
+    },
+    {
+      "id": "alle",
+      "name": "Alle 多邮箱聚合",
+      "version": "2.0.0",
+      "description": "部署在 Cloudflare Workers 上的现代化多邮箱聚合服务，支持拉取 IMAP/POP3 账号邮件、Web 收件箱、邮件路由转发与附件存储（R2）。需要 D1 数据库、R2 存储桶与 SECRET 密钥。注意：Worker 内置 email 邮件路由处理器，需在 Cloudflare 控制台手动配置 Email Routing 后才会生效。",
+      "type": "worker",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "raw",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/assets.zip"
+        },
+        "config": {
+          "not_found_handling": "single-page-application"
+        }
+      },
+      "compatibility_date": "2026-05-11",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "Alle 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/init.sql"
+        },
+        {
+          "type": "r2",
+          "name": "ATTACHMENTS",
+          "title": "Alle 附件存储",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "SECRET",
+          "title": "SECRET 密钥",
+          "secret": true,
+          "action": "prompt"
+        }
+      ]
     }
   ]
 }
