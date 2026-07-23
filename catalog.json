@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-23T08:00:00.000Z",
+  "updated": "2026-07-23T13:45:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2016,6 +2016,79 @@
           "action": "prompt"
         }
       ]
+    },
+    {
+      "id": "wiki-share",
+      "name": "WikiShare",
+      "description": "基于 Cloudflare Workers + D1 + R2 的自托管 Wiki 知识库与文件共享平台，支持页面/文件夹树、分享链接（带密码/有效期/访问次数限制）、回收站定时清理与 Vue SPA 前端。",
+      "author": {
+        "name": "qbmiller",
+        "url": "https://github.com/qbmiller"
+      },
+      "homepage": "https://github.com/qbmiller/wikiShare",
+      "readmeUrl": "https://raw.githubusercontent.com/qbmiller/wikiShare/main/README.md",
+      "version": "0.1.0",
+      "tags": ["wiki", "知识库", "文件共享", "worker", "d1", "r2"],
+      "type": "worker",
+      "compatibility_date": "2026-06-19",
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/wiki-share/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/wiki-share/assets.zip"
+        },
+        "binding": "ASSETS",
+        "config": {
+          "not_found_handling": "single-page-application",
+          "run_worker_first": ["/api/*"]
+        }
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "WikiShare D1 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/wiki-share/init.sql"
+        },
+        {
+          "type": "r2",
+          "name": "PDF_BUCKET",
+          "title": "WikiShare R2 对象存储桶（存储 PDF 等文件）",
+          "action": "create-or-reuse"
+        },
+        {
+          "name": "MAX_UPLOAD_BYTES",
+          "type": "var",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "单文件最大上传字节数（默认 100MB）",
+          "value": "104857600"
+        },
+        {
+          "name": "TRASH_RETENTION_DAYS",
+          "type": "var",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "回收站保留天数（默认 30 天）",
+          "value": "30"
+        },
+        {
+          "name": "TRASH_MAX_BYTES",
+          "type": "var",
+          "action": "create-or-reuse",
+          "required": false,
+          "secret": false,
+          "title": "回收站最大占用字节数（默认 20GB）",
+          "value": "21474836480"
+        }
+      ],
+      "crons": ["0 * * * *"]
     }
   ]
 }
