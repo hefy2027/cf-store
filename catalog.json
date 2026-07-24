@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-23T12:00:00.000Z",
+  "updated": "2026-07-24T08:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2802,6 +2802,117 @@
           "title": "SECRET 密钥",
           "secret": true,
           "action": "prompt"
+        }
+      ]
+    },
+    {
+      "id": "octafuse-gateway-proxy",
+      "name": "Octafuse Gateway - Proxy",
+      "description": "可自托管的开源 AI 网关代理服务：将多供应商、多账号的 AI 模型、图像生成与 Agent Tools 整合为统一 OpenAI 兼容 API 入口，支持路由、负载均衡、故障转移、密钥管理、预算控制和用量审计。",
+      "author": {
+        "name": "OctaFuse",
+        "url": "https://github.com/OctaFuse"
+      },
+      "homepage": "https://github.com/OctaFuse/octafuse-gateway",
+      "readmeUrl": "https://raw.githubusercontent.com/OctaFuse/octafuse-gateway/main/README.md",
+      "version": "1.10.2",
+      "tags": [
+        "AI",
+        "网关",
+        "worker",
+        "d1",
+        "openai",
+        "代理"
+      ],
+      "type": "worker",
+      "compatibility_date": "2025-04-01",
+      "compatibility_flags": [
+        "nodejs_compat",
+        "enable_request_signal"
+      ],
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/worker.js"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "Octafuse Gateway 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql"
+        }
+      ]
+    },
+    {
+      "id": "octafuse-gateway-admin",
+      "name": "Octafuse Gateway - Admin",
+      "description": "Octafuse AI 网关的管理控制台，用于集中管理 API 密钥、供应商、模型、路由、用户、预算和审计日志。基于 Next.js 16 + OpenNext 构建在 Cloudflare Workers 上，与 Proxy 共享同一 D1 数据库。部署后默认账号 admin，首次登录需设置 ADMIN_PASSWORD。",
+      "author": {
+        "name": "OctaFuse",
+        "url": "https://github.com/OctaFuse"
+      },
+      "homepage": "https://github.com/OctaFuse/octafuse-gateway",
+      "readmeUrl": "https://raw.githubusercontent.com/OctaFuse/octafuse-gateway/main/README.md",
+      "version": "1.10.2",
+      "tags": [
+        "AI",
+        "网关",
+        "管理",
+        "admin",
+        "worker",
+        "d1",
+        "nextjs"
+      ],
+      "type": "worker",
+      "compatibility_date": "2025-11-25",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
+      "source": {
+        "kind": "raw",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-admin/worker.js"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-admin/assets.zip"
+        },
+        "binding": "ASSETS"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "Octafuse Gateway 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql"
+        },
+        {
+          "type": "var",
+          "name": "ADMIN_USERNAME",
+          "title": "管理员用户名",
+          "secret": false,
+          "required": false,
+          "value": "admin",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "ADMIN_PASSWORD",
+          "title": "管理员密码（必填，部署后通过此密码登录管理后台）",
+          "secret": true,
+          "required": true,
+          "action": "prompt"
+        },
+        {
+          "type": "var",
+          "name": "NEXT_PRIVATE_MINIMAL_MODE",
+          "title": "Next.js Minimal Mode",
+          "secret": false,
+          "required": false,
+          "value": "1",
+          "action": "create-or-reuse"
         }
       ]
     }

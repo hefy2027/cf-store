@@ -5,7 +5,7 @@ CF Manager 的官方模板源（catalog）。CF Manager 的 Store 页面会从�
 <!-- CATALOG_TABLE_START -->
 ## 已收录模板
 
-> 共 63 个模板。本表由 `catalog.json` 同步生成（运行 `node scripts/gen-readme-table.mjs` 刷新），请勿手改，保持与 `catalog.json` 一致。
+> 共 65 个模板。本表由 `catalog.json` 同步生成（运行 `node scripts/gen-readme-table.mjs` 刷新），请勿手改，保持与 `catalog.json` 一致。
 
 | 名称 | ID | 类型 | 描述 | 标签 |
 |------|----|------|------|------|
@@ -71,7 +71,9 @@ CF Manager 的官方模板源（catalog）。CF Manager 的 Store 页面会从�
 | [Redirect Checker](https://github.com/brancogao/redirect-checker) | `redirect-checker` | worker | HTTP redirect chain analyzer for developers — trace 301/302/307/308 redirects, detect loops, measure performance. API-first design with RESTful JSON API, multiple User-Agent presets (Googlebot, Bingbot, Mobile, curl), and a web UI rendered inline by the Worker. | worker, redirect, http, seo, developer-tools, api |
 | [IP API](https://github.com/ccbikai/ip-api) | `ip-api` | worker | 获取访客 IP 地址和地理位置信息的 API 服务。支持根路径返回纯 IP，/geo 路径返回地理位置（国家、城市、AS 信息等），带 CORS 支持，适合前端直接调用。 | worker, ip, geo, location, api |
 | [SSL Certificate Monitor](https://github.com/brancogao/ssl-certificate-monitor) | `ssl-certificate-monitor` | worker | Monitor SSL certificates and get alerts before they expire. Features include checking SSL certificate expiry dates, viewing certificate details (issuer, algorithm, SANs), RESTful API for programmatic access, and a web UI for manual checks. No signup required. | ssl, certificate, monitor, tls, expiry, api, worker |
-| Alle 多邮箱聚合 | `alle` | worker | 部署在 Cloudflare Workers 上的现代化多邮箱聚合服务，支持拉取 IMAP/POP3 账号邮件、Web 收件箱、邮件路由转发与附件存储（R2）。需要 D1 数据库、R2 存储桶与 SECRET 密钥。注意：Worker 内置 email 邮件路由处理器，需在 Cloudflare 控制台手动配置 Email Routing 后才会生效。 |  |
+| [Alle 多邮箱聚合](https://github.com/bestruirui/Alle) | `alle` | worker | AI 驱动的个人邮件聚合与管理平台，基于 Cloudflare Workers 构建。通过邮件转发规则聚合 Gmail、Outlook、QQ 等多账户邮件（无需密码），AI 自动提取验证码、分类邮件链接（验证/通知/退订），支持无限临时邮箱地址创建，使用 D1 + R2 存储邮件数据与附件。注意：Worker 内置 email 邮件路由处理器，需在 Cloudflare 控制台手动配置 Email Routing 后才会生效。 | 邮箱, AI, worker, d1, r2, 临时邮箱 |
+| [Octafuse Gateway - Proxy](https://github.com/OctaFuse/octafuse-gateway) | `octafuse-gateway-proxy` | worker | 可自托管的开源 AI 网关代理服务：将多供应商、多账号的 AI 模型、图像生成与 Agent Tools 整合为统一 OpenAI 兼容 API 入口，支持路由、负载均衡、故障转移、密钥管理、预算控制和用量审计。 | AI, 网关, worker, d1, openai, 代理 |
+| [Octafuse Gateway - Admin](https://github.com/OctaFuse/octafuse-gateway) | `octafuse-gateway-admin` | worker | Octafuse AI 网关的管理控制台，用于集中管理 API 密钥、供应商、模型、路由、用户、预算和审计日志。基于 Next.js 16 + OpenNext 构建在 Cloudflare Workers 上，与 Proxy 共享同一 D1 数据库。部署后默认账号 admin，首次登录需设置 ADMIN_PASSWORD。 | AI, 网关, 管理, admin, worker, d1, nextjs |
 
 <!-- CATALOG_TABLE_END -->
 
