@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-07-24T08:00:00.000Z",
+  "updated": "2026-08-03T08:00:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2913,6 +2913,59 @@
           "required": false,
           "value": "1",
           "action": "create-or-reuse"
+        }
+      ]
+    },
+    {
+      "id": "solara",
+      "name": "Solara",
+      "description": "极简风格的在线音乐播放器，支持跨站曲库检索（网易云/酷我等）、智能边缘缓存、动态主题取色、逐行滚动歌词、多码率下载、MediaSession 锁屏控制与收藏系统。可选 PASSWORD 访问控制与 D1 持久化存储（未绑定时自动降级到浏览器 localStorage），通过 Cloudflare Pages Functions 一键部署。",
+      "author": {
+        "name": "akudamatata",
+        "url": "https://github.com/akudamatata"
+      },
+      "homepage": "https://github.com/akudamatata/Solara",
+      "readmeUrl": "https://raw.githubusercontent.com/akudamatata/Solara/main/README.md",
+      "version": "1.0.0",
+      "tags": [
+        "音乐",
+        "播放器",
+        "pages",
+        "d1"
+      ],
+      "type": "pages",
+      "source": {
+        "kind": "repo-archive",
+        "url": "https://github.com/akudamatata/Solara/archive/refs/heads/main.zip"
+      },
+      "bindings": [
+        {
+          "type": "d1",
+          "name": "DB",
+          "title": "Solara D1 数据库（存储播放状态与收藏数据）",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/solara/init.sql"
+        },
+        {
+          "type": "var",
+          "name": "PASSWORD",
+          "title": "访问密码（可选，设置后需在登录页验证）",
+          "required": false,
+          "secret": true
+        },
+        {
+          "type": "var",
+          "name": "LANGUAGE",
+          "title": "界面语言（填 ENG 为英文，留空默认中文）",
+          "required": false,
+          "secret": false
+        },
+        {
+          "type": "var",
+          "name": "API_BASE_URL",
+          "title": "自定义音乐 API 地址（可选，留空使用默认节点）",
+          "required": false,
+          "secret": false
         }
       ]
     }
