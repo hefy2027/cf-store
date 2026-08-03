@@ -2926,7 +2926,7 @@
       },
       "homepage": "https://github.com/akudamatata/Solara",
       "readmeUrl": "https://raw.githubusercontent.com/akudamatata/Solara/main/README.md",
-      "version": "1.0.0",
+      "version": "2.1.5",
       "tags": [
         "音乐",
         "播放器",
@@ -2951,21 +2951,24 @@
           "name": "PASSWORD",
           "title": "访问密码（可选，设置后需在登录页验证）",
           "required": false,
-          "secret": true
+          "secret": true,
+          "action": "prompt"
         },
         {
           "type": "var",
           "name": "LANGUAGE",
           "title": "界面语言（填 ENG 为英文，留空默认中文）",
           "required": false,
-          "secret": false
+          "secret": false,
+          "action": "prompt"
         },
         {
           "type": "var",
           "name": "API_BASE_URL",
           "title": "自定义音乐 API 地址（可选，留空使用默认节点）",
           "required": false,
-          "secret": false
+          "secret": false,
+          "action": "prompt"
         }
       ]
     }
