@@ -2935,8 +2935,8 @@
       ],
       "type": "pages",
       "source": {
-        "kind": "repo-archive",
-        "url": "https://cf-store.surge.sh/templates/solara/solara-pages.zip"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/solara/solara-pages.zip"
       },
       "bindings": [
         {
