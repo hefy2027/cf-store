@@ -2936,7 +2936,7 @@
       "type": "pages",
       "source": {
         "kind": "repo-archive",
-        "url": "https://github.com/akudamatata/Solara/archive/refs/heads/main.zip"
+        "url": "https://cf-store.surge.sh/templates/solara/solara-pages.zip"
       },
       "bindings": [
         {
