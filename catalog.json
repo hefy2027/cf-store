@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-08-03T08:00:00.000Z",
+  "updated": "2026-08-08T13:55:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -376,7 +376,7 @@
       },
       "homepage": "https://github.com/akazwz/smail",
       "readmeUrl": "https://raw.githubusercontent.com/akazwz/smail/main/README.md",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "tags": [
         "邮箱",
         "worker",
@@ -647,30 +647,50 @@
     {
       "id": "sink",
       "name": "Sink",
-      "description": "100% 运行在 Cloudflare 上的极简、快速、安全的短链服务，内置分析面板与控制台，基于 Nuxt + Workers AI + KV + R2 构建。",
+      "description": "100% 运行在 Cloudflare 上的极简、快速、安全的短链服务，内置分析面板与控制台。基于 Nuxt + Workers AI + D1 + KV + R2 构建，支持 AI 智能生成短链、链接标签、访问统计、每日自动备份。注意：项目还使用 Analytics Engine 做访问分析，catalog 暂不支持该绑定，部署后需在 Cloudflare 控制台手动创建 Analytics Engine 绑定 ANALYTICS（dataset 名 sink）。",
       "author": {
-        "name": "ccbikai",
-        "url": "https://github.com/ccbikai"
+        "name": "miantiao",
+        "url": "https://github.com/miantiao-me"
       },
-      "homepage": "https://github.com/ccbikai/sink",
-      "version": "0.2.10",
+      "homepage": "https://github.com/miantiao-me/Sink",
+      "readmeUrl": "https://raw.githubusercontent.com/miantiao-me/Sink/master/README.md",
+      "version": "0.3.0",
       "tags": [
         "短链",
-        "pages",
+        "worker",
         "ai",
+        "d1",
         "kv",
-        "r2"
+        "r2",
+        "nuxt"
       ],
-      "type": "pages",
+      "type": "worker",
+      "compatibility_date": "2025-05-08",
+      "compatibility_flags": [
+        "nodejs_compat"
+      ],
       "source": {
-        "kind": "repo-archive",
-        "url": "https://github.com/ccbikai/sink/archive/refs/heads/master.zip"
+        "kind": "release",
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sink/server.zip",
+        "mainModule": "index.mjs"
+      },
+      "assets": {
+        "source": {
+          "kind": "release",
+          "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sink/assets.zip"
+        },
+        "binding": "ASSETS",
+        "config": {
+          "html_handling": "drop-trailing-slash"
+        }
       },
       "bindings": [
         {
-          "type": "ai",
-          "name": "AI",
-          "action": "create-or-reuse"
+          "type": "d1",
+          "name": "DB",
+          "title": "Sink D1 数据库",
+          "action": "create-or-reuse",
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sink/init.sql"
         },
         {
           "type": "kv",
@@ -681,7 +701,30 @@
           "type": "r2",
           "name": "R2",
           "action": "create-or-reuse"
+        },
+        {
+          "type": "ai",
+          "name": "AI",
+          "action": "create-or-reuse"
+        },
+        {
+          "type": "var",
+          "name": "NUXT_SITE_TOKEN",
+          "title": "站点访问令牌",
+          "action": "prompt",
+          "secret": true,
+          "required": true
+        },
+        {
+          "type": "var",
+          "name": "NUXT_HOME_URL",
+          "title": "首页跳转 URL（可选）",
+          "action": "prompt",
+          "secret": false
         }
+      ],
+      "crons": [
+        "0 0 * * *"
       ]
     },
     {
@@ -2014,12 +2057,13 @@
         "图床",
         "worker",
         "r2",
-        "kv"
+        "kv",
+        "telegram"
       ],
       "type": "worker",
       "source": {
         "kind": "raw",
-        "url": "https://raw.githubusercontent.com/WangQueXL/PixR2/main/_worker.js"
+        "url": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/pixr2/worker.js"
       },
       "bindings": [
         {
@@ -2041,7 +2085,7 @@
           "name": "SECRET_KEY",
           "type": "var",
           "action": "prompt",
-          "required": false,
+          "required": true,
           "title": "管理后台密钥（用于登录鉴权）",
           "secret": true
         },
@@ -2050,7 +2094,7 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "是否启用 Telegram Bot 上传（true/false）",
+          "title": "是否启用 Telegram Bot 上传（true/false，设为 true 时以下三项必填）",
           "secret": false
         },
         {
@@ -2058,7 +2102,7 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "Telegram Bot Token（启用 Bot 时填写）",
+          "title": "Telegram 机器人 Token（仅当 ENABLE_TELEGRAM_BOT=true 时必填，@BotFather 获取）",
           "secret": true
         },
         {
@@ -2066,7 +2110,7 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "允许上传的 Telegram 用户 ID（启用 Bot 时填写）",
+          "title": "允许使用机器人的 Telegram 用户 ID，多个用英文逗号分隔（仅当 ENABLE_TELEGRAM_BOT=true 时必填，与 CHAT_ID 二选一）",
           "secret": false
         },
         {
@@ -2074,7 +2118,7 @@
           "type": "var",
           "action": "prompt",
           "required": false,
-          "title": "Telegram Chat ID（启用 Bot 时填写）",
+          "title": "Telegram Chat ID（仅当 ENABLE_TELEGRAM_BOT=true 时填写，与 USER_ID 二选一）",
           "secret": false
         }
       ]
