@@ -351,7 +351,8 @@
         {
           "type": "kv",
           "name": "URL_SHORT_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "cloudflareworker-kv-urlshort"
         },
         {
           "name": "TURNSTILE_SITE_KEY",
@@ -767,7 +768,8 @@
         {
           "type": "kv",
           "name": "IMG_URL",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "cf-pages-telegraph-image"
         },
         {
           "type": "var",
@@ -1118,7 +1120,8 @@
         {
           "type": "kv",
           "name": "BLOG_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "gdtool-cloudflare-workers-blog"
         }
       ]
     },
@@ -1179,7 +1182,8 @@
         {
           "type": "kv",
           "name": "LINKS",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "horsemail-url-shorten-worker"
         }
       ]
     },
@@ -1515,7 +1519,8 @@
         {
           "type": "kv",
           "name": "LINK",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "iiop123-workers-image-hosting"
         },
         {
           "type": "var",
@@ -1572,7 +1577,8 @@
           "type": "kv",
           "name": "KV",
           "title": "KV 命名空间",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "subpool-worker"
         },
         {
           "type": "var",
@@ -1647,7 +1653,8 @@
         {
           "type": "kv",
           "name": "URLSHORTEN",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "cloudflare-pages-urlshorten"
         }
       ]
     },
@@ -1855,7 +1862,8 @@
         {
           "type": "kv",
           "name": "LINKS",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "url-shorten-worker"
         },
         {
           "name": "PASSWORD_ADMIN",
@@ -2055,7 +2063,8 @@
         {
           "type": "kv",
           "name": "DATABASE",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "chatgpt-telegram-workers"
         },
         {
           "name": "TELEGRAM_TOKEN",
@@ -2489,7 +2498,8 @@
           "name": "SIRI_AI_CHATS",
           "title": "对话历史 KV 存储",
           "required": true,
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "siri-ultra"
         },
         {
           "type": "var",
@@ -2585,7 +2595,8 @@
           "type": "kv",
           "name": "LINKS",
           "title": "短链存储 KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "url-shorten-worker-cf"
         }
       ]
     },
@@ -2627,7 +2638,8 @@
           "type": "kv",
           "name": "KV_STATUS_PAGE",
           "title": "状态页 KV 命名空间（存储监控数据）",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "cf-workers-status-page"
         },
         {
           "type": "var",
@@ -2813,7 +2825,8 @@
           "type": "kv",
           "name": "SSL_KV",
           "title": "SSL 证书监控 KV 存储",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "ssl-certificate-monitor"
         },
         {
           "type": "d1",
@@ -2875,7 +2888,8 @@
           "name": "DB",
           "title": "Alle 数据库",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/alle/init.sql",
+          "resourceName": "alle-db"
         },
         {
           "type": "r2",
@@ -2928,7 +2942,8 @@
           "name": "DB",
           "title": "Octafuse Gateway 数据库",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql",
+          "resourceName": "octafuse-gateway-proxy-db"
         }
       ]
     },
@@ -2974,7 +2989,8 @@
           "name": "DB",
           "title": "Octafuse Gateway 数据库",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/octafuse-gateway-proxy/init.sql",
+          "resourceName": "octafuse-gateway-admin-db"
         },
         {
           "type": "var",
@@ -3032,7 +3048,8 @@
           "name": "DB",
           "title": "Solara D1 数据库（存储播放状态与收藏数据）",
           "action": "create-or-reuse",
-          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/solara/init.sql"
+          "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/solara/init.sql",
+          "resourceName": "solara-db"
         },
         {
           "type": "var",
