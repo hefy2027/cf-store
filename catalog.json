@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated": "2026-08-08T14:31:00.000Z",
+  "updated": "2026-08-08T14:35:00.000Z",
   "name": "CF Store 官方源",
   "defaultLanguage": "zh-CN",
   "templates": [
@@ -2646,28 +2646,32 @@
           "name": "SECRET_SLACK_WEBHOOK_URL",
           "title": "Slack Webhook URL（可选，状态变更通知）",
           "secret": true,
-          "required": false
+          "required": false,
+          "action": "prompt"
         },
         {
           "type": "var",
           "name": "SECRET_DISCORD_WEBHOOK_URL",
           "title": "Discord Webhook URL（可选，状态变更通知）",
           "secret": true,
-          "required": false
+          "required": false,
+          "action": "prompt"
         },
         {
           "type": "var",
           "name": "SECRET_TELEGRAM_API_TOKEN",
           "title": "Telegram Bot API Token（可选，配合 SECRET_TELEGRAM_CHAT_ID 使用）",
           "secret": true,
-          "required": false
+          "required": false,
+          "action": "prompt"
         },
         {
           "type": "var",
           "name": "SECRET_TELEGRAM_CHAT_ID",
           "title": "Telegram Chat ID（可选，配合 SECRET_TELEGRAM_API_TOKEN 使用）",
           "secret": true,
-          "required": false
+          "required": false,
+          "action": "prompt"
         }
       ]
     },
