@@ -410,6 +410,7 @@
         {
           "type": "r2",
           "name": "R2",
+          "resourceName": "smail-r2",
           "action": "create-or-reuse"
         },
         {
@@ -522,6 +523,7 @@
         {
           "type": "r2",
           "name": "R2_IMG_MOM",
+          "resourceName": "img-mom-r2",
           "action": "create-or-reuse"
         },
         {
@@ -700,6 +702,7 @@
         {
           "type": "r2",
           "name": "R2",
+          "resourceName": "sink-r2",
           "action": "create-or-reuse"
         },
         {
@@ -1310,6 +1313,7 @@
         {
           "type": "r2",
           "name": "BUCKET",
+          "resourceName": "gins-blog-bucket",
           "action": "create-or-reuse"
         },
         {
@@ -1706,6 +1710,7 @@
         {
           "type": "r2",
           "name": "FILE_BUCKET",
+          "resourceName": "cf-files-sharing-files",
           "title": "文件存储桶（大文件）",
           "action": "create-or-reuse"
         },
@@ -2069,6 +2074,7 @@
         {
           "type": "r2",
           "name": "BUCKET_R2",
+          "resourceName": "pixr2-bucket",
           "action": "create-or-reuse"
         },
         {
@@ -2274,6 +2280,7 @@
         {
           "type": "r2",
           "name": "RESOURCES",
+          "resourceName": "edgeever-resources",
           "title": "EdgeEver R2 对象存储桶",
           "action": "create-or-reuse"
         },
@@ -2837,6 +2844,7 @@
         {
           "type": "r2",
           "name": "ATTACHMENTS",
+          "resourceName": "alle-attachments",
           "title": "Alle 附件存储",
           "action": "create-or-reuse"
         },
