@@ -100,6 +100,7 @@
         {
           "type": "d1",
           "name": "MY_DB",
+          "resourceName": "d1-demo-db",
           "title": "demo-db",
           "action": "create-or-reuse",
           "initSql": "CREATE TABLE IF NOT EXISTS items (id INTEGER PRIMARY KEY AUTOINCREMENT, title TEXT NOT NULL, content TEXT, created_at DATETIME DEFAULT CURRENT_TIMESTAMP)"
@@ -404,6 +405,7 @@
         {
           "type": "d1",
           "name": "D1",
+          "resourceName": "smail-d1",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/smail/init.sql"
         },
@@ -637,6 +639,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "moemail-db",
           "action": "create-or-reuse"
         },
         {
@@ -690,6 +693,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "sink-db",
           "title": "Sink D1 数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/sink/init.sql"
@@ -937,6 +941,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "cloudflare-temp-email-db",
           "title": "临时邮箱数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cloudflare-temp-email/init.sql"
@@ -996,6 +1001,7 @@
         {
           "type": "d1",
           "name": "D1",
+          "resourceName": "emaction-backend-d1",
           "action": "create-or-reuse",
           "required": true,
           "title": "D1 数据库（存储 reactions 计数）",
@@ -1133,6 +1139,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "linklet-db",
           "title": "linklet-db",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/linklet/short.sql"
@@ -1228,6 +1235,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "telegram-counter-db",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/telegram-counter/init.sql"
         },
@@ -1307,6 +1315,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "gins-blog-db",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/gins-blog/init.sql"
         },
@@ -1656,6 +1665,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "cf-comment-db",
           "action": "create-or-reuse",
           "initSql": "CREATE TABLE comment_areas (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  name TEXT NOT NULL,\n  area_key TEXT NOT NULL UNIQUE,\n  intro TEXT NULL,\n  hidden INTEGER DEFAULT 0\n);\n\nCREATE TABLE comments (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  area_key TEXT NOT NULL,\n  content TEXT NOT NULL,\n  parent_id INTEGER DEFAULT 0,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  hidden INTEGER DEFAULT 0,\n  likes INTEGER DEFAULT 0,\n  pinned INTEGER DEFAULT 0\n);\n\nCREATE TABLE reports (\n  id INTEGER PRIMARY KEY AUTOINCREMENT,\n  comment_id INTEGER NOT NULL,\n  reason TEXT NOT NULL,\n  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,\n  resolved INTEGER DEFAULT 0\n);"
         },
@@ -1717,6 +1727,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "cf-files-sharing-db",
           "title": "文件元数据数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/cf-files-sharing/init.sql"
@@ -1800,6 +1811,7 @@
         {
           "type": "d1",
           "name": "UPTIMEFLARE_D1",
+          "resourceName": "uptimeflare-d1",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/uptimeflare/init.sql",
           "title": "UptimeFlare 监控数据 (D1)"
@@ -1892,6 +1904,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "shotog-db",
           "title": "ShotOG Database",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/shotog/init.sql"
@@ -2228,6 +2241,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "analytics-with-cloudflare-db",
           "title": "Web Analytics D1 Database",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/analytics-with-cloudflare/schema.sql"
@@ -2273,6 +2287,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "edgeever-db",
           "title": "EdgeEver D1 数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/edgeever/init.sql"
@@ -2336,6 +2351,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "wiki-share-db",
           "title": "WikiShare D1 数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/wiki-share/init.sql"
@@ -2410,6 +2426,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "short-db",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/short/init.sql"
         },
@@ -2664,6 +2681,7 @@
         {
           "type": "d1",
           "name": "DB",
+          "resourceName": "webhook-debugger-db",
           "title": "Webhook Debugger D1 数据库",
           "action": "create-or-reuse",
           "initSqlUrl": "https://raw.githubusercontent.com/hefy2027/cf-store/main/templates/webhook-debugger/init.sql"
@@ -2783,6 +2801,7 @@
         {
           "type": "d1",
           "name": "SSL_DB",
+          "resourceName": "ssl-certificate-monitor-db",
           "title": "SSL 证书监控 D1 数据库",
           "action": "create-or-reuse"
         },
