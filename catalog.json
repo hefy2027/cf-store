@@ -71,7 +71,8 @@
           "type": "kv",
           "name": "MY_KV",
           "title": "demo-kv",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "kv-demo-kv"
         }
       ]
     },
@@ -200,7 +201,8 @@
           "type": "kv",
           "name": "KV",
           "title": "edgetunnel-kv",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "edgetunnel-kv"
         },
         {
           "name": "ADMIN",
@@ -271,7 +273,8 @@
         {
           "type": "kv",
           "name": "SUBLINK_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "sublink-worker-kv"
         }
       ],
       "assets": {
@@ -310,7 +313,8 @@
         {
           "type": "kv",
           "name": "KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "cf-page-publish-mcp-kv"
         },
         {
           "name": "HOST",
@@ -457,7 +461,8 @@
         {
           "type": "kv",
           "name": "BADGE_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "deploy-mcp-badge"
         }
       ]
     },
@@ -520,7 +525,8 @@
         {
           "type": "kv",
           "name": "KV_IMG_MOM",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "img-mom-kv"
         },
         {
           "type": "r2",
@@ -645,7 +651,8 @@
         {
           "type": "kv",
           "name": "SITE_CONFIG",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "moemail-site-config"
         }
       ]
     },
@@ -701,7 +708,8 @@
         {
           "type": "kv",
           "name": "KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "sink-kv"
         },
         {
           "type": "r2",
@@ -1300,17 +1308,20 @@
         {
           "type": "kv",
           "name": "SESSION",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "gins-blog-session"
         },
         {
           "type": "kv",
           "name": "GIN_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "gins-blog-gin-kv"
         },
         {
           "type": "kv",
           "name": "GINS_CACHE",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "gins-blog-cache"
         },
         {
           "type": "d1",
@@ -1462,7 +1473,8 @@
         {
           "type": "kv",
           "name": "LINK",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "dingding-link"
         }
       ]
     },
@@ -1940,12 +1952,14 @@
         {
           "type": "kv",
           "name": "NOTES",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "serverless-cloud-notepad-notes"
         },
         {
           "type": "kv",
           "name": "SHARE",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "serverless-cloud-notepad-share"
         }
       ]
     },
@@ -1975,7 +1989,8 @@
         {
           "type": "kv",
           "name": "NOTES",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "micro-notepad-notes"
         }
       ]
     },
@@ -2093,12 +2108,14 @@
         {
           "type": "kv",
           "name": "SHARES_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "pixr2-shares"
         },
         {
           "type": "kv",
           "name": "INDEXES_KV",
-          "action": "create-or-reuse"
+          "action": "create-or-reuse",
+          "resourceName": "pixr2-indexes"
         },
         {
           "name": "SECRET_KEY",
